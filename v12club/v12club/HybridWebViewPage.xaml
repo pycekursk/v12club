@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage BackgroundColor="Transparent"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:local="clr-namespace:v12club;assembly=v12club"
+  x:Class="v12club.HybridWebViewPage"
+  Padding="0,0,0,0">
+  <StackLayout
+    x:Name="View_Wrapper"
+    BackgroundColor="Transparent"></StackLayout>
+</ContentPage>

@@ -1,0 +1,5 @@
+@media (max-width: 480px) {
+    .catalogsCont ul li {
+        width: 48%;
+    }
+}
