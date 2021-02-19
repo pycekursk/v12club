@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "v12club.Android", "v12club\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "v12club.iOS", "v12club\v12club.iOS\v12club.iOS.csproj", "{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "v12club", "v12club\v12club\v12club.csproj", "{2E1A92ED-BAA7-4D4B-B070-6406B04CC101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "v12club", "v12club\v12club\v12club.csproj", "{2E1A92ED-BAA7-4D4B-B070-6406B04CC101}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,9 +126,9 @@ Global
 		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhone.ActiveCfg = Release|iPhone
 		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhone.Build.0 = Release|iPhone
 		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhone.Deploy.0 = Release|iPhone
-		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhoneSimulator.Deploy.0 = Release|iPhoneSimulator
+		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
+		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhoneSimulator.Build.0 = Release|iPhone
+		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|iPhoneSimulator.Deploy.0 = Release|iPhone
 		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|x64.ActiveCfg = Release|iPhoneSimulator
 		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|x64.Build.0 = Release|iPhoneSimulator
 		{9A4A77F3-1A79-4C5E-8FCA-B0BAE7EE69B2}.Release|x64.Deploy.0 = Release|iPhoneSimulator

@@ -1,6 +1,4 @@
-﻿using Android.Webkit;
-
-using ProgressRingControl.Forms.Plugin;
+﻿using ProgressRingControl.Forms.Plugin;
 
 using System;
 using System.IO;

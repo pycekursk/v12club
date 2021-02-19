@@ -19,7 +19,7 @@ namespace v12club
 	public partial class MainPage : ContentPage
 	{
 		public static ProgressRingControl.Forms.Plugin.ProgressRing Spinner = new ProgressRing() { RingProgressColor = Color.FromHex("#fbc430"), RingThickness = 25, Margin = 70, Opacity = 0, IsEnabled = false };
-		HybridWebView WebView;
+		readonly HybridWebView WebView;
 
 		public MainPage()
 		{
@@ -61,7 +61,7 @@ namespace v12club
 				}
 				else if (!WebView_wrapper.IsVisible)
 				{
-					if (await DisplayAlert("", "Закрыть приложение?", "Да", "Нет")) Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+					if (await DisplayAlert("", "Закрыть приложение?", "Да", "Нет")) Application.Current.Quit();
 				}
 			}).Invoke();
 			return true;

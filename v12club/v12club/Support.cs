@@ -85,20 +85,20 @@ namespace v12club
 		}
 
 
-		private static void ProgressRing_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		private static async void ProgressRing_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == "IsEnabled")
 			{
 				var ring = sender as ProgressRingControl.Forms.Plugin.ProgressRing;
 				if (ring.IsEnabled)
 				{
-					ring.FadeTo(1, 50);
-					DoAnimation(ring, 500);
+					await ring.FadeTo(1, 50);
+					await DoAnimation(ring, 500);
 				}
 
 				else
 				{
-					ring.FadeTo(0, 50);
+					await ring.FadeTo(0, 50);
 					ring.Progress = 0;
 				}
 			}
