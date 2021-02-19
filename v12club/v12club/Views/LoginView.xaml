@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+  xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="v12club.Views.LoginView"
+  xmlns:vm="clr-namespace:v12club.ViewModels">
+  <ContentView.Content>
+    <StackLayout
+      Padding="0,20,0,0"
+      x:Name="Wrapper"
+      HorizontalOptions="FillAndExpand"
+      VerticalOptions="FillAndExpand">
+      <Image
+        Source="v12club_logo.png"></Image>
+      <StackLayout
+        Padding="30,0,30,0">
+        <Entry
+          MaxLength="16"
+          Focused="Login_Focused"
+          TextChanged="Login_TextChanged"
+          Text="{Binding Login}"
+          x:Name="Login"
+          HorizontalTextAlignment="Center"
+          FontSize="33"
+          Placeholder="Телефон"></Entry>
+        <Entry
+          FontSize="33"
+          Text="{Binding Password}"
+          x:Name="Password"
+          HorizontalTextAlignment="Center"
+          Placeholder="Пароль"
+          IsPassword="True"></Entry>
+        <StackLayout
+          Orientation="Horizontal"
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand">
+          <CheckBox
+            x:Name="SaveSettingsCheckBox"
+            IsChecked="{Binding IsSaveSettings, Mode=TwoWay}"></CheckBox>
+          <Label TextColor="Black"
+            FontSize="24"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">Запомнить меня</Label>
+        </StackLayout>
+        <StackLayout
+          Spacing="30"
+          Padding="0,10,0,0"
+          VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand"
+          Orientation="Vertical">
+          <Button
+            CornerRadius="15"
+            BackgroundColor="Green"
+            BorderWidth="3"
+            BorderColor="DarkGreen"
+            HeightRequest="80"
+            FontSize="28"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Text="Вход"
+            Command="{Binding LoginCommand}" />
+          <Button
+            IsEnabled="False"
+            CornerRadius="15"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="#fbc430"
+            BorderColor="Orange"
+            BorderWidth="3"
+            HeightRequest="80"
+            FontSize="28"
+            VerticalOptions="FillAndExpand"
+            Text="Регистрация"
+            Command="{Binding RegisterCommand}" />
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>

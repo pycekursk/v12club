@@ -4,20 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using v12club.ViewModels;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace v12club.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
+	public partial class RegisterView : ContentView
 	{
-		public LoginPage(HybridWebView webView)
+		public RegisterView()
 		{
 			InitializeComponent();
-			this.WView.Children.Add(webView);
 		}
 	}
 }

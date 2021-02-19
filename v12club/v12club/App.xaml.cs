@@ -1,71 +1,35 @@
 ﻿using Android.Webkit;
 
-using System;
+using ProgressRingControl.Forms.Plugin;
 
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
+using v12club.Models;
 using v12club.Views;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using static v12club.HybridWebViewPage;
 
 namespace v12club
 {
 	public partial class App : Xamarin.Forms.Application
 	{
-		public static HybridWebView webView;
-		public static bool Loggined = false;
+		public static JSBridgeObject BridgeObject { get; set; }
+		
+
 		public App()
 		{
 			InitializeComponent();
 
-			var layoutOptions = new LayoutOptions { Alignment = LayoutAlignment.Fill, Expands = true };
-			webView = new HybridWebView { Uri = "http://id26339.noda.pro/", VerticalOptions = layoutOptions};
-			
-			//var vis = webView.Visual;
-			//Animation animation = new Animation();
-			
+			BridgeObject = new JSBridgeObject();
+			App.Current.LoadUserData();
 
-			webView.Navigating += WebView_Navigating;
-			webView.Navigated += WebView_Navigated;
-
-
-			MainPage = new LoginPage(webView);
-
-			//MainPage = new HybridWebViewPage(webView);
-		}
-
-		private async void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
-		{
-			try
-			{
-				await (sender as HybridWebView).EvaluateJavaScriptAsync("fixUI()").ConfigureAwait(true);
-			}
-			catch { }
-
-			var html = await (sender as HybridWebView).EvaluateJavaScriptAsync("$('#logInModal').text();");
-
-			if (html != null && html.ToLower() == "вход" & App.Loggined)
-			{
-				App.Loggined = false;
-
-				if (App.Current.MainPage.GetType() != typeof(LoginPage))
-				{
-					MainPage = new LoginPage(sender as HybridWebView);
-				}
-			}
-			else if (html != null && html?.ToLower() != "вход" && !App.Loggined)
-			{
-				App.Loggined = true;
-				if (App.Current.MainPage.GetType() != typeof(HybridWebView))
-				{
-					App.Current.MainPage = new HybridWebViewPage(sender as HybridWebView);
-				}
-			}
-			(sender as HybridWebView).IsVisible = true;
-		}
-
-		private void WebView_Navigating(object sender, Xamarin.Forms.WebNavigatingEventArgs e)
-		{
-			(sender as HybridWebView).IsVisible = false;
+			MainPage = new MainPage();
 		}
 
 		protected override void OnStart()
@@ -79,6 +43,7 @@ namespace v12club
 
 		protected override void OnResume()
 		{
+
 		}
 	}
 }

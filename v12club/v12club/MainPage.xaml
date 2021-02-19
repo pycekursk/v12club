@@ -5,9 +5,25 @@
   x:Class="v12club.MainPage"
   BackgroundColor="Transparent"
   xmlns:vm="clr-namespace:v12club.ViewModels">
-  <!--<ContentPage.BindingContext>
-    <vm:MainViewModel />
-  </ContentPage.BindingContext>-->
-  <!--<StackLayout
-    x:Name="view_wrapper"></StackLayout>-->
+  <ContentPage.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <RelativeLayout
+        x:Name="Spinner_wrapper"></RelativeLayout>
+      <StackLayout
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"
+        x:Name="Content_wrapper">
+        <StackLayout
+          x:Name="WebView_wrapper"
+          VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand"></StackLayout>
+      </StackLayout>
+    </Grid>
+  </ContentPage.Content>
 </ContentPage>
