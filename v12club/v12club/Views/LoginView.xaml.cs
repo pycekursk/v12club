@@ -1,12 +1,6 @@
-﻿using ProgressRingControl.Forms.Plugin;
-
+﻿
 using System;
 
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using v12club.Models;
 using v12club.ViewModels;
 
 using Xamarin.Forms;

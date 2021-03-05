@@ -1,34 +1,39 @@
 ﻿using Android;
 using Android.App;
 using Android.Content.PM;
-using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 
 using System;
 
-using v12club.Views;
-
-using Xamarin.Forms;
-
 using Color = Android.Graphics.Color;
 
 namespace v12club.Droid
 {
-	[Activity(Label = "v12club", Icon = "@drawable/v12club_icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
+	[Activity(Label = "v12club", Icon = "@drawable/v12club_icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
+			
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
 			int uiOptions = (int)Window.DecorView.SystemUiVisibility;
 			Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
 			uiOptions |= (int)SystemUiFlags.LowProfile;
 			uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
-			Window.SetNavigationBarColor(Color.Rgb(36, 50, 56));
+
+			try
+			{
+				Window.SetNavigationBarColor(Color.Rgb(36, 50, 56));
+			}
+			catch (Exception)
+			{
+
+			}
+		
 			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 
 			LoadApplication(new App());
@@ -49,7 +54,17 @@ namespace v12club.Droid
 			Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
 			uiOptions |= (int)SystemUiFlags.LowProfile;
 			uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
-			Window.SetNavigationBarColor(Color.Rgb(36, 50, 56));
+
+			try
+			{
+				Window.SetNavigationBarColor(Color.Rgb(36, 50, 56));
+			}
+			catch 
+			{
+
+			}
+		
+
 			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 			base.OnResume();
 		}

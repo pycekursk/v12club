@@ -1,7 +1,4 @@
-﻿using Android.App;
-using Android.Content;
-
-using System;
+﻿using System;
 using System.Threading;
 
 using v12club.Views;
@@ -16,73 +13,79 @@ namespace v12club.ViewModels
 	{
 		public Command LoginCommand { get; }
 		public Command RegisterCommand { get; }
+		public Command ForgetPasswordCommand { get; }
 		public Command SaveSettingsCheckBoxCommand { get; }
 		public string Login { get; set; }
 		public string Password { get; set; }
-		public bool IsSaveSettings { get; set; }
+		public bool Remember { get; set; }
+		readonly HybridWebView HybridWeb;
 
-		HybridWebView HybridWeb;
 		public LoginViewModel(HybridWebView webView)
 		{
 			HybridWeb = webView;
+
 			LoginCommand = new Command(OnLoginClicked);
 			RegisterCommand = new Command(OnRegisterClicked);
 			SaveSettingsCheckBoxCommand = new Command(OnSaveSettingsCheckBox);
+			ForgetPasswordCommand = new Command(OnForgetClicked);
 
-			if (App.BridgeObject.SaveSettings)
-			{
-				Login = App.BridgeObject.Login;
-				Password = App.BridgeObject.Password;
-				IsSaveSettings = true;
-			}
-			//Login = "+7(920)704-88-84";
-			//Password = "3339393";
+			object settings = "";
+			if (App.Current.Properties.TryGetValue("Login", out settings)) Login = settings.ToString();
+			if (App.Current.Properties.TryGetValue("Password", out settings)) Password = settings.ToString();
+			if (App.Current.Properties.TryGetValue("Remember", out settings)) Remember = bool.Parse(settings.ToString());
 		}
 
 		private async void OnLoginClicked(object obj)
 		{
-			App.BridgeObject.Login = Login;
-			App.BridgeObject.Password = Password;
-			if (App.BridgeObject.SaveSettings) App.Current.SaveUserData();
-
-			Vibration.Vibrate(50);
-			await HybridWeb.EvaluateJavaScriptAsync($"$('#login_modal').val('{Login}');$('#pass_modal').val('{Password}');$('#go_modal').click();");
-
-			var content = (App.Current.MainPage as ContentPage).Content.FindByName<StackLayout>("Content_wrapper");
-			var ring = (App.Current.MainPage as ContentPage).Content.FindByName<RelativeLayout>("Spinner_wrapper").Children[0] as ProgressRingControl.Forms.Plugin.ProgressRing;
-
-			await content.Children[0].FadeTo(0, 250);
-			ring.IsEnabled = true;
+			if (Remember)
+			{
+					if (!App.Current.Properties.ContainsKey("Login"))
+					{
+						App.Current.Properties.Add("Login", Login);
+						App.Current.Properties.Add("Password", Password);
+						App.Current.Properties.Add("Remember", Remember);
+						await App.Current.SavePropertiesAsync();
+					}
+			}
+			else
+			{
+				if (App.Current.Properties.ContainsKey("Login"))
+				{
+					App.Current.Properties.Remove("Login");
+					App.Current.Properties.Remove("Password");
+					App.Current.Properties.Remove("Remember");
+					await App.Current.SavePropertiesAsync();
+				}
+			}
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 
 			App.BridgeObject.ClientStatus = Models.Status.TryAuthorization;
+
+			await HybridWeb.EvaluateJavaScriptAsync($"$('#login_modal').val('{Login}');$('#pass_modal').val('{Password}');$('#go_modal').click();");
+
+			//await HybridWeb.EvaluateJavaScriptAsync($"doLogin({Login},{Password})");
+
+			var content = (App.Current.MainPage as ContentPage).Content.FindByName<StackLayout>("Content_wrapper");
+
+			await content.Children[0].FadeTo(0, 250);
 		}
 
-		private void OnRegisterClicked(object obj)
+		private async void OnRegisterClicked(object obj)
 		{
-			Vibration.Vibrate(50);
-			//var webviewWrapper = obj as StackLayout;
-			//var wv = webviewWrapper.Children[0] as HybridWebView;
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 
-			//var page = App.Current.MainPage as ContentPage;
-			//var contentWrapper = page.Content.FindByName<StackLayout>("Content_wrapper");
-
-			//wv.Source = "https://v12club.ru/reg";
-			//contentWrapper.IsVisible = false;
-			//webviewWrapper.IsVisible = true;
+			await Browser.OpenAsync("https://v12club.ru/reg", BrowserLaunchMode.SystemPreferred);
 		}
+		private async void OnForgetClicked(object obj)
+		{
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 
+			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.SystemPreferred);
+
+		}
 		private void OnSaveSettingsCheckBox(object obj)
 		{
-			Vibration.Vibrate(50);
-			//var webviewWrapper = obj as StackLayout;
-			//var wv = webviewWrapper.Children[0] as HybridWebView;
-
-			//var page = App.Current.MainPage as ContentPage;
-			//var contentWrapper = page.Content.FindByName<StackLayout>("Content_wrapper");
-
-			//wv.Source = "https://v12club.ru/reg";
-			//contentWrapper.IsVisible = false;
-			//webviewWrapper.IsVisible = true;
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 		}
 	}
 }

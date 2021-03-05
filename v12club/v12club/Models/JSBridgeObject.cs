@@ -7,9 +7,9 @@ namespace v12club.Models
 	public enum Status
 	{
 		NotAuthorized = 0,
+		TryAuthorization,
 		SuccessfullyAuthorized,
 		AuthorizationFailed,
-		TryAuthorization
 	}
 	
 	public class JSBridgeObject
@@ -18,8 +18,7 @@ namespace v12club.Models
 		public bool IsLogined { get; set; }
 		public Status ClientStatus { get; set; }
 		public bool SaveSettings { get; set; } = true;
+		public bool IsFirstLoad { get; set; } = true;
 		public string Name { get; set; }
-		public string Login { get; set; }
-		public string Password { get; set; }
 	}
 }

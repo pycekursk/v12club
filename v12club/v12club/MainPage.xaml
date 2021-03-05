@@ -3,26 +3,135 @@
   xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   x:Class="v12club.MainPage"
-  BackgroundColor="Transparent"
-  xmlns:vm="clr-namespace:v12club.ViewModels">
+  x:Name="Main_page"
+  BackgroundColor="#243238"
+  xmlns:vm="clr-namespace:v12club.ViewModels"
+  xmlns:sp="clr-namespace:v12club">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <sp:ValueConverter
+        x:Key="conv" />
+      <Style
+        TargetType="ImageButton">
+        <Setter
+          Property="Padding"
+          Value="12"></Setter>
+        <Setter
+          Property="Opacity"
+          Value="0.5"></Setter>
+        <Setter
+          Property="BackgroundColor"
+          Value="Transparent"></Setter>
+        <Style.Triggers>
+          <EventTrigger
+            Event="Pressed">
+            <sp:PressingTriggerAction />
+          </EventTrigger>
+        </Style.Triggers>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ContentPage.Content>
     <Grid>
       <Grid.RowDefinitions>
         <RowDefinition />
+        <RowDefinition
+          Height="auto" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
-      <RelativeLayout
-        x:Name="Spinner_wrapper"></RelativeLayout>
       <StackLayout
         VerticalOptions="FillAndExpand"
         HorizontalOptions="FillAndExpand"
+        Grid.Row="0"
         x:Name="Content_wrapper">
         <StackLayout
+          BackgroundColor="#243238"
           x:Name="WebView_wrapper"
           VerticalOptions="FillAndExpand"
           HorizontalOptions="FillAndExpand"></StackLayout>
+      </StackLayout>
+      <RelativeLayout
+        Grid.Row="0"
+        Opacity="1"
+        IsVisible="true"
+        BackgroundColor="#243238"
+        x:Name="Spinner_wrapper">
+        <FlexLayout Margin="0,0,0,350">
+          <Image
+            Source="v12club_logo2.png"></Image>
+        </FlexLayout>
+      </RelativeLayout>
+      <StackLayout
+        Grid.Row="1">
+        <Grid
+          ColumnSpacing="0"
+          RowSpacing="0"
+          x:Name="Buttons_grid"
+          IsVisible="{Binding Source={x:Reference WebView_wrapper}, Path=IsVisible}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition
+              Width="*" />
+            <ColumnDefinition
+              Width="*" />
+            <ColumnDefinition
+              Width="*" />
+            <ColumnDefinition
+              Width="*" />
+            <ColumnDefinition
+              Width="*" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition
+              Height="52"/>
+          </Grid.RowDefinitions>
+          <ImageButton
+            Command="{Binding NavigatingCommand}"
+            CommandParameter="personal_cabinet"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Source="@drawable/person_white.png"
+            Grid.Column="4"
+            x:Name="personal_cabinet" />
+          <ImageButton
+            Command="{Binding NavigatingCommand}"
+            CommandParameter="garage"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Source="@drawable/garage_white.png"
+            Grid.Column="3"
+            x:Name="garage" />
+          <ImageButton
+            Command="{Binding NavigatingCommand}"
+            Scale="1.2"
+            Opacity="1"
+            CommandParameter="main"
+           
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Source="@drawable/grid_white.png"
+            Grid.Column="2"
+            x:Name="main" />
+          <ImageButton
+            Command="{Binding NavigatingCommand}"
+            CommandParameter="carbase"
+           
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Source="@drawable/info_circle_white.png"
+            Grid.Column="1"
+            x:Name="carbase" />
+          <ImageButton
+            Command="{Binding NavigatingCommand}"
+            CommandParameter="cart"
+           
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Source="@drawable/basket2_white.png"
+            Grid.Column="0"
+            x:Name="cart" />
+        </Grid>
       </StackLayout>
     </Grid>
   </ContentPage.Content>

@@ -4,11 +4,4 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:local="clr-namespace:v12club;assembly=v12club"
   x:Class="v12club.HybridWebViewPage"
-  Padding="0,0,0,0">
-  <ContentPage.Content>
-    <StackLayout
-      x:Name="Wrapper"
-      HorizontalOptions="Fill"
-      VerticalOptions="Fill"></StackLayout>
-  </ContentPage.Content>
-</ContentPage>
+  Padding="0,0,0,0"></ContentPage>

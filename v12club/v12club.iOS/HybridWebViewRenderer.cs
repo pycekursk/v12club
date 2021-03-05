@@ -48,10 +48,19 @@ namespace v12club.iOS
 				hybridWebView.Cleanup();
 			}
 
-			if (e.NewElement != null)
+			if (NativeView != null && e.NewElement != null)
 			{
-				string filename = Path.Combine(NSBundle.MainBundle.BundlePath, $"Content/{((HybridWebView)Element).Uri}");
-				LoadRequest(new NSUrlRequest(new NSUrl(filename, false)));
+				var webView = NativeView as UIWebView;
+
+				if (webView == null)
+					return;
+
+				webView.ScalesPageToFit = true;
+
+				//string filename = Path.Combine(NSBundle.MainBundle.BundlePath, $"Content/{((HybridWebView)Element).Uri}");
+				//LoadRequest(new NSUrlRequest(new NSUrl(filename, false)));
+				//string filename = Path.Combine(NSBundle.MainBundle.BundlePath, $"Content/{((HybridWebView)Element).Uri}");
+				LoadRequest(new NSUrlRequest(new NSUrl(((HybridWebView)Element).Uri)));
 			}
 		}
 

@@ -13,22 +13,7 @@ namespace v12club
 		public HybridWebViewPage(HybridWebView webView)
 		{
 			InitializeComponent();
-			Wrapper.Children.Add(webView);
+			this.Content = webView;
 		}
-
-		//protected override bool OnBackButtonPressed()
-		//{
-		//	new Action(async () =>
-		//	{
-		//		var view = Wrapper.Children[0] as HybridWebView;
-		//		if (view.CanGoBack) view.GoBack();
-		//		else if (await DisplayAlert("", "Вернуться на страницу авторизации?", "Да", "Нет")) { 
-		//			await view.EvaluateJavaScriptAsync("$('.exitButton')[0].click();"); 
-		//			await view.FadeTo(0, 300);
-		//		};
-		//	})
-		//	.Invoke();
-		//	return true;
-		//}
 	}
 }

@@ -22,6 +22,7 @@ namespace v12club.Droid
 		protected override void OnElementChanged(ElementChangedEventArgs<WebView> e)
 		{
 			base.OnElementChanged(e);
+			global::Android.Webkit.WebView.SetWebContentsDebuggingEnabled(true);
 
 			if (e.OldElement != null)
 			{
@@ -30,7 +31,7 @@ namespace v12club.Droid
 			}
 			if (e.NewElement != null)
 			{
-				Control.Settings.UserAgentString = "v12club mobile";
+				Control.Settings.UserAgentString = "android";
 				Control.Settings.CacheMode = Android.Webkit.CacheModes.CacheElseNetwork;
 				Control.SetWebViewClient(new JavascriptWebViewClient(this, $"javascript: {JavascriptFunction}"));
 				Control.AddJavascriptInterface(new JSBridge(this), "jsBridge");

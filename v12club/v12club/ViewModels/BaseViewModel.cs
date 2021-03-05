@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-
-using v12club.Services;
-
 using Xamarin.Forms;
 
 namespace v12club.ViewModels
 {
-	public class BaseViewModel : INotifyPropertyChanged
+	public class BaseViewModel : BindableObject, INotifyPropertyChanged
 	{
-		bool isBusy = false;
-		public bool IsBusy
-		{
-			get { return isBusy; }
-			set { SetProperty(ref isBusy, value); }
-		}
-
 		string title = string.Empty;
 		public string Title
 		{
@@ -40,15 +30,15 @@ namespace v12club.ViewModels
 		}
 
 		#region INotifyPropertyChanged
-		public event PropertyChangedEventHandler PropertyChanged;
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-		{
-			var changed = PropertyChanged;
-			if (changed == null)
-				return;
+		//public event PropertyChangedEventHandler PropertyChanged;
+		//protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+		//{
+		//	var changed = PropertyChanged;
+		//	if (changed == null)
+		//		return;
 
-			changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
+		//	changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		//}
 		#endregion
 	}
 }

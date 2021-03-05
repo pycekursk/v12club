@@ -4,28 +4,34 @@
   xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   x:Class="v12club.Views.LoginView"
+  BackgroundColor="#243238" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
   xmlns:vm="clr-namespace:v12club.ViewModels">
   <ContentView.Content>
-    <StackLayout
-      Padding="0,20,0,0"
+    <StackLayout 
       x:Name="Wrapper"
-      HorizontalOptions="FillAndExpand"
-      VerticalOptions="FillAndExpand">
-      <Image
-        Source="v12club_logo.png"></Image>
+      HorizontalOptions="CenterAndExpand"
+      VerticalOptions="CenterAndExpand">
+      <FlexLayout>
+        <Image
+          Source="v12club_logo2.png"></Image>
+      </FlexLayout>
       <StackLayout
-        Padding="30,0,30,0">
+        Padding="10,0,10,0">
         <Entry
+          PlaceholderColor="White"
+          TextColor="WhiteSmoke"
           MaxLength="16"
           Focused="Login_Focused"
           TextChanged="Login_TextChanged"
           Text="{Binding Login}"
           x:Name="Login"
           HorizontalTextAlignment="Center"
-          FontSize="33"
+          FontSize="Large"
           Placeholder="Телефон"></Entry>
         <Entry
-          FontSize="33"
+          PlaceholderColor="White"
+          TextColor="WhiteSmoke"
+          FontSize="Large"
           Text="{Binding Password}"
           x:Name="Password"
           HorizontalTextAlignment="Center"
@@ -36,43 +42,65 @@
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
           <CheckBox
+            Color="WhiteSmoke"
             x:Name="SaveSettingsCheckBox"
-            IsChecked="{Binding IsSaveSettings, Mode=TwoWay}"></CheckBox>
-          <Label TextColor="Black"
-            FontSize="24"
+            IsChecked="{Binding Remember, Mode=TwoWay}"></CheckBox>
+          <Label
+            TextColor="WhiteSmoke"
+            FontSize="14"
             HorizontalOptions="Center"
             VerticalOptions="Center">Запомнить меня</Label>
         </StackLayout>
-        <StackLayout
-          Spacing="30"
+        <StackLayout 
           Padding="0,10,0,0"
           VerticalOptions="FillAndExpand"
           HorizontalOptions="FillAndExpand"
           Orientation="Vertical">
-          <Button
-            CornerRadius="15"
-            BackgroundColor="Green"
-            BorderWidth="3"
-            BorderColor="DarkGreen"
-            HeightRequest="80"
-            FontSize="28"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            Text="Вход"
-            Command="{Binding LoginCommand}" />
-          <Button
-            IsEnabled="False"
-            CornerRadius="15"
-            HorizontalOptions="FillAndExpand"
-            BackgroundColor="#fbc430"
-            BorderColor="Orange"
-            BorderWidth="3"
-            HeightRequest="80"
-            FontSize="28"
-            VerticalOptions="FillAndExpand"
-            Text="Регистрация"
-            Command="{Binding RegisterCommand}" />
+          <Grid >
+            <Grid.RowDefinitions>
+              <RowDefinition
+                Height="50" />
+              <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+              FontSize="Large"
+              Grid.Column="0"
+              Grid.Row="0"
+              CornerRadius="5"
+              BackgroundColor="Green"
+              BorderWidth="1"
+              BorderColor="DarkGreen"
+              Text="Вход"
+              Command="{Binding LoginCommand}" />
+            <Button
+              FontSize="Large"
+              Grid.Column="1"
+              Grid.Row="0"
+              IsEnabled="True"
+              CornerRadius="5"
+              BackgroundColor="#fbc430"
+              BorderColor="Orange"
+              BorderWidth="1"
+              Text="Регистрация"
+              Command="{Binding RegisterCommand}" />
+          </Grid>
         </StackLayout>
+        <Button
+          FontSize="Large"
+          TextColor="White"
+          VerticalOptions="Fill"
+          HorizontalOptions="Fill"
+          IsEnabled="True"
+          CornerRadius="5"
+          BorderColor="Black"
+          BackgroundColor="#333333"
+          BorderWidth="1"
+          Text="Восстановить пароль"
+          Command="{Binding ForgetPasswordCommand}" />
       </StackLayout>
     </StackLayout>
   </ContentView.Content>

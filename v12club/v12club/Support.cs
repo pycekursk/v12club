@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 
 using v12club.Models;
@@ -16,16 +12,44 @@ using Xamarin.Forms;
 
 namespace v12club
 {
+	public class PressingTriggerAction : TriggerAction<ImageButton>
+	{
+		protected override void Invoke(ImageButton sender)
+		{
+			if (App.IsBusy) return;
+			sender.ScaleTo(1.2, 150);
+			sender.FadeTo(1, 150);
+		}
+	}
+
+	public class ValueConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			if ((string)parameter == "color")
+			{
+				return (bool)value == true ? Color.White : Color.FromHex("#333333");
+			}
+			else return (bool)value ? false : true;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			return (bool)value;
+		}
+	}
+
 	public static class Extensions
 	{
-		//static BackgroundWorker backgroundWorker = new BackgroundWorker();
 		public static void SaveUserData(this Application app)
 		{
+			if (DeviceInfo.Platform == DevicePlatform.UWP) return;
 			File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "cfg.json", Newtonsoft.Json.JsonConvert.SerializeObject(App.BridgeObject));
 		}
 
 		public static void LoadUserData(this Application app)
 		{
+			if (DeviceInfo.Platform == DevicePlatform.UWP) return;
 			var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "cfg.json";
 			try
 			{
@@ -41,74 +65,6 @@ namespace v12club
 			{
 				File.Create(appData);
 			}
-		}
-
-
-		public static void InitAnimation(this ProgressRingControl.Forms.Plugin.ProgressRing progressRing, int deration)
-		{
-			progressRing.PropertyChanged += ProgressRing_PropertyChanged;
-		}
-
-		static async Task DoAnimation(this ProgressRingControl.Forms.Plugin.ProgressRing progressRing, int deration)
-		{
-			await Task.Run(async () =>
-			 {
-				 {
-					 do
-					 {
-						 await progressRing.ProgressTo(1, (uint)deration, Easing.Linear).ContinueWith(t =>
-						 {
-							 var progressColor = progressRing.RingProgressColor.ToHex();
-							 var ringBaseColor = progressRing.RingBaseColor.ToHex();
-							 progressRing.RingBaseColor = Color.FromHex(progressColor);
-							 progressRing.Progress = 0;
-							 progressRing.RingProgressColor = Color.FromHex(ringBaseColor);
-						 });
-					 } while (progressRing.Opacity != 0);
-				 }
-			 });
-		}
-
-		static async void DoAnimationOnBackground(this ProgressRingControl.Forms.Plugin.ProgressRing progressRing, int deration)
-		{
-			do
-			{
-				await progressRing.ProgressTo(1, (uint)deration, Easing.Linear).ContinueWith(t =>
-				{
-					var progressColor = progressRing.RingProgressColor.ToHex();
-					var ringBaseColor = progressRing.RingBaseColor.ToHex();
-					progressRing.RingBaseColor = Color.FromHex(progressColor);
-					progressRing.Progress = 0;
-					progressRing.RingProgressColor = Color.FromHex(ringBaseColor);
-				});
-			} while (true);
-		}
-
-
-		private static async void ProgressRing_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			if (e.PropertyName == "IsEnabled")
-			{
-				var ring = sender as ProgressRingControl.Forms.Plugin.ProgressRing;
-				if (ring.IsEnabled)
-				{
-					await ring.FadeTo(1, 50);
-					await DoAnimation(ring, 500);
-				}
-
-				else
-				{
-					await ring.FadeTo(0, 50);
-					ring.Progress = 0;
-				}
-			}
-		}
-
-		private static void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-		{
-			//var worker = sender as BackgroundWorker;
-
-			DoAnimationOnBackground((ProgressRingControl.Forms.Plugin.ProgressRing)e.Argument, 500);
 		}
 
 		public static bool IsNumeric(this string s)
@@ -201,26 +157,9 @@ namespace v12club
 
 	public class Support
 	{
-		public static Task ConsoleLog(object data) => Task.Run(() => System.Diagnostics.Debug.WriteLine(
-			@$"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n\n{data.GetType().Name}\n\n{data}\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"));
-
-		async public static Task<string> GetTextFromFile()
+		public static Task ConsoleLog(object data) => Task.Run(() =>
 		{
-			using (var stream = await FileSystem.OpenAppPackageFileAsync("scripts.js"))
-			{
-				using (var reader = new StreamReader(stream))
-				{
-					//App.Scripts = await reader.ReadToEndAsync();
-				}
-			}
-			using (var stream = await FileSystem.OpenAppPackageFileAsync("styles.css"))
-			{
-				using (var reader = new StreamReader(stream))
-				{
-					//App.Styles = await reader.ReadToEndAsync();
-				}
-			}
-			return default;
-		}
+			//System.Diagnostics.Debug.WriteLine(@$"\n>>>>>>>>>>>>>>>>>>>>>>>> {data}\n");
+		});
 	}
 }

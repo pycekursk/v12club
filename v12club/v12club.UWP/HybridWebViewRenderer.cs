@@ -35,9 +35,10 @@ namespace v12club.UWP
 			{
 				Control.NavigationCompleted += OnWebViewNavigationCompleted;
 				Control.ScriptNotify += OnWebViewScriptNotify;
-
-				//pass data here 
-				Control.Source = new Uri(string.Format("ms-appx-web:///Content//{0}", Element.Uri));
+				Control.Settings.IsJavaScriptEnabled = true;
+				var url = new Uri(Element.Uri);
+				Control.Source = url;
+				//Control.Navigate(url);
 			}
 		}
 

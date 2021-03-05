@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <color android:color="@color/launcher_background"/>
+  </item>
+  <item android:top="70dp" android:right="30dp">
+    <bitmap
+        android:src="@drawable/splash_logo"
+        android:gravity="top | center" />
+  </item>
+</layer-list>

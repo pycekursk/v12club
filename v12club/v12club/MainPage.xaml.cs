@@ -1,14 +1,6 @@
-﻿using ProgressRingControl.Forms.Plugin;
+﻿using System;
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
+using v12club.ViewModels;
 using v12club.Views;
 
 using Xamarin.Essentials;
@@ -18,15 +10,13 @@ namespace v12club
 {
 	public partial class MainPage : ContentPage
 	{
-		public static ProgressRingControl.Forms.Plugin.ProgressRing Spinner = new ProgressRing() { RingProgressColor = Color.FromHex("#fbc430"), RingThickness = 25, Margin = 70, Opacity = 0, IsEnabled = false };
 		readonly HybridWebView WebView;
 
 		public MainPage()
 		{
 			InitializeComponent();
-
 			var layoutOptions = new LayoutOptions { Alignment = LayoutAlignment.Fill, Expands = true };
-			WebView = new HybridWebView { Uri = "https://v12club.ru", VerticalOptions = layoutOptions, HorizontalOptions = layoutOptions };
+			WebView = new HybridWebView { Uri = "https://v12club.ru/", VerticalOptions = layoutOptions, HorizontalOptions = layoutOptions };
 			WebView_wrapper.IsVisible = false;
 
 			WebView_wrapper.Children.Add(WebView);
@@ -35,17 +25,20 @@ namespace v12club
 			wrapper.Children.Add(new LoginView(WebView));
 
 			Content_wrapper.Children.Insert(0, wrapper);
-			((ICollection<View>)Spinner_wrapper.Children).Add(Spinner);
-			Spinner.InitAnimation(500);
 
 			WebView.Navigating += WebView_Navigating;
 			WebView.Navigated += WebView_Navigated;
 
 			WebView.RegisterAction(data => JSNotifyHandler(data));
+
+			this.BindingContext = new MainPageViewModel(WebView);
+
+			this.SetBinding(IsEnabledProperty, "IsBusy", BindingMode.Default, new ValueConverter());
 		}
 
 		protected override bool OnBackButtonPressed()
 		{
+			if (App.IsBusy) return true;
 			new Action(async () =>
 			{
 				if (WebView.CanGoBack & WebView_wrapper.IsVisible)
@@ -56,52 +49,60 @@ namespace v12club
 				{
 					if (await DisplayAlert("", "Вернуться на страницу авторизации?", "Да", "Нет"))
 					{
-						await WebView.EvaluateJavaScriptAsync("$('.exitButton')[0].click();");
+						await WebView.EvaluateJavaScriptAsync("doExit();");
 					}
 				}
 				else if (!WebView_wrapper.IsVisible)
 				{
-					if (await DisplayAlert("", "Закрыть приложение?", "Да", "Нет")) Application.Current.Quit();
+					if (await DisplayAlert("", "Закрыть приложение?", "Да", "Нет")) Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 				}
 			}).Invoke();
 			return true;
 		}
 
-		async void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
+	async	void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
 		{
-			Spinner.IsEnabled = false;
-			//if (e.Source.ToString().Contains("https://v12club.ru/reg"))
-			//{
+			var wv = sender as HybridWebView;
 
-			//}
-			if (App.BridgeObject.IsLogined & !WebView_wrapper.IsVisible)//переключение на основную страницу приложения
+			if (App.BridgeObject.IsFirstLoad)
+			{
+			await	wv.EvaluateJavaScriptAsync("doExit()");
+				App.BridgeObject.IsFirstLoad = false;
+				
+				Spinner_wrapper.IsVisible = false;
+				return;
+			}
+
+			else if (App.BridgeObject.IsFirstLoad)
+			{
+				App.BridgeObject.IsFirstLoad = false;
+
+				
+				Spinner_wrapper.IsVisible = false;
+			}
+			else if (App.BridgeObject.IsLogined & !WebView_wrapper.IsVisible)//переключение на основную страницу приложения
 			{
 				Content_wrapper.Children.Remove(Content_wrapper.Children[0]);
 				WebView_wrapper.IsVisible = true;
-				await WebView_wrapper.FadeTo(1, 250);
+			await	WebView_wrapper.FadeTo(1, 250);
 			}
 			else if (!App.BridgeObject.IsLogined & WebView_wrapper.IsVisible)//переключение на страницу авторизации
 			{
-				App.BridgeObject = new Models.JSBridgeObject();
-				App.Current.LoadUserData();
-
 				var wrapper = new StackLayout { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, Opacity = 1 };
 				wrapper.Children.Add(new LoginView(WebView));
 				Content_wrapper.Children.Insert(0, wrapper);
-				//await wrapper.FadeTo(1, 250);
 				await WebView_wrapper.FadeTo(0, 250);
 				WebView_wrapper.IsVisible = false;
+				App.BridgeObject = new Models.JSBridgeObject();
+				await wv.EvaluateJavaScriptAsync("location.reload()");
 			}
-			await (sender as HybridWebView).FadeTo(1, 250);
+
+			App.IsBusy = false;
 		}
 
-		private async void WebView_Navigating(object sender, Xamarin.Forms.WebNavigatingEventArgs e)
+		private void WebView_Navigating(object sender, Xamarin.Forms.WebNavigatingEventArgs e)
 		{
-			if (App.BridgeObject.ClientStatus == Models.Status.SuccessfullyAuthorized)
-			{
-				Spinner.IsEnabled = true;
-			}
-			await (sender as HybridWebView).FadeTo(0, 250);
+			App.IsBusy = true;
 		}
 
 		public static void JSNotifyHandler(string data)
@@ -110,14 +111,12 @@ namespace v12club
 
 			var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<v12club.Models.JSBridgeObject>(data);
 
-			obj.Login = App.BridgeObject.Login;
-			obj.Password = App.BridgeObject.Password;
-			obj.SaveSettings = App.BridgeObject.SaveSettings;
 			obj.ClientStatus = App.BridgeObject.ClientStatus;
+			obj.IsFirstLoad = App.BridgeObject.IsFirstLoad;
 
 			if (obj.EventType == "click")
 			{
-				Vibration.Vibrate(25);
+				Vibration.Vibrate(10);
 			}
 
 			if (obj.EventType == "DOMContentLoaded")
