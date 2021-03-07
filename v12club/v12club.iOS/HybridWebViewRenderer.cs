@@ -50,17 +50,9 @@ namespace v12club.iOS
 
 			if (NativeView != null && e.NewElement != null)
 			{
-				var webView = NativeView as UIWebView;
-
-				if (webView == null)
-					return;
-
-				webView.ScalesPageToFit = true;
-
-				//string filename = Path.Combine(NSBundle.MainBundle.BundlePath, $"Content/{((HybridWebView)Element).Uri}");
-				//LoadRequest(new NSUrlRequest(new NSUrl(filename, false)));
-				//string filename = Path.Combine(NSBundle.MainBundle.BundlePath, $"Content/{((HybridWebView)Element).Uri}");
-				LoadRequest(new NSUrlRequest(new NSUrl(((HybridWebView)Element).Uri)));
+				var url = new NSUrlRequest(new NSUrl("https://v12club.ru/"));
+				CustomUserAgent = "ios";
+				LoadRequest(url);
 			}
 		}
 

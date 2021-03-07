@@ -46,7 +46,7 @@ namespace v12club
 				}
 				else if (!WebView_wrapper.IsVisible)
 				{
-					if (await DisplayAlert("", "Закрыть приложение?", "Да", "Нет")) Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+					//if (await DisplayAlert("", "Закрыть приложение?", "Да", "Нет")) Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 				}
 			}).Invoke();
 			return true;

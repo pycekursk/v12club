@@ -12,7 +12,7 @@
       VerticalOptions="CenterAndExpand">
       <StackLayout
         Padding="10,10,10,0">
-        <Entry
+        <Entry Keyboard="Numeric"
           PlaceholderColor="White"
           TextColor="WhiteSmoke"
           MaxLength="16"
@@ -36,8 +36,7 @@
           Orientation="Horizontal"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
-          <CheckBox
-            Color="WhiteSmoke"
+          <CheckBox            Color="WhiteSmoke"
             x:Name="SaveSettingsCheckBox"
             IsChecked="{Binding Remember, Mode=TwoWay}"></CheckBox>
           <Label
@@ -54,8 +53,8 @@
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition
-                Height="50" />
-              <RowDefinition />
+                Height="70" />
+              <RowDefinition  />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
               <ColumnDefinition />
@@ -85,7 +84,7 @@
               Command="{Binding RegisterCommand}" />
           </Grid>
         </StackLayout>
-        <Button
+        <Button   HeightRequest="70"
           FontSize="Default"
           TextColor="White"
           VerticalOptions="Fill"
