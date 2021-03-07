@@ -37,8 +37,8 @@ namespace v12club.UWP
 				Control.ScriptNotify += OnWebViewScriptNotify;
 				Control.Settings.IsJavaScriptEnabled = true;
 				var url = new Uri(Element.Uri);
-				Control.Source = url;
-				//Control.Navigate(url);
+				//Control.Source = url;
+				Control.Navigate(url);
 			}
 		}
 

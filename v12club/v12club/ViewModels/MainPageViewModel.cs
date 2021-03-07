@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace v12club.ViewModels
@@ -21,10 +19,9 @@ namespace v12club.ViewModels
 		private void OnNavigating(object obj)
 		{
 			if (App.IsBusy) return;
-
 			var page = App.Current.MainPage as MainPage;
 			var button = page.FindByName<ImageButton>(obj.ToString());
-			Xamarin.Essentials.Vibration.Vibrate(50);
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 			Support.ConsoleLog(obj);
 			var url = obj.ToString() == "garage" ? $"personal_cabinet?{obj}" : obj;
 			url = obj.ToString() == "personal_cabinet" ? "personal_cabinet?personal_info_edit" : url;

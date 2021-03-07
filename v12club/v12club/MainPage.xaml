@@ -5,7 +5,6 @@
   x:Class="v12club.MainPage"
   x:Name="Main_page"
   BackgroundColor="#243238"
-  xmlns:vm="clr-namespace:v12club.ViewModels"
   xmlns:sp="clr-namespace:v12club">
   <ContentPage.Resources>
     <ResourceDictionary>
@@ -32,39 +31,32 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid>
+    <Grid >
       <Grid.RowDefinitions>
-        <RowDefinition />
+         <RowDefinition Height="*"/>
+        <RowDefinition  Height="*"/>
         <RowDefinition
-          Height="auto" />
+          Height="50" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
+       <FlexLayout x:Name="Logo_wrapper">
+        <Image Aspect="AspectFill"
+          Source="v12club_logo2.png"></Image>
+      </FlexLayout>
       <StackLayout
-        VerticalOptions="FillAndExpand"
+        VerticalOptions="Start"
         HorizontalOptions="FillAndExpand"
-        Grid.Row="0"
-        x:Name="Content_wrapper">
-        <StackLayout
-          BackgroundColor="#243238"
-          x:Name="WebView_wrapper"
-          VerticalOptions="FillAndExpand"
-          HorizontalOptions="FillAndExpand"></StackLayout>
-      </StackLayout>
-      <RelativeLayout
-        Grid.Row="0"
-        Opacity="1"
-        IsVisible="true"
-        BackgroundColor="#243238"
-        x:Name="Spinner_wrapper">
-        <FlexLayout Margin="0,0,0,350">
-          <Image
-            Source="v12club_logo2.png"></Image>
-        </FlexLayout>
-      </RelativeLayout>
+        Grid.Row="1" IsVisible="false"
+        x:Name="Page_wrapper"></StackLayout>
+      <sp:HybridWebView Opacity="0"
+        IsVisible="false"
+        Grid.Row="0" Grid.RowSpan="2"
+        x:Name="WebView_wrapper"
+        Uri="https://v12club.ru"></sp:HybridWebView>
       <StackLayout
-        Grid.Row="1">
+        Grid.Row="2">
         <Grid
           ColumnSpacing="0"
           RowSpacing="0"
@@ -84,7 +76,7 @@
           </Grid.ColumnDefinitions>
           <Grid.RowDefinitions>
             <RowDefinition
-              Height="52"/>
+              Height="50"/>
           </Grid.RowDefinitions>
           <ImageButton
             Command="{Binding NavigatingCommand}"
@@ -107,7 +99,6 @@
             Scale="1.2"
             Opacity="1"
             CommandParameter="main"
-           
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             Source="@drawable/grid_white.png"
@@ -115,22 +106,20 @@
             x:Name="main" />
           <ImageButton
             Command="{Binding NavigatingCommand}"
-            CommandParameter="carbase"
-           
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            Source="@drawable/info_circle_white.png"
-            Grid.Column="1"
-            x:Name="carbase" />
-          <ImageButton
-            Command="{Binding NavigatingCommand}"
             CommandParameter="cart"
-           
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             Source="@drawable/basket2_white.png"
-            Grid.Column="0"
+            Grid.Column="1"
             x:Name="cart" />
+            <ImageButton
+            Command="{Binding NavigatingCommand}"
+            CommandParameter="app_info"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Source="@drawable/info_circle_white.png"
+            Grid.Column="0"
+            x:Name="app_info" />
         </Grid>
       </StackLayout>
     </Grid>

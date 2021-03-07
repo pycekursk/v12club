@@ -1,9 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using v12club.Models;
-using v12club.Views;
-
+﻿
 using Xamarin.Forms;
 
 namespace v12club

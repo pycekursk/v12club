@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "v12club": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "nativeDebugging": true
+    }
+  }
+}

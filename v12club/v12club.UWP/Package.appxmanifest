@@ -47,7 +47,8 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <uap:ApplicationContentUriRules>
-        <uap:Rule Type="include" Match="https://v12club.*" WindowsRuntimeAccess="all"/>
+        <uap:Rule Type="include" Match="https://v12club.ru/*" WindowsRuntimeAccess="allowForWebOnly"/>
+        <uap:Rule Type="include" Match="https://it-wiki.site/*" WindowsRuntimeAccess="allowForWebOnly"/>
       </uap:ApplicationContentUriRules>
     </Application>
   </Applications>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Threading;
-
-using v12club.Views;
-
-using Xamarin.Forms;
+﻿
 using Xamarin.Essentials;
-using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace v12club.ViewModels
 {
@@ -35,17 +30,17 @@ namespace v12club.ViewModels
 			if (App.Current.Properties.TryGetValue("Remember", out settings)) Remember = bool.Parse(settings.ToString());
 		}
 
-		private async void OnLoginClicked(object obj)
+		private void OnLoginClicked(object obj)
 		{
 			if (Remember)
 			{
-					if (!App.Current.Properties.ContainsKey("Login"))
-					{
-						App.Current.Properties.Add("Login", Login);
-						App.Current.Properties.Add("Password", Password);
-						App.Current.Properties.Add("Remember", Remember);
-						await App.Current.SavePropertiesAsync();
-					}
+				if (!App.Current.Properties.ContainsKey("Login"))
+				{
+					App.Current.Properties.Add("Login", Login);
+					App.Current.Properties.Add("Password", Password);
+					App.Current.Properties.Add("Remember", Remember);
+					 App.Current.SavePropertiesAsync();
+				}
 			}
 			else
 			{
@@ -54,20 +49,16 @@ namespace v12club.ViewModels
 					App.Current.Properties.Remove("Login");
 					App.Current.Properties.Remove("Password");
 					App.Current.Properties.Remove("Remember");
-					await App.Current.SavePropertiesAsync();
+					 App.Current.SavePropertiesAsync();
 				}
 			}
 			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 
+			if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password)) return;
+
 			App.BridgeObject.ClientStatus = Models.Status.TryAuthorization;
 
-			await HybridWeb.EvaluateJavaScriptAsync($"$('#login_modal').val('{Login}');$('#pass_modal').val('{Password}');$('#go_modal').click();");
-
-			//await HybridWeb.EvaluateJavaScriptAsync($"doLogin({Login},{Password})");
-
-			var content = (App.Current.MainPage as ContentPage).Content.FindByName<StackLayout>("Content_wrapper");
-
-			await content.Children[0].FadeTo(0, 250);
+			HybridWeb.EvaluateJavaScriptAsync($"$('#login_modal').val('{Login}');$('#pass_modal').val('{Password}');$('#go_modal').click();");
 		}
 
 		private async void OnRegisterClicked(object obj)

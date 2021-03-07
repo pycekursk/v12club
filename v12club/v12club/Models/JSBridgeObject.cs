@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace v12club.Models
+﻿namespace v12club.Models
 {
 	public enum Status
 	{
@@ -11,7 +7,7 @@ namespace v12club.Models
 		SuccessfullyAuthorized,
 		AuthorizationFailed,
 	}
-	
+
 	public class JSBridgeObject
 	{
 		public string EventType { get; set; }

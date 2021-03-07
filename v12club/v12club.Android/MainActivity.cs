@@ -17,7 +17,7 @@ namespace v12club.Droid
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			
+
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
 			int uiOptions = (int)Window.DecorView.SystemUiVisibility;
@@ -33,7 +33,7 @@ namespace v12club.Droid
 			{
 
 			}
-		
+
 			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 
 			LoadApplication(new App());
@@ -59,11 +59,11 @@ namespace v12club.Droid
 			{
 				Window.SetNavigationBarColor(Color.Rgb(36, 50, 56));
 			}
-			catch 
+			catch
 			{
 
 			}
-		
+
 
 			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 			base.OnResume();
