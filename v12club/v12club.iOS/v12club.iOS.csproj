@@ -160,6 +160,33 @@
   <ItemGroup>
     <BundleResource Include="Resources\v12club.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\arrow_left_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\basket_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\basket2_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\garage_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\grid_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\info_circle_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\person_fill_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\person_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search_white.png" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties TriggeredFromHotReload="False" />
