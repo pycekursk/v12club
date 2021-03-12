@@ -32,7 +32,7 @@ namespace v12club.Droid
 			if (e.NewElement != null)
 			{
 				Control.Settings.UserAgentString = "android";
-				Control.Settings.CacheMode = Android.Webkit.CacheModes.CacheElseNetwork;
+				Control.Settings.CacheMode = Android.Webkit.CacheModes.NoCache;
 				Control.SetWebViewClient(new JavascriptWebViewClient(this, $"javascript: {JavascriptFunction}"));
 				Control.AddJavascriptInterface(new JSBridge(this), "jsBridge");
 				Control.LoadUrl(((HybridWebView)Element).Uri);

@@ -26,7 +26,7 @@ namespace v12club.Droid
 			catch (Exception exp)
 			{
 
-				Support.ConsoleLog(exp.Message + "\n" + exp.StackTrace);
+				//Support.ConsoleLog(exp.Message + "\n" + exp.StackTrace);
 			}
 
 		}

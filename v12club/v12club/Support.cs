@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-using v12club.Models;
-
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace v12club
@@ -16,9 +12,7 @@ namespace v12club
 	{
 		protected override void Invoke(ImageButton sender)
 		{
-			if (App.IsBusy) return;
-			sender.ScaleTo(1.2, 150);
-			sender.FadeTo(1, 150);
+			sender.ScaleTo(1.2, 150).ContinueWith(t => sender.FadeTo(1, 150));
 		}
 	}
 
@@ -41,32 +35,6 @@ namespace v12club
 
 	public static class Extensions
 	{
-		public static void SaveUserData(this Application app)
-		{
-			if (DeviceInfo.Platform == DevicePlatform.UWP) return;
-			File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "cfg.json", Newtonsoft.Json.JsonConvert.SerializeObject(App.BridgeObject));
-		}
-
-		public static void LoadUserData(this Application app)
-		{
-			if (DeviceInfo.Platform == DevicePlatform.UWP) return;
-			var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "cfg.json";
-			try
-			{
-				var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<JSBridgeObject>(File.ReadAllText(appData));
-				if (obj.SaveSettings)
-				{
-					obj.ClientStatus = App.BridgeObject.ClientStatus;
-					obj.IsLogined = App.BridgeObject.IsLogined;
-					App.BridgeObject = obj;
-				}
-			}
-			catch
-			{
-				File.Create(appData);
-			}
-		}
-
 		public static bool IsNumeric(this string s)
 		{
 			foreach (char c in s)
@@ -81,8 +49,6 @@ namespace v12club
 		}
 
 		public static string RemoveLast(this string str) => str.Length > 0 ? str.Remove(str.Length - 1) : str;
-
-		public static void RemoveLast(this Entry entry) => entry.Text = entry.Text.RemoveLast();
 
 		public static void UpdateTextThreadSafe(this Entry entry, string value)
 		{
@@ -153,13 +119,5 @@ namespace v12club
 				 return result;
 			 });
 		}
-	}
-
-	public class Support
-	{
-		public static Task ConsoleLog(object data) => Task.Run(() =>
-		{
-			//System.Diagnostics.Debug.WriteLine(@$"\n>>>>>>>>>>>>>>>>>>>>>>>> {data}\n");
-		});
 	}
 }

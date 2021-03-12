@@ -3,16 +3,25 @@
   xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   x:Class="v12club.Views.LoginView"
-  BackgroundColor="#243238" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-  xmlns:vm="clr-namespace:v12club.ViewModels">
+  BackgroundColor="#243238"
+  HorizontalOptions="FillAndExpand"
+  VerticalOptions="FillAndExpand">
   <ContentView.Content>
     <StackLayout
       x:Name="Wrapper"
       HorizontalOptions="CenterAndExpand"
       VerticalOptions="CenterAndExpand">
+      <FlexLayout
+        IsVisible="true"
+        x:Name="Logo_wrapper"></FlexLayout>
       <StackLayout
-        Padding="10,10,10,0">
-        <Entry Keyboard="Numeric"
+        Padding="10,0,10,0">
+          <Image
+          VerticalOptions="Start" HorizontalOptions="Center"
+          Source="v12club_logo2.png"></Image>
+        <Entry
+          Keyboard="Numeric"
+          BackgroundColor="#243238"
           PlaceholderColor="White"
           TextColor="WhiteSmoke"
           MaxLength="16"
@@ -21,22 +30,25 @@
           Text="{Binding Login}"
           x:Name="Login"
           HorizontalTextAlignment="Center"
-          FontSize="Large"
+          FontSize="Subtitle"
           Placeholder="Телефон"></Entry>
         <Entry
           PlaceholderColor="White"
           TextColor="WhiteSmoke"
-          FontSize="Large"
+          FontSize="Subtitle"
           Text="{Binding Password}"
           x:Name="Password"
           HorizontalTextAlignment="Center"
           Placeholder="Пароль"
-          IsPassword="True"></Entry>
+          IsPassword="True"
+          BackgroundColor="#243238"></Entry>
         <StackLayout
           Orientation="Horizontal"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
-          <CheckBox            Color="WhiteSmoke"
+          <CheckBox
+            HeightRequest="40"
+            Color="WhiteSmoke"
             x:Name="SaveSettingsCheckBox"
             IsChecked="{Binding Remember, Mode=TwoWay}"></CheckBox>
           <Label
@@ -45,24 +57,26 @@
             HorizontalOptions="Center"
             VerticalOptions="Center">Запомнить меня</Label>
         </StackLayout>
-        <StackLayout 
-          Padding="0,30,0,10"
+        <StackLayout
+          Padding="0,5,0,5"
           VerticalOptions="FillAndExpand"
           HorizontalOptions="FillAndExpand"
           Orientation="Vertical">
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition
-                Height="70" />
-              <RowDefinition  />
+                Height="60" />
+              <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
               <ColumnDefinition />
-                 <ColumnDefinition Width="10"/>
+              <ColumnDefinition
+                Width="10" />
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button HorizontalOptions="FillAndExpand"
-              FontSize="Default"
+            <Button
+              HorizontalOptions="FillAndExpand"
+              FontSize="Subtitle"
               Grid.Column="0"
               Grid.Row="0"
               CornerRadius="5"
@@ -70,11 +84,14 @@
               BorderWidth="1"
               BorderColor="DarkGreen"
               Text="Вход"
+              TextColor="Black"
               Command="{Binding LoginCommand}" />
-            <Button  HorizontalOptions="FillAndExpand" 
-              FontSize="Default"
+            <Button
+              HorizontalOptions="FillAndExpand"
+              FontSize="Subtitle"
               Grid.Column="2"
               Grid.Row="0"
+              TextColor="Black"
               IsEnabled="True"
               CornerRadius="5"
               BackgroundColor="#fbc430"
@@ -84,8 +101,9 @@
               Command="{Binding RegisterCommand}" />
           </Grid>
         </StackLayout>
-        <Button   HeightRequest="70"
-          FontSize="Default"
+        <Button
+          HeightRequest="50"
+          FontSize="Subtitle"
           TextColor="White"
           VerticalOptions="Fill"
           HorizontalOptions="Fill"

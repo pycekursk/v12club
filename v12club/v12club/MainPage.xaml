@@ -31,32 +31,51 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-    <Grid >
+    <Grid>
       <Grid.RowDefinitions>
-         <RowDefinition Height="*"/>
-        <RowDefinition  Height="*"/>
+        <RowDefinition
+          Height="*" />
         <RowDefinition
           Height="50" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
-       <FlexLayout x:Name="Logo_wrapper">
-        <Image Aspect="AspectFill"
-          Source="v12club_logo2.png"></Image>
-      </FlexLayout>
       <StackLayout
         VerticalOptions="Start"
         HorizontalOptions="FillAndExpand"
-        Grid.Row="1" IsVisible="false"
-        x:Name="Page_wrapper"></StackLayout>
-      <sp:HybridWebView Opacity="0"
+        Grid.Row="0"
         IsVisible="false"
-        Grid.Row="0" Grid.RowSpan="2"
+        x:Name="Page_wrapper"></StackLayout>
+      <sp:HybridWebView
+        IsVisible="false"
+        Grid.Row="0"
         x:Name="WebView_wrapper"
-        Uri="https://v12club.ru"></sp:HybridWebView>
+        Uri="https://v12club.ru/?logout"></sp:HybridWebView>
       <StackLayout
-        Grid.Row="2">
+        IsVisible="true"
+        Grid.Row="0"
+        Grid.RowSpan="2"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill"
+        x:Name="Indicator_wrapper"
+        BackgroundColor="#243238">
+        <StackLayout
+          HorizontalOptions="CenterAndExpand"
+          VerticalOptions="StartAndExpand"
+          Padding="10,5.5,10,0">
+          <Image
+            Source="v12club_logo2.png"></Image>
+          <ActivityIndicator
+            VerticalOptions="Start"
+            WidthRequest="100"
+            HeightRequest="100"
+            Color="#fbc430"
+            IsRunning="true" />
+        </StackLayout>
+      </StackLayout>
+      <StackLayout
+        Grid.Row="1">
         <Grid
           ColumnSpacing="0"
           RowSpacing="0"
@@ -76,14 +95,14 @@
           </Grid.ColumnDefinitions>
           <Grid.RowDefinitions>
             <RowDefinition
-              Height="50"/>
+              Height="50" />
           </Grid.RowDefinitions>
           <ImageButton
             Command="{Binding NavigatingCommand}"
             CommandParameter="personal_cabinet"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
-            Source="@drawable/person_white.png"
+            Source="person_white.png"
             Grid.Column="4"
             x:Name="personal_cabinet" />
           <ImageButton
@@ -91,7 +110,7 @@
             CommandParameter="garage"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
-            Source="@drawable/garage_white.png"
+            Source="garage_white.png"
             Grid.Column="3"
             x:Name="garage" />
           <ImageButton
@@ -101,7 +120,7 @@
             CommandParameter="main"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
-            Source="@drawable/grid_white.png"
+            Source="grid_white.png"
             Grid.Column="2"
             x:Name="main" />
           <ImageButton
@@ -109,15 +128,15 @@
             CommandParameter="cart"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
-            Source="@drawable/basket2_white.png"
+            Source="basket2_white.png"
             Grid.Column="1"
             x:Name="cart" />
-            <ImageButton
+          <ImageButton
             Command="{Binding NavigatingCommand}"
             CommandParameter="app_info"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
-            Source="@drawable/info_circle_white.png"
+            Source="info_circle_white.png"
             Grid.Column="0"
             x:Name="app_info" />
         </Grid>

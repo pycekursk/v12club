@@ -39,7 +39,7 @@ namespace v12club.ViewModels
 					App.Current.Properties.Add("Login", Login);
 					App.Current.Properties.Add("Password", Password);
 					App.Current.Properties.Add("Remember", Remember);
-					 App.Current.SavePropertiesAsync();
+					App.Current.SavePropertiesAsync();
 				}
 			}
 			else
@@ -49,12 +49,19 @@ namespace v12club.ViewModels
 					App.Current.Properties.Remove("Login");
 					App.Current.Properties.Remove("Password");
 					App.Current.Properties.Remove("Remember");
-					 App.Current.SavePropertiesAsync();
+					App.Current.SavePropertiesAsync();
 				}
 			}
 			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 
-			if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password)) return;
+			if (string.IsNullOrEmpty(Login))
+
+				return;
+			else if (string.IsNullOrEmpty(Password))
+			{
+				App.Current.MainPage.FindByName<Entry>("Password")?.Focus();
+			}
+
 
 			App.BridgeObject.ClientStatus = Models.Status.TryAuthorization;
 
@@ -76,7 +83,7 @@ namespace v12club.ViewModels
 		}
 		private void OnSaveSettingsCheckBox(object obj)
 		{
-			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(25);
 		}
 	}
 }

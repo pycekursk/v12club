@@ -15,7 +15,6 @@ namespace v12club
 			InitializeComponent();
 			App.IsBusy = true;
 
-			WebView_wrapper.Navigating += WebView_Navigating;
 			WebView_wrapper.Navigated += WebView_Navigated;
 			WebView_wrapper.RegisterAction(data => JSNotifyHandler(data));
 
@@ -23,21 +22,25 @@ namespace v12club
 
 			this.BindingContext = new MainPageViewModel(WebView_wrapper);
 
-			this.SetBinding(IsEnabledProperty, "IsBusy", BindingMode.Default, new ValueConverter());
-
-			Logo_wrapper.FadeTo(1, 250);
+			//BusyIndicator.SetBinding(IsEnabledProperty, "IsBusy", BindingMode.Default);
 		}
 
 		protected override bool OnBackButtonPressed()
 		{
-			if (App.IsBusy) return true;
 			new Action(async () =>
 			{
 				if (WebView_wrapper.CanGoBack & WebView_wrapper.IsVisible)
 				{
-					WebView_wrapper.GoBack();
+					try
+					{
+						WebView_wrapper.GoBack();
+					}
+					catch
+					{
+						return;
+					}
 				}
-				else if (!WebView_wrapper.CanGoBack & WebView_wrapper.IsVisible)
+				else if (WebView_wrapper.IsVisible)
 				{
 					if (await DisplayAlert("", "Вернуться на страницу авторизации?", "Да", "Нет"))
 					{
@@ -56,56 +59,48 @@ namespace v12club
 		{
 			if (App.BridgeObject.IsFirstLoad)
 			{
-				await WebView_wrapper.EvaluateJavaScriptAsync("doExit()");
 				App.BridgeObject.IsFirstLoad = false;
 				Page_wrapper.IsVisible = true;
-				Page_wrapper.FadeTo(1, 250);
-				return;
 			}
-			else if (App.BridgeObject.IsLogined & !WebView_wrapper.IsVisible)//переключение на основную страницу приложения
+			if (App.BridgeObject.IsLogined & !WebView_wrapper.IsVisible)//переключение на основную страницу приложения
 			{
-				Logo_wrapper.FadeTo(0, 250);
-				Page_wrapper.FadeTo(0, 250);
-				WebView_wrapper.FadeTo(1, 250);
-
-				Logo_wrapper.IsVisible = false;
 				Page_wrapper.IsVisible = false;
 				WebView_wrapper.IsVisible = true;
 			}
-			else if (!App.BridgeObject.IsLogined & WebView_wrapper.IsVisible)//переключение на страницу авторизации
+			if (!App.BridgeObject.IsLogined & WebView_wrapper.IsVisible)//переключение на страницу авторизации
 			{
-				WebView_wrapper.FadeTo(0, 250);
-				Logo_wrapper.FadeTo(1, 250);
-				Page_wrapper.FadeTo(1, 250);
-
 				WebView_wrapper.IsVisible = false;
 				Page_wrapper.IsVisible = true;
-				Logo_wrapper.IsVisible = true;
-
-				App.BridgeObject = new Models.JSBridgeObject();
-				await WebView_wrapper.EvaluateJavaScriptAsync("location.reload()");
 			}
-
 			App.IsBusy = false;
+			await Indicator_wrapper.FadeTo(0, 300).ContinueWith(t => MainThread.BeginInvokeOnMainThread(() =>
+			{
+				Indicator_wrapper.IsVisible = false; 
+				Buttons_grid.InputTransparent = false;
+			}));
 		}
 
-		private void WebView_Navigating(object sender, Xamarin.Forms.WebNavigatingEventArgs e)
+		public void JSNotifyHandler(string data)
 		{
-			App.IsBusy = true;
-		}
-
-		public static void JSNotifyHandler(string data)
-		{
-			Support.ConsoleLog("HybridWebViewPage >>>" + data);
-
 			var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<v12club.Models.JSBridgeObject>(data);
 
 			obj.ClientStatus = App.BridgeObject.ClientStatus;
 			obj.IsFirstLoad = App.BridgeObject.IsFirstLoad;
 
+			if (obj.EventType == "onbeforeunload")
+			{
+				App.IsBusy = true;
+				MainThread.BeginInvokeOnMainThread(() =>
+				{
+					Buttons_grid.InputTransparent = true;
+					Indicator_wrapper.IsVisible = true;
+					Indicator_wrapper.FadeTo(1, 300);
+				});
+			}
+
 			if (obj.EventType == "click")
 			{
-				Vibration.Vibrate(10);
+				Vibration.Vibrate(5);
 			}
 
 			if (obj.EventType == "DOMContentLoaded")
@@ -117,10 +112,11 @@ namespace v12club
 					{
 						obj.ClientStatus = Models.Status.SuccessfullyAuthorized;
 					}
-					else
+					else if (!obj.IsLogined)
 					{
 						obj.ClientStatus = Models.Status.AuthorizationFailed;
-						Device.BeginInvokeOnMainThread(async () => await (App.Current.MainPage as ContentPage).DisplayAlert("Ошибка авторизации", "Неверный логин/пароль, проверьте корректность ввода и повторите попытку.", "ОК"));
+						Device.BeginInvokeOnMainThread(async () => await this.DisplayAlert("Ошибка авторизации", "Неверный логин/пароль, проверьте корректность ввода и повторите попытку.", "ОК"));
+						Page_wrapper.FadeTo(1, 300);
 					}
 				}
 
@@ -149,22 +145,6 @@ namespace v12club
 				}
 				App.BridgeObject = obj;
 			}
-			Support.ConsoleLog(Newtonsoft.Json.JsonConvert.SerializeObject(App.BridgeObject));
 		}
-
-
-		//void ToggleView(HybridWebView webView, StackLayout wrapper)
-		//{
-		//	if (webView.IsVisible & !wrapper.IsVisible)
-		//	{
-		//		webView.FadeTo(0, 250).ContinueWith(t=> webView.IsVisible = false);
-		//		wrapper.FadeTo(1, 250).ContinueWith(t => wrapper.IsVisible = true);
-		//	}
-		//	else
-		//	{
-		//		wrapper.FadeTo(1, 250).ContinueWith(t => wrapper.IsVisible = false);
-		//		webView.FadeTo(0, 250).ContinueWith(t => webView.IsVisible = true);
-		//	}
-		//}
 	}
 }

@@ -3,7 +3,6 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Util;
 using Android.Views;
 
 using System;
@@ -22,31 +21,15 @@ namespace v12club.Droid
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
 			int uiOptions = (int)Window.DecorView.SystemUiVisibility;
-			Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
 			uiOptions |= (int)SystemUiFlags.LowProfile;
 			uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
-
 			try
 			{
+				Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
 				Window.SetNavigationBarColor(Color.Rgb(36, 50, 56));
+				Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 			}
-			catch (Exception)
-			{
-
-			}
-
-			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
-
-
-			var themeAccentColor = new TypedValue();
-			this.Theme.ResolveAttribute(Resource.Attribute.colorAccent, themeAccentColor, true);
-			var droidAccentColor = new Android.Graphics.Color(themeAccentColor.Data);
-
-			// set Xamarin Color.Accent to match the theme's accent color
-			var accentColorProp = typeof(Xamarin.Forms.Color).GetProperty(nameof(Xamarin.Forms.Color.Accent), System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
-			var xamarinAccentColor = new Xamarin.Forms.Color(droidAccentColor.R / 251.0, droidAccentColor.G / 196.0, droidAccentColor.B / 48.0, droidAccentColor.A / 255.0);
-			accentColorProp.SetValue(null, xamarinAccentColor, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, null, System.Globalization.CultureInfo.CurrentCulture);
-
+			catch { }
 
 			LoadApplication(new App());
 
@@ -63,21 +46,15 @@ namespace v12club.Droid
 		protected override void OnResume()
 		{
 			int uiOptions = (int)Window.DecorView.SystemUiVisibility;
-			Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
 			uiOptions |= (int)SystemUiFlags.LowProfile;
 			uiOptions |= (int)SystemUiFlags.ImmersiveSticky;
-
 			try
 			{
+				Window.AddFlags(Android.Views.WindowManagerFlags.Fullscreen);
 				Window.SetNavigationBarColor(Color.Rgb(36, 50, 56));
+				Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 			}
-			catch
-			{
-
-			}
-
-
-			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+			catch { }
 			base.OnResume();
 		}
 	}
