@@ -1,5 +1,6 @@
 ﻿
 using v12club.Models;
+using v12club.Views;
 
 using Xamarin.Forms;
 
@@ -36,7 +37,7 @@ namespace v12club
 
 			BridgeObject = new JSBridgeObject();
 
-			MainPage = new MainPage();
+			MainPage = new Content();
 		}
 
 		protected override void OnStart()
