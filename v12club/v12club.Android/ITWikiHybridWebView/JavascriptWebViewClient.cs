@@ -23,10 +23,9 @@ namespace v12club.Droid
 			{
 				view.EvaluateJavascript(_javascript, null);
 			}
-			catch (Exception exp)
+			catch 
 			{
 
-				//Support.ConsoleLog(exp.Message + "\n" + exp.StackTrace);
 			}
 
 		}

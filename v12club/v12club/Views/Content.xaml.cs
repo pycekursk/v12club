@@ -52,7 +52,7 @@ namespace v12club.Views
 			return true;
 		}
 
-		async void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
+		void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
 		{
 			if (App.BridgeObject.IsFirstLoad)
 			{
@@ -69,12 +69,15 @@ namespace v12club.Views
 				WebView_wrapper.IsVisible = false;
 				Page_wrapper.IsVisible = true;
 			}
+
+			if (Indicator_wrapper.IsVisible)
+				Indicator_wrapper.FadeTo(0, 300).ContinueWith(t => MainThread.BeginInvokeOnMainThread(() =>
+				{
+					Indicator_wrapper.IsVisible = false;
+					Buttons_grid.InputTransparent = false;
+				}));
+
 			App.IsBusy = false;
-			await Indicator_wrapper.FadeTo(0, 300).ContinueWith(t => MainThread.BeginInvokeOnMainThread(() =>
-			{
-				Indicator_wrapper.IsVisible = false; 
-				Buttons_grid.InputTransparent = false;
-			}));
 		}
 
 		public void JSNotifyHandler(string data)
@@ -87,12 +90,15 @@ namespace v12club.Views
 			if (obj.EventType == "onbeforeunload")
 			{
 				App.IsBusy = true;
-				MainThread.BeginInvokeOnMainThread(() =>
+				if (!WebView_wrapper.IsVisible)
 				{
-					Buttons_grid.InputTransparent = true;
-					Indicator_wrapper.IsVisible = true;
-					Indicator_wrapper.FadeTo(1, 300);
-				});
+					MainThread.BeginInvokeOnMainThread(() =>
+					{
+						Buttons_grid.InputTransparent = true;
+						Indicator_wrapper.IsVisible = true;
+						Indicator_wrapper.FadeTo(1, 300);
+					});
+				}
 			}
 
 			if (obj.EventType == "click")
@@ -100,7 +106,7 @@ namespace v12club.Views
 				Vibration.Vibrate(5);
 			}
 
-			if (obj.EventType == "DOMContentLoaded")
+			if (obj.EventType == "loaded")
 			{
 				if (App.BridgeObject.ClientStatus == Models.Status.TryAuthorization)
 				{

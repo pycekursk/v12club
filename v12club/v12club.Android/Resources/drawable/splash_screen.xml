@@ -3,9 +3,9 @@
   <item>
     <color android:color="@color/launcher_background"/>
   </item>
-  <item android:top="50dp" android:right="50dp">
+  <item>
     <bitmap
         android:src="@drawable/splash_logo"
-        android:gravity="top" />
+        android:gravity="center" android:tintMode="screen"/>
   </item>
 </layer-list>

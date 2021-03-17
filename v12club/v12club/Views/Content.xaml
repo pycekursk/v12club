@@ -63,7 +63,7 @@
         VerticalOptions="StartAndExpand"
         Padding="10,5.5,10,0">
         <Image
-          Source="v12club_logo2.png"></Image>
+          Source="v12club_logo.png"></Image>
         <ActivityIndicator
           VerticalOptions="Start"
           HeightRequest="100"

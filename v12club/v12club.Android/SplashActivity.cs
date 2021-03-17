@@ -18,14 +18,6 @@ namespace v12club.Droid
 		protected override void OnResume()
 		{
 			base.OnResume();
-
-			var preloader = new Task(async () =>
-			{
-				await Task.Delay(1500);
-			});
-
-			preloader.Start();
-
 			StartActivity(new Intent(Application.Context, typeof(MainActivity)));
 		}
 	}

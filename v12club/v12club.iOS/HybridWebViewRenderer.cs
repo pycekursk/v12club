@@ -41,7 +41,7 @@ namespace v12club.iOS
 
 			if (NativeView != null && e.NewElement != null)
 			{
-				var url = new NSUrlRequest(new NSUrl("https://v12club.ru/"));
+				var url = new NSUrlRequest(new NSUrl(((HybridWebView)Element).Uri));
 				CustomUserAgent = "ios";
 				LoadRequest(url);
 			}
