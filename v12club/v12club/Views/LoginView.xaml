@@ -2,10 +2,19 @@
 <ContentView
   xmlns="http://xamarin.com/schemas/2014/forms"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:viewmodels="clr-namespace:v12club.ViewModels"
+  x:DataType="viewmodels:LoginViewModel"
   x:Class="v12club.Views.LoginView"
+  xmlns:sp="clr-namespace:v12club"
   BackgroundColor="#243238"
   HorizontalOptions="FillAndExpand"
   VerticalOptions="FillAndExpand">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <sp:ValueConverter
+        x:Key="conv" />
+    </ResourceDictionary>
+  </ContentView.Resources>
   <ContentView.Content>
     <StackLayout
       x:Name="Wrapper"
@@ -13,11 +22,18 @@
       VerticalOptions="CenterAndExpand">
       <FlexLayout
         IsVisible="true"
-        x:Name="Logo_wrapper"></FlexLayout>
+        x:Name="Logo_wrapper">
+        <Label
+          Text="{Binding AppVersion, Converter={ x:StaticResource conv},ConverterParameter=version}"
+          TextColor="Gray"
+          FontSize="Default"
+          Padding="10,0,0,0"></Label>
+      </FlexLayout>
       <StackLayout
         Padding="10,0,10,0">
-          <Image
-          VerticalOptions="Start" HorizontalOptions="Center"
+        <Image
+          VerticalOptions="Start"
+          HorizontalOptions="Center"
           Source="v12club_logo.png"></Image>
         <Entry
           Keyboard="Numeric"
@@ -32,31 +48,47 @@
           HorizontalTextAlignment="Center"
           FontSize="Subtitle"
           Placeholder="Телефон"></Entry>
-        <Entry
-          PlaceholderColor="White"
-          TextColor="WhiteSmoke"
-          FontSize="Subtitle"
-          Text="{Binding Password}"
-          x:Name="Password"
-          HorizontalTextAlignment="Center"
-          Placeholder="Пароль"
-          IsPassword="True"
-          BackgroundColor="#243238"></Entry>
-        <StackLayout
-          Orientation="Horizontal"
+        <Grid
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+          <Entry
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            PlaceholderColor="White"
+            TextColor="WhiteSmoke"
+            FontSize="Subtitle"
+            Text="{Binding Password}"
+            x:Name="Password"
+            HorizontalTextAlignment="Center"
+            Placeholder="Пароль"
+            IsPassword="True"
+            BackgroundColor="#243238"></Entry>
+          <ImageButton
+            Scale="0.85"
+            Opacity="1"
+            HorizontalOptions="End"
+            Source="eye.png"
+            x:Name="show_password"
+            Command="{Binding ShowPasswordCommand}"
+            CommandParameter="{x:Reference show_password}" />
+        </Grid>
+        <AbsoluteLayout
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand">
+          <Label
+            TextColor="WhiteSmoke"
+            FontSize="Default"
+            Padding="35,10,0,0">Запомнить меня</Label>
           <CheckBox
+            WidthRequest="150"
             HeightRequest="40"
             Color="WhiteSmoke"
             x:Name="SaveSettingsCheckBox"
             IsChecked="{Binding Remember, Mode=TwoWay}"></CheckBox>
-          <Label
-            TextColor="WhiteSmoke"
-            FontSize="Default"
-            HorizontalOptions="Center"
-            VerticalOptions="Center">Запомнить меня</Label>
-        </StackLayout>
+        </AbsoluteLayout>
         <StackLayout
           Padding="0,5,0,5"
           VerticalOptions="FillAndExpand"
@@ -71,7 +103,7 @@
             <Grid.ColumnDefinitions>
               <ColumnDefinition />
               <ColumnDefinition
-                Width="10" />
+                Width="5" />
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button
