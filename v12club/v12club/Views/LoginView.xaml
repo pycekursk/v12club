@@ -18,7 +18,7 @@
         Padding="10,0,10,0">
           <Image
           VerticalOptions="Start" HorizontalOptions="Center"
-          Source="v12club_logo.png"></Image>
+          Source="splash_logo.png"></Image>
         <Entry
           Keyboard="Numeric"
           BackgroundColor="#243238"

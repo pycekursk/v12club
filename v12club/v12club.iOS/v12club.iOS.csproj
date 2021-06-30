@@ -11,10 +11,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>v12club.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>v12club.iOS</AssemblyName>
+    <AssemblyName>iOSv12club.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>manual</ProvisioningType>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,8 +29,9 @@
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
     <MtouchProfiling>false</MtouchProfiling>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
     <MtouchFastDev>true</MtouchFastDev>
+    <CodesignProvision>VS: com.it-wiki.iOSv12club Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -52,7 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -62,6 +63,7 @@
     <CodesignResourceRules>Info.plist</CodesignResourceRules>
     <BuildIpa>false</BuildIpa>
     <MtouchSdkVersion>14.4</MtouchSdkVersion>
+    <CodesignProvision>VS: com.it-wiki.iOSv12club Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -189,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\search_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash_logo.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
