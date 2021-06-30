@@ -27,7 +27,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>v12club</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.it-wiki.v12club</string>
+	<string>com.it-wiki.iOSv12club</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -38,5 +38,7 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>
