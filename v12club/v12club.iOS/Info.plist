@@ -36,10 +36,6 @@
 	<string>PreLoader</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
-	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcons.appiconset</string>
-	<key>UIMainStoryboardFile</key>
-	<string>LaunchScreen</string>
 	<key>UILaunchImageFile</key>
 	<string>Resources/splash_logo.png</string>
 </dict>

@@ -62,7 +62,8 @@
     <MtouchSdkVersion>14.5</MtouchSdkVersion>
     <CodesignProvision>v12DevelopProfile</CodesignProvision>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignResourceRules>Info.plist</CodesignResourceRules>
+    <CodesignResourceRules>
+    </CodesignResourceRules>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -76,12 +77,11 @@
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignProvision>v12clubDistrib</CodesignProvision>
-    <BuildIpa>true</BuildIpa>
-    <IpaIncludeArtwork>true</IpaIncludeArtwork>
+    <CodesignProvision>v12clubAdHocProfile</CodesignProvision>
+    <BuildIpa>false</BuildIpa>
+    <IpaIncludeArtwork>false</IpaIncludeArtwork>
     <IpaPackageName>ITW.iOSv12club</IpaPackageName>
-    <CodesignResourceRules>
-    </CodesignResourceRules>
+    <CodesignResourceRules>Info.plist</CodesignResourceRules>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -100,6 +100,9 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="HybridWebViewRenderer.cs" />
     <Compile Include="Main.cs" />
@@ -108,8 +111,6 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\PreLoader.storyboard" />
-    <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
