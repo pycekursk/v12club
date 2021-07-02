@@ -27,18 +27,22 @@
 	<key>CFBundleDisplayName</key>
 	<string>v12club</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.it-wiki.iOSv12club</string>
+	<string>ITW.iOSv12club</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleName</key>
 	<string>v12club</string>
+	<key>UILaunchStoryboardName</key>
+	<string>PreLoader</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIStatusBarHidden</key>
+	<key>UILaunchImageFile</key>
+	<string>Resources/splash_logo.png</string>
+	<key>UIRequiresFullScreen</key>
 	<true/>
 </dict>
 </plist>

@@ -18,7 +18,7 @@ namespace v12club.ViewModels
 
 		private void OnNavigating(object obj)
 		{
-			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
+			//if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
 
 			var button = App.Current.MainPage.FindByName<ImageButton>(obj.ToString());
 			var buttons = App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.Where(child => child.GetType() == typeof(ImageButton));

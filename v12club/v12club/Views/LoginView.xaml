@@ -16,7 +16,7 @@
         x:Name="Logo_wrapper"></FlexLayout>
       <StackLayout
         Padding="10,0,10,0">
-          <Image
+        <Image
           VerticalOptions="Start" HorizontalOptions="Center"
           Source="splash_logo.png"></Image>
         <Entry
@@ -46,12 +46,13 @@
           Orientation="Horizontal"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
-          <CheckBox
+          <CheckBox  
             HeightRequest="40"
             Color="WhiteSmoke"
             x:Name="SaveSettingsCheckBox"
             IsChecked="{Binding Remember, Mode=TwoWay}"></CheckBox>
-          <Label
+          <Label 
+            x:Name="checkBoxLabel"
             TextColor="WhiteSmoke"
             FontSize="Default"
             HorizontalOptions="Center"

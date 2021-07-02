@@ -41,6 +41,7 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <PlatformTarget>x86</PlatformTarget>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -158,7 +159,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarv12clubAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionv12clubAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadUnhandledDeviceExceptionv12clubAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarv12clubAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
