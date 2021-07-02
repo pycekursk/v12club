@@ -29,9 +29,9 @@
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchProfiling>false</MtouchProfiling>
-    <CodesignKey>iPhone Distribution: Ruslan Bredikhin (CPAZ8J3N9U)</CodesignKey>
+    <CodesignKey>iPhone Developer: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
     <MtouchFastDev>true</MtouchFastDev>
-    <CodesignProvision>v12clubDistrib</CodesignProvision>
+    <CodesignProvision>v12DevelopProfile</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -51,19 +51,16 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchArch>
-    </MtouchArch>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
-    <MtouchInterpreter>
-    </MtouchInterpreter>
+    <MtouchInterpreter>-all</MtouchInterpreter>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <BuildIpa>false</BuildIpa>
     <MtouchSdkVersion>14.5</MtouchSdkVersion>
-    <CodesignProvision>
-    </CodesignProvision>
+    <CodesignProvision>v12DevelopProfile</CodesignProvision>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <CodesignResourceRules>Info.plist</CodesignResourceRules>
   </PropertyGroup>

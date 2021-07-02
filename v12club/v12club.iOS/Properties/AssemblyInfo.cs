@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IT-Wiki")]
-[assembly: AssemblyProduct("iOSv12club")]
+[assembly: AssemblyProduct("v12club")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("ITW")]
 [assembly: AssemblyCulture("")]

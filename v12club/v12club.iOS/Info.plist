@@ -42,7 +42,5 @@
 	<string>LaunchScreen</string>
 	<key>UILaunchImageFile</key>
 	<string>Resources/splash_logo.png</string>
-	<key>UIRequiresFullScreen</key>
-	<true/>
 </dict>
 </plist>
