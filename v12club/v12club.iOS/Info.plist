@@ -33,10 +33,14 @@
 	<key>CFBundleName</key>
 	<string>v12club</string>
 	<key>UILaunchStoryboardName</key>
-	<string>PreLoader</string>
+	<string>LaunchScreen</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>UILaunchImageFile</key>
 	<string>Resources/splash_logo.png</string>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>

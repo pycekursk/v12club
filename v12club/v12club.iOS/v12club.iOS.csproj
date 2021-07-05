@@ -29,9 +29,10 @@
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchProfiling>false</MtouchProfiling>
-    <CodesignKey>iPhone Developer: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchFastDev>true</MtouchFastDev>
     <CodesignProvision>v12DevelopProfile</CodesignProvision>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -52,7 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -60,7 +61,7 @@
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <BuildIpa>false</BuildIpa>
     <MtouchSdkVersion>14.5</MtouchSdkVersion>
-    <CodesignProvision>v12DevelopProfile</CodesignProvision>
+    <CodesignProvision>v12clubDeveloperProfile</CodesignProvision>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <CodesignResourceRules>
     </CodesignResourceRules>
@@ -72,16 +73,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Distribution: Ruslan Bredikhin (CPAZ8J3N9U)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignProvision>v12clubAdHocProfile</CodesignProvision>
-    <BuildIpa>false</BuildIpa>
+    <CodesignProvision>v12clubAppStore</CodesignProvision>
+    <BuildIpa>true</BuildIpa>
     <IpaIncludeArtwork>false</IpaIncludeArtwork>
     <IpaPackageName>ITW.iOSv12club</IpaPackageName>
-    <CodesignResourceRules>Info.plist</CodesignResourceRules>
+    <CodesignResourceRules>
+    </CodesignResourceRules>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -119,7 +121,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon120.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon1201.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon152.png">
@@ -128,7 +130,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon167.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon180.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon1801.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon20.png">
@@ -137,13 +139,13 @@
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon29.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon40.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon401.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon58.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon60.png">
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon601.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon76.png">
@@ -166,8 +168,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
