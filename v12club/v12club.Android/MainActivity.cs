@@ -7,6 +7,8 @@ using Android.Views;
 
 using System;
 
+using Xamarin.Essentials;
+
 using Color = Android.Graphics.Color;
 
 namespace v12club.Droid
@@ -33,12 +35,15 @@ namespace v12club.Droid
 
 			LoadApplication(new App());
 
-			if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M)
-				Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Internet }, 0);
+
+			//App.Version = AppInfo.Version.ToString();
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
 		{
+			if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M)
+				Android.Support.V4.App.ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Internet, Manifest.Permission.WriteExternalStorage }, 0);
+
 			Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}

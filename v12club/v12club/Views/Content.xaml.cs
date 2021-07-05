@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Reflection;
 
 using v12club.ViewModels;
-
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -10,11 +10,14 @@ namespace v12club.Views
 {
 	public partial class Content : ContentPage
 	{
+
 		public Content()
 		{
 			InitializeComponent();
 
+			WebView_wrapper.Navigating += WebView_wrapper_Navigating;
 			WebView_wrapper.Navigated += WebView_Navigated;
+
 			WebView_wrapper.RegisterAction(data => JSNotifyHandler(data));
 
 			Page_wrapper.Children.Add(new LoginView(WebView_wrapper));
@@ -24,6 +27,8 @@ namespace v12club.Views
 
 		protected override bool OnBackButtonPressed()
 		{
+			App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.ForEach(b => b.ScaleTo(1, 150).ContinueWith(t => b.FadeTo(0.5, 150)));
+
 			new Action(async () =>
 			{
 				if (WebView_wrapper.CanGoBack & WebView_wrapper.IsVisible)
@@ -52,6 +57,16 @@ namespace v12club.Views
 			return true;
 		}
 
+		private void WebView_wrapper_Navigating(object sender, WebNavigatingEventArgs e)
+		{
+			if (!e.Url.Contains("v12club.ru"))
+			{
+				Browser.OpenAsync(e.Url, BrowserLaunchMode.External);
+				e.Cancel = true;
+				(sender as HybridWebView).Reload();
+			}
+		}
+
 		void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
 		{
 			if (App.BridgeObject.IsFirstLoad)
@@ -63,9 +78,17 @@ namespace v12club.Views
 			{
 				Page_wrapper.IsVisible = false;
 				WebView_wrapper.IsVisible = true;
+
+				(Page_wrapper.Children[0].BindingContext as LoginViewModel).RememberCredentials();
 			}
 			if (!App.BridgeObject.IsLogined & WebView_wrapper.IsVisible)//переключение на страницу авторизации
 			{
+				if (!(Page_wrapper.Children[0].BindingContext as LoginViewModel).Remember)
+				{
+					Page_wrapper.Children[0].FindByName<Entry>("Login").Text = string.Empty;
+					Page_wrapper.Children[0].FindByName<Entry>("Password").Text = string.Empty;
+				}
+
 				WebView_wrapper.IsVisible = false;
 				Page_wrapper.IsVisible = true;
 			}
@@ -108,6 +131,7 @@ namespace v12club.Views
 
 			if (obj.EventType == "loaded")
 			{
+				//MainThread.BeginInvokeOnMainThread(() => WebView_wrapper.Eval($"setAppVersion({App.Version})"));
 				if (App.BridgeObject.ClientStatus == Models.Status.TryAuthorization)
 				{
 					if (obj.IsLogined)
@@ -117,7 +141,7 @@ namespace v12club.Views
 					else if (!obj.IsLogined)
 					{
 						obj.ClientStatus = Models.Status.AuthorizationFailed;
-						Device.BeginInvokeOnMainThread(async () => await this.DisplayAlert("Ошибка авторизации", "Неверный логин/пароль, проверьте корректность ввода и повторите попытку.", "ОК"));
+						Device.BeginInvokeOnMainThread(async () => { await this.DisplayAlert("Ошибка авторизации", "Неверный логин/пароль, проверьте корректность ввода и повторите попытку.", "ОК"); Page_wrapper.Children[0].FindByName<Entry>("Password").Text = string.Empty; });
 						Page_wrapper.FadeTo(1, 300);
 					}
 				}

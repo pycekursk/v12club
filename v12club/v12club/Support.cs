@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace v12club
@@ -12,7 +14,25 @@ namespace v12club
 	{
 		protected override void Invoke(ImageButton sender)
 		{
-			sender.ScaleTo(1.2, 150).ContinueWith(t => sender.FadeTo(1, 150));
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
+
+			if (sender.Source.ToString() == "File: eye.png") return;
+
+			var buttons = App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children;
+
+			var activeButton = buttons.Where(b => b.Opacity == 1).FirstOrDefault() as ImageButton;
+
+			if (activeButton != null && activeButton.Source == sender.Source) return;
+
+			if (sender.Opacity == 1)
+			{
+				sender.ScaleTo(1, 150).ContinueWith(t => sender.FadeTo(0.5, 150));
+			}
+			else
+			{
+				buttons.ForEach(b => b.ScaleTo(1, 150).ContinueWith(t => b.FadeTo(0.5, 150)));
+				sender.ScaleTo(1.2, 150).ContinueWith(t => sender.FadeTo(1, 150));
+			}
 		}
 	}
 
@@ -23,6 +43,10 @@ namespace v12club
 			if ((string)parameter == "color")
 			{
 				return (bool)value == true ? Color.White : Color.FromHex("#333333");
+			}
+			else if ((string)parameter == "version")
+			{
+				return $"v.{(value as string)}";
 			}
 			else return (bool)value ? false : true;
 		}
@@ -48,8 +72,8 @@ namespace v12club
 			return true;
 		}
 
-		public static string RemoveLast(this string str) => str.Length > 0 ? str.Remove(str.Length - 1) : str;
-
+		public static string RemoveLast(this string str) => str?.Length > 0 ? str.Remove(str.Length - 1) : str;
+		
 		public static void UpdateTextThreadSafe(this Entry entry, string value)
 		{
 			if (entry.Dispatcher.IsInvokeRequired) entry.Dispatcher.BeginInvokeOnMainThread(() => entry.Text = value);
@@ -59,6 +83,18 @@ namespace v12club
 		public static string GetLast(this string str)
 		{
 			return str.Last().ToString();
+		}
+
+		public static void ForEach<T>(this IEnumerable<T> collection, Action<T> action)
+		{
+			foreach (var item in collection) action.Invoke(item);
+		}
+
+		public static Task ForEachAsync<T>(this IEnumerable<T> collection, Action<T> action) => Task.Run(() => { foreach (var item in collection) action.Invoke(item); });
+
+		public static void ParallelForEach<T>(this IEnumerable<T> collection, Action<T> action)
+		{
+			Parallel.ForEach(collection, action);
 		}
 
 		public static async Task VerifyPhone(this Entry entry, TextChangedEventArgs e = null)

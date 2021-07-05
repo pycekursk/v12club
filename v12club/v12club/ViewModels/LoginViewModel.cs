@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -9,13 +11,15 @@ namespace v12club.ViewModels
 		public Command LoginCommand { get; }
 		public Command RegisterCommand { get; }
 		public Command ForgetPasswordCommand { get; }
+		public Command ShowPasswordCommand { get; }
 		public Command SaveSettingsCheckBoxCommand { get; }
 		public string Login { get; set; }
 		public string Password { get; set; }
 		public bool Remember { get; set; }
+
 		readonly HybridWebView HybridWeb;
 
-		public LoginViewModel(HybridWebView webView)
+		public LoginViewModel(HybridWebView webView) : base(App.Version)
 		{
 			HybridWeb = webView;
 
@@ -23,6 +27,8 @@ namespace v12club.ViewModels
 			RegisterCommand = new Command(OnRegisterClicked);
 			SaveSettingsCheckBoxCommand = new Command(OnSaveSettingsCheckBox);
 			ForgetPasswordCommand = new Command(OnForgetClicked);
+			ShowPasswordCommand = new Command(OnShowPasswordClicked);
+
 
 			object settings = "";
 			if (App.Current.Properties.TryGetValue("Login", out settings)) Login = settings.ToString();
@@ -30,7 +36,14 @@ namespace v12club.ViewModels
 			if (App.Current.Properties.TryGetValue("Remember", out settings)) Remember = bool.Parse(settings.ToString());
 		}
 
-		private void OnLoginClicked(object obj)
+		private void OnShowPasswordClicked(object obj)
+		{
+			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(5);
+			var field = ((App.Current.MainPage as ContentPage).FindByName<StackLayout>("Page_wrapper").Children[0] as ContentView).FindByName<Entry>("Password");
+			field.IsPassword = field.IsPassword ? false : true;
+		}
+
+		public void RememberCredentials()
 		{
 			if (Remember)
 			{
@@ -42,16 +55,16 @@ namespace v12club.ViewModels
 					App.Current.SavePropertiesAsync();
 				}
 			}
-			else
+			else if (App.Current.Properties.ContainsKey("Login"))
 			{
-				if (App.Current.Properties.ContainsKey("Login"))
-				{
-					App.Current.Properties.Remove("Login");
-					App.Current.Properties.Remove("Password");
-					App.Current.Properties.Remove("Remember");
-					App.Current.SavePropertiesAsync();
-				}
+				App.Current.Properties.Remove("Login");
+				App.Current.Properties.Remove("Password");
+				App.Current.Properties.Remove("Remember");
+				App.Current.SavePropertiesAsync();
 			}
+		private void OnLoginClicked(object obj)
+		{
+			
 
 			if (string.IsNullOrEmpty(Login))
 
@@ -60,7 +73,6 @@ namespace v12club.ViewModels
 			{
 				App.Current.MainPage.FindByName<Entry>("Password")?.Focus();
 			}
-
 
 			App.BridgeObject.ClientStatus = Models.Status.TryAuthorization;
 
