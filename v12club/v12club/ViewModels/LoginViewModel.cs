@@ -9,6 +9,7 @@ namespace v12club.ViewModels
 		public Command LoginCommand { get; }
 		public Command RegisterCommand { get; }
 		public Command ForgetPasswordCommand { get; }
+		public Command ShowPasswordCommand { get; }
 		public Command SaveSettingsCheckBoxCommand { get; }
 		public string Login { get; set; }
 		public string Password { get; set; }
@@ -23,13 +24,17 @@ namespace v12club.ViewModels
 			RegisterCommand = new Command(OnRegisterClicked);
 			SaveSettingsCheckBoxCommand = new Command(OnSaveSettingsCheckBox);
 			ForgetPasswordCommand = new Command(OnForgetClicked);
-
+			ShowPasswordCommand = new Command(OnShowPasswordClicked);
 			object settings = "";
 			if (App.Current.Properties.TryGetValue("Login", out settings)) Login = settings.ToString();
 			if (App.Current.Properties.TryGetValue("Password", out settings)) Password = settings.ToString();
 			if (App.Current.Properties.TryGetValue("Remember", out settings)) Remember = bool.Parse(settings.ToString());
 		}
-
+		private void OnShowPasswordClicked(object obj)
+		{
+			var field = ((App.Current.MainPage as ContentPage).FindByName<StackLayout>("Page_wrapper").Children[0] as ContentView).FindByName<Entry>("Password");
+			field.IsPassword = field.IsPassword ? false : true;
+		}
 		private void OnLoginClicked(object obj)
 		{
 			if (Remember)
@@ -78,7 +83,7 @@ namespace v12club.ViewModels
 		}
 		private void OnSaveSettingsCheckBox(object obj)
 		{
-		
+
 		}
 	}
 }

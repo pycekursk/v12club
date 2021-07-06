@@ -14,7 +14,7 @@
     <AssemblyName>ITW.iOSv12club</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>manual</ProvisioningType>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,9 +29,9 @@
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchProfiling>false</MtouchProfiling>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
     <MtouchFastDev>true</MtouchFastDev>
-    <CodesignProvision>v12DevelopProfile</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -53,7 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
+    <CodesignKey>Apple Development: Ruslan Bredikhin %283NTWZ9P2R6%29</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -73,14 +73,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchDebug>true</MtouchDebug>
-    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
+    <MtouchDebug>false</MtouchDebug>
+    <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignProvision>v12DeveloperProvisionProfile</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <BuildIpa>true</BuildIpa>
-    <IpaIncludeArtwork>false</IpaIncludeArtwork>
+    <IpaIncludeArtwork>true</IpaIncludeArtwork>
     <IpaPackageName>ITW.iOSv12club</IpaPackageName>
     <CodesignResourceRules>
     </CodesignResourceRules>
@@ -112,7 +112,8 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <InterfaceDefinition Include="Resources\PreLoader.storyboard" />
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
@@ -179,15 +180,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\v12club_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\v12club_logo2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\v12club.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\arrow_left_white.png" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splash_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\eye.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

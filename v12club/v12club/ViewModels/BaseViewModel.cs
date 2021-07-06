@@ -16,6 +16,9 @@ namespace v12club.ViewModels
 			set { SetProperty(ref title, value); }
 		}
 
+		string _appVersion;
+		public string AppVersion { get => _appVersion; set { _appVersion = value; OnPropertyChanged("AppVersion"); } }
+
 		protected bool SetProperty<T>(ref T backingStore, T value,
 				[CallerMemberName] string propertyName = "",
 				Action onChanged = null)

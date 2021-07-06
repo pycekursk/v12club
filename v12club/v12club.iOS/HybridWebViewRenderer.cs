@@ -13,7 +13,7 @@ namespace v12club.iOS
 	public class HybridWebViewRenderer : WkWebViewRenderer, IWKScriptMessageHandler
 	{
 		const string JavaScriptFunction = "function invokeCSharpAction(data){window.webkit.messageHandlers.invokeAction.postMessage(data);}";
-		WKUserContentController userController;
+		readonly WKUserContentController userController;
 
 		public HybridWebViewRenderer() : this(new WKWebViewConfiguration())
 		{

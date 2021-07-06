@@ -2,6 +2,7 @@
 using v12club.Models;
 using v12club.Views;
 
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace v12club
@@ -30,6 +31,7 @@ namespace v12club
 		}
 
 		public static JSBridgeObject BridgeObject { get; set; }
+		public static string Version { get; } = AppInfo.Version.ToString();
 
 		public App()
 		{
