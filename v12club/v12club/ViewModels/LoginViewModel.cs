@@ -62,11 +62,9 @@ namespace v12club.ViewModels
 				App.Current.Properties.Remove("Remember");
 				App.Current.SavePropertiesAsync();
 			}
-		}
-
 		private void OnLoginClicked(object obj)
 		{
-			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
+			
 
 			if (string.IsNullOrEmpty(Login))
 
@@ -83,20 +81,16 @@ namespace v12club.ViewModels
 
 		private async void OnRegisterClicked(object obj)
 		{
-			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
-
 			await Browser.OpenAsync("https://v12club.ru/reg", BrowserLaunchMode.External);
 		}
 		private async void OnForgetClicked(object obj)
 		{
-			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(50);
-
 			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.External);
 
 		}
 		private void OnSaveSettingsCheckBox(object obj)
 		{
-			if (DeviceInfo.Platform != DevicePlatform.UWP) Vibration.Vibrate(25);
+		
 		}
 	}
 }

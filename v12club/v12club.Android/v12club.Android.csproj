@@ -41,6 +41,7 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <PlatformTarget>x86</PlatformTarget>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>

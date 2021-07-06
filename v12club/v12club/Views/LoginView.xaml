@@ -32,9 +32,14 @@
       <StackLayout
         Padding="10,0,10,0">
         <Image
+
+          VerticalOptions="Start" HorizontalOptions="Center"
+          Source="splash_logo.png"></Image>
+
           VerticalOptions="Start"
           HorizontalOptions="Center"
           Source="v12club_logo.png"></Image>
+
         <Entry
           Keyboard="Numeric"
           BackgroundColor="#243238"
@@ -78,17 +83,31 @@
         <AbsoluteLayout
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
+
+          <CheckBox  
+
           <Label
             TextColor="WhiteSmoke"
             FontSize="Default"
             Padding="35,10,0,0">Запомнить меня</Label>
           <CheckBox
             WidthRequest="150"
+
             HeightRequest="40"
             Color="WhiteSmoke"
             x:Name="SaveSettingsCheckBox"
             IsChecked="{Binding Remember, Mode=TwoWay}"></CheckBox>
+
+          <Label 
+            x:Name="checkBoxLabel"
+            TextColor="WhiteSmoke"
+            FontSize="Default"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">Запомнить меня</Label>
+        </StackLayout>
+
         </AbsoluteLayout>
+
         <StackLayout
           Padding="0,5,0,5"
           VerticalOptions="FillAndExpand"

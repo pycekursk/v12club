@@ -16,14 +16,17 @@
 
   <ItemGroup>
     <Compile Remove="FakesAssemblies\**" />
+    <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="FakesAssemblies\**" />
+    <EmbeddedResource Remove="Resources\**" />
     <None Remove="FakesAssemblies\**" />
+    <None Remove="Resources\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,10 +42,6 @@
     <EmbeddedResource Update="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>

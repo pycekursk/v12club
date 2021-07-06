@@ -126,7 +126,7 @@ namespace v12club.Views
 
 			if (obj.EventType == "click")
 			{
-				Vibration.Vibrate(5);
+				//Vibration.Vibrate(5);
 			}
 
 			if (obj.EventType == "loaded")
