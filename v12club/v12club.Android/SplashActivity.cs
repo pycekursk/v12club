@@ -2,9 +2,8 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.App;
 
-using System.Threading.Tasks;
+using AndroidX.AppCompat.App;
 
 namespace v12club.Droid
 {

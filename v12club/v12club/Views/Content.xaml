@@ -9,7 +9,7 @@
     <ResourceDictionary>
       <sp:ValueConverter
         x:Key="conv" />
-      <Style
+      <Style x:Key="trigger"
         TargetType="ImageButton">
         <Setter
           Property="Padding"
@@ -94,7 +94,7 @@
           <RowDefinition
             Height="50" />
         </Grid.RowDefinitions>
-        <ImageButton
+        <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           CommandParameter="personal_cabinet"
           HorizontalOptions="FillAndExpand"
@@ -102,7 +102,7 @@
           Source="person_white.png"
           Grid.Column="4"
           x:Name="personal_cabinet" />
-        <ImageButton
+        <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           CommandParameter="garage"
           HorizontalOptions="FillAndExpand"
@@ -110,7 +110,7 @@
           Source="garage_white.png"
           Grid.Column="3"
           x:Name="garage" />
-        <ImageButton
+        <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           Scale="1.2"
           Opacity="1"
@@ -120,7 +120,7 @@
           Source="grid_white.png"
           Grid.Column="2"
           x:Name="main" />
-        <ImageButton
+        <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           CommandParameter="cart"
           HorizontalOptions="FillAndExpand"
@@ -129,13 +129,12 @@
           Grid.Column="1"
           x:Name="cart" />
         <ImageButton
-          Command="{Binding NavigatingCommand}"
-          CommandParameter="app_info"
+          x:Name="onplatform_button"
+          Clicked="onplatform_button_Clicked"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
           Source="info_circle_white.png"
-          Grid.Column="0"
-          x:Name="app_info" />
+          Grid.Column="0"/>
       </Grid>
     </StackLayout>
   </Grid>

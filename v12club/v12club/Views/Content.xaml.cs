@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Linq;
 
 using v12club.ViewModels;
 
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
+
+using DeviceInfo = Xamarin.Essentials.DeviceInfo;
 
 namespace v12club.Views
 {
@@ -20,6 +24,13 @@ namespace v12club.Views
 			Page_wrapper.Children.Add(new LoginView(WebView_wrapper));
 
 			this.BindingContext = new MainPageViewModel(WebView_wrapper);
+
+			if (DeviceInfo.Platform == DevicePlatform.iOS)
+			{
+				this.onplatform_button.Padding = 12;
+				this.onplatform_button.Opacity = 0.5;
+				this.onplatform_button.Source = "arrow_left_white.png";
+			}
 		}
 
 		protected override bool OnBackButtonPressed()
@@ -147,6 +158,19 @@ namespace v12club.Views
 				}
 				App.BridgeObject = obj;
 			}
+		}
+
+		private void onplatform_button_Clicked(object sender, EventArgs e)
+		{
+			//var button = sender as ImageButton;
+			//var buttons = App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.Where(child => child.GetType() == typeof(ImageButton));
+
+			//button.Opacity = 0.5;
+			//button.Scale = 0.8;
+
+			//buttons.ForEach((b) => { b.Opacity = 0.5; b.Scale = 0.8; });
+
+			this.SendBackButtonPressed();
 		}
 	}
 }
