@@ -162,13 +162,9 @@ namespace v12club.Views
 
 		private void onplatform_button_Clicked(object sender, EventArgs e)
 		{
-			//var button = sender as ImageButton;
-			//var buttons = App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.Where(child => child.GetType() == typeof(ImageButton));
+			var buttons = App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.Where(child => child.GetType() == typeof(ImageButton));
 
-			//button.Opacity = 0.5;
-			//button.Scale = 0.8;
-
-			//buttons.ForEach((b) => { b.Opacity = 0.5; b.Scale = 0.8; });
+			buttons.Where(b => b.Opacity > 0.5).ToList().ForEach((b) => { b.Opacity = 0.5; b.Scale = 0.8; });
 
 			this.SendBackButtonPressed();
 		}
