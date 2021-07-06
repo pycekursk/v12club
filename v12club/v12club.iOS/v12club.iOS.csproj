@@ -53,7 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
@@ -61,7 +61,7 @@
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <BuildIpa>false</BuildIpa>
     <MtouchSdkVersion>14.5</MtouchSdkVersion>
-    <CodesignProvision>v12clubDeveloperProfile</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <CodesignResourceRules>
     </CodesignResourceRules>
@@ -73,12 +73,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignProvision>v12clubAppStore</CodesignProvision>
+    <CodesignProvision>v12DeveloperProvisionProfile</CodesignProvision>
     <BuildIpa>true</BuildIpa>
     <IpaIncludeArtwork>false</IpaIncludeArtwork>
     <IpaPackageName>ITW.iOSv12club</IpaPackageName>
