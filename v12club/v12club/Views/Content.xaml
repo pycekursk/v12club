@@ -89,8 +89,6 @@
             Width="*" />
           <ColumnDefinition
             Width="*" />
-          <!--<ColumnDefinition
-            Width="*" />-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
           <RowDefinition
@@ -132,10 +130,8 @@
           x:Name="cart" />
         <ImageButton Style="{StaticResource trigger}"
           x:Name="onplatform_button"
-          Clicked="onplatform_button_Clicked"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
-          Source="info_circle_white.png"
           Grid.Column="0"/>
       </Grid>
     </StackLayout>

@@ -27,9 +27,14 @@ namespace v12club.Views
 
 			if (DeviceInfo.Platform == DevicePlatform.iOS)
 			{
-				//this.onplatform_button.Padding = 15;
-				//this.onplatform_button.Opacity = 0.5;
-				this.onplatform_button.Source = "arrow_left_white.png";
+				this.onplatform_button.Source = "back.png";
+				this.onplatform_button.Clicked += onplatform_button_Clicked;
+			}
+			else
+			{
+				this.onplatform_button.Command = (this.BindingContext as MainPageViewModel).NavigatingCommand;
+				this.onplatform_button.CommandParameter = "app_info";
+				this.onplatform_button.Source = "info_circle_white.png";
 			}
 		}
 
@@ -74,6 +79,8 @@ namespace v12club.Views
 			{
 				Page_wrapper.IsVisible = false;
 				WebView_wrapper.IsVisible = true;
+
+				(Page_wrapper.Children[0].BindingContext as LoginViewModel).RememberCredentials();
 			}
 			if (!App.BridgeObject.IsLogined & WebView_wrapper.IsVisible)//переключение на страницу авторизации
 			{
@@ -114,7 +121,7 @@ namespace v12club.Views
 
 			if (obj.EventType == "click")
 			{
-				//Vibration.Vibrate(5);
+				DependencyService.Get<INotify>().Touch();
 			}
 
 			if (obj.EventType == "loaded")
@@ -169,16 +176,10 @@ namespace v12club.Views
 					elem.Opacity = 0.5;
 					elem.Padding = 12;
 				}
-				else if (element is StackLayout stack)
-				{
-					stack.Children.ForEach(b => { b.Opacity = 0.5; (b as ImageButton).Padding = 12; });
-				}
 			});
 
 			App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.ForEach(action);
 
-			//App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.Where(child => child.GetType() == typeof(ImageButton)).ForEach(b => { b.Opacity = 0.5; (b as ImageButton).Padding = 12; });
-			
 			this.SendBackButtonPressed();
 		}
 	}

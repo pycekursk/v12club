@@ -30,7 +30,6 @@
           Padding="10,0,0,0"></Label>-->
       </FlexLayout>
       <StackLayout
-     
         Padding="10,0,10,0">
         <Image
           VerticalOptions="Start"
@@ -68,6 +67,7 @@
             IsPassword="True"
             BackgroundColor="#243238"></Entry>
           <ImageButton
+            Margin="0,0,10,0"
             Opacity="0.5"
             HorizontalOptions="End"
             Source="eye.png"

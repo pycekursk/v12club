@@ -32,7 +32,12 @@ namespace v12club.Views
 
 		private void Login_Focused(object sender, FocusEventArgs e)
 		{
-			if (string.IsNullOrEmpty((sender as Entry).Text)) (sender as Entry).Text = "+7(";
+			if (sender is Entry entry && string.IsNullOrEmpty(entry.Text))
+			{
+				entry.Text = "+7(";
+				entry.CursorPosition = entry.Text.Length;
+			}
+			else (sender as Entry).CursorPosition = (sender as Entry).Text.Length;
 		}
 	}
 }

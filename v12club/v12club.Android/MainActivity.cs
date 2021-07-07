@@ -7,6 +7,8 @@ using Android.Views;
 
 using System;
 
+using Xamarin.Forms;
+
 using Color = Android.Graphics.Color;
 
 namespace v12club.Droid
@@ -30,6 +32,8 @@ namespace v12club.Droid
 				Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
 			}
 			catch { }
+
+			DependencyService.Register<INotify, Notify>();
 
 			LoadApplication(new App());
 

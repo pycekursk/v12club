@@ -6,6 +6,8 @@ using Foundation;
 
 using UIKit;
 
+using Xamarin.Forms;
+
 namespace v12club.iOS
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -25,6 +27,7 @@ namespace v12club.iOS
 		{
 			global::Xamarin.Forms.Forms.Init();
 			LoadApplication(new App());
+			DependencyService.Register<INotify, Notify>();
 			return base.FinishedLaunching(app, options);
 		}
 	}

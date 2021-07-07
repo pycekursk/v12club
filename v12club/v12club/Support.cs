@@ -14,8 +14,8 @@ namespace v12club
 	{
 		protected override void Invoke(ImageButton sender)
 		{
-			sender.Padding = 12; sender.Opacity = 0.5;
-			//Task.Run(() => sender.ScaleTo(1, 150).ContinueWith(t => sender.Opacity = 0.5));
+			sender.Padding = 12; 
+			sender.Opacity = 0.5;
 		}
 	}
 
@@ -23,9 +23,9 @@ namespace v12club
 	{
 		protected override void Invoke(ImageButton sender)
 		{
+			DependencyService.Get<INotify>().Touch();
 			sender.Padding = 7;
 			sender.Opacity = 1.0;
-			//Task.Run(() => sender.ScaleTo(1.2, 150).ContinueWith(t => sender.Opacity = 1));
 		}
 	}
 

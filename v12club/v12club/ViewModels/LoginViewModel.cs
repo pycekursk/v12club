@@ -35,43 +35,21 @@ namespace v12club.ViewModels
 		private void OnShowPasswordClicked(object obj)
 		{
 			var field = ((App.Current.MainPage as ContentPage).FindByName<StackLayout>("Page_wrapper").Children[0] as ContentView).FindByName<Entry>("Password");
-			(field.IsPassword ? new Action(() => 
-			{	
+			(field.IsPassword ? new Action(() =>
+			{
 				(obj as ImageButton).Opacity = 1;
 				field.IsPassword = false;
-			}) : new Action(() => 
+			}) : new Action(() =>
 			{
 				(obj as ImageButton).Opacity = 0.3;
 				field.IsPassword = true;
 			})).Invoke();
 
 		}
+		
 		private void OnLoginClicked(object obj)
 		{
-			if (Remember)
-			{
-				if (!App.Current.Properties.ContainsKey("Login"))
-				{
-					App.Current.Properties.Add("Login", Login);
-					App.Current.Properties.Add("Password", Password);
-					App.Current.Properties.Add("Remember", Remember);
-					App.Current.SavePropertiesAsync();
-				}
-			}
-			else
-			{
-				if (App.Current.Properties.ContainsKey("Login"))
-				{
-					App.Current.Properties.Remove("Login");
-					App.Current.Properties.Remove("Password");
-					App.Current.Properties.Remove("Remember");
-					App.Current.SavePropertiesAsync();
-				}
-			}
-
-			if (string.IsNullOrEmpty(Login))
-
-				return;
+			if (string.IsNullOrEmpty(Login)) return;
 			else if (string.IsNullOrEmpty(Password))
 			{
 				App.Current.MainPage.FindByName<Entry>("Password")?.Focus();
@@ -86,13 +64,36 @@ namespace v12club.ViewModels
 		{
 			await Browser.OpenAsync("https://v12club.ru/reg", BrowserLaunchMode.External);
 		}
+		
 		private async void OnForgetClicked(object obj)
 		{
 			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.External);
 		}
+		
 		private void OnSaveSettingsCheckBox(object obj)
 		{
 
+		}
+
+		public void RememberCredentials()
+		{
+			if (Remember)
+			{
+				if (!App.Current.Properties.ContainsKey("Login"))
+				{
+					App.Current.Properties.Add("Login", Login);
+					App.Current.Properties.Add("Password", Password);
+					App.Current.Properties.Add("Remember", Remember);
+					App.Current.SavePropertiesAsync();
+				}
+			}
+			else if (App.Current.Properties.ContainsKey("Login"))
+			{
+				App.Current.Properties.Remove("Login");
+				App.Current.Properties.Remove("Password");
+				App.Current.Properties.Remove("Remember");
+				App.Current.SavePropertiesAsync();
+			}
 		}
 	}
 }
