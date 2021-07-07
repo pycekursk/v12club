@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,11 +10,22 @@ using Xamarin.Forms;
 
 namespace v12club
 {
+	public class ReleasingTriggerAction : TriggerAction<ImageButton>
+	{
+		protected override void Invoke(ImageButton sender)
+		{
+			sender.Padding = 12; sender.Opacity = 0.5;
+			//Task.Run(() => sender.ScaleTo(1, 150).ContinueWith(t => sender.Opacity = 0.5));
+		}
+	}
+
 	public class PressingTriggerAction : TriggerAction<ImageButton>
 	{
 		protected override void Invoke(ImageButton sender)
 		{
-			sender.ScaleTo(1.2, 150).ContinueWith(t => sender.FadeTo(1, 150));
+			sender.Padding = 7;
+			sender.Opacity = 1.0;
+			//Task.Run(() => sender.ScaleTo(1.2, 150).ContinueWith(t => sender.Opacity = 1));
 		}
 	}
 
@@ -35,6 +48,12 @@ namespace v12club
 
 	public static class Extensions
 	{
+
+		public static void ForEach<T>(this IEnumerable<T> array, Action<T> action)
+		{
+			foreach (var item in array) action(item);
+		}
+
 		public static bool IsNumeric(this string s)
 		{
 			foreach (char c in s)

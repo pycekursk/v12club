@@ -16,7 +16,7 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
-    <StackLayout
+    <StackLayout Margin="0,20,0,0"
       x:Name="Wrapper"
       HorizontalOptions="CenterAndExpand"
       VerticalOptions="CenterAndExpand">
@@ -30,7 +30,8 @@
           Padding="10,0,0,0"></Label>-->
       </FlexLayout>
       <StackLayout
-        Padding="10,20,10,0">
+     
+        Padding="10,0,10,0">
         <Image
           VerticalOptions="Start"
           HorizontalOptions="Center"
@@ -67,7 +68,7 @@
             IsPassword="True"
             BackgroundColor="#243238"></Entry>
           <ImageButton
-            Opacity="1"
+            Opacity="0.5"
             HorizontalOptions="End"
             Source="eye.png"
             x:Name="show_password"

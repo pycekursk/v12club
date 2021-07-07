@@ -27,8 +27,8 @@ namespace v12club.Views
 
 			if (DeviceInfo.Platform == DevicePlatform.iOS)
 			{
-				this.onplatform_button.Padding = 12;
-				this.onplatform_button.Opacity = 0.5;
+				//this.onplatform_button.Padding = 15;
+				//this.onplatform_button.Opacity = 0.5;
 				this.onplatform_button.Source = "arrow_left_white.png";
 			}
 		}
@@ -162,10 +162,23 @@ namespace v12club.Views
 
 		private void onplatform_button_Clicked(object sender, EventArgs e)
 		{
-			var buttons = App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.Where(child => child.GetType() == typeof(ImageButton));
+			Action<VisualElement> action = new Action<VisualElement>((element) =>
+			{
+				if (element is ImageButton elem)
+				{
+					elem.Opacity = 0.5;
+					elem.Padding = 12;
+				}
+				else if (element is StackLayout stack)
+				{
+					stack.Children.ForEach(b => { b.Opacity = 0.5; (b as ImageButton).Padding = 12; });
+				}
+			});
 
-			buttons.Where(b => b.Opacity > 0.5).ToList().ForEach((b) => { b.Opacity = 0.5; b.Scale = 0.8; });
+			App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.ForEach(action);
 
+			//App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.Where(child => child.GetType() == typeof(ImageButton)).ForEach(b => { b.Opacity = 0.5; (b as ImageButton).Padding = 12; });
+			
 			this.SendBackButtonPressed();
 		}
 	}

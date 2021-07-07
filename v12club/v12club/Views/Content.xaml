@@ -22,7 +22,7 @@
           Value="Transparent"></Setter>
         <Style.Triggers>
           <EventTrigger
-            Event="Pressed">
+            Event="Clicked">
             <sp:PressingTriggerAction />
           </EventTrigger>
         </Style.Triggers>
@@ -89,6 +89,8 @@
             Width="*" />
           <ColumnDefinition
             Width="*" />
+          <!--<ColumnDefinition
+            Width="*" />-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
           <RowDefinition
@@ -112,7 +114,7 @@
           x:Name="garage" />
         <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
-          Scale="1.2"
+          Padding="7"
           Opacity="1"
           CommandParameter="main"
           HorizontalOptions="FillAndExpand"
@@ -128,7 +130,7 @@
           Source="basket2_white.png"
           Grid.Column="1"
           x:Name="cart" />
-        <ImageButton
+        <ImageButton Style="{StaticResource trigger}"
           x:Name="onplatform_button"
           Clicked="onplatform_button_Clicked"
           HorizontalOptions="FillAndExpand"
