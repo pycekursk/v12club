@@ -23,11 +23,6 @@
       <FlexLayout
         IsVisible="true"
         x:Name="Logo_wrapper">
-        <!--<Label
-          Text="{Binding AppVersion, Converter={ x:StaticResource conv},ConverterParameter=version}"
-          TextColor="Gray"
-          FontSize="Default"
-          Padding="10,0,0,0"></Label>-->
       </FlexLayout>
       <StackLayout
         Padding="10,0,10,0">
@@ -35,7 +30,7 @@
           VerticalOptions="Start"
           HorizontalOptions="Center"
           Source="splash_logo.png"></Image>
-        <Entry
+        <Entry HeightRequest="45"
           Keyboard="Numeric"
           BackgroundColor="#243238"
           PlaceholderColor="White"
@@ -54,7 +49,7 @@
           <Grid.ColumnDefinitions>
             <ColumnDefinition />
           </Grid.ColumnDefinitions>
-          <Entry
+          <Entry 
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             PlaceholderColor="White"
@@ -66,15 +61,16 @@
             Placeholder="Пароль"
             IsPassword="True"
             BackgroundColor="#243238"></Entry>
-          <ImageButton
+          <ImageButton Margin="0,0,15,0"
+            VerticalOptions="StartAndExpand"
             BackgroundColor="Transparent"
-            Margin="0,0,12,12"
             Opacity="0.5"
             HorizontalOptions="End"
             Source="eye_slash.png"
             x:Name="show_password"
             Command="{Binding ShowPasswordCommand}"
-            CommandParameter="{x:Reference show_password}" />
+            CommandParameter="{x:Reference show_password}" 
+                       Aspect="AspectFit" />
         </Grid>
         <AbsoluteLayout
           HorizontalOptions="FillAndExpand"

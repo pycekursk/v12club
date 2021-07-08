@@ -23,8 +23,12 @@
         <Style.Triggers>
           <EventTrigger
             Event="Clicked">
-            <sp:PressingTriggerAction />
+            <sp:ClickTriggerAction />
           </EventTrigger>
+          <!--<EventTrigger
+            Event="Pressed">
+            <sp:PressingTriggerAction />
+          </EventTrigger>-->
         </Style.Triggers>
       </Style>
     </ResourceDictionary>
@@ -112,7 +116,7 @@
           x:Name="garage" />
         <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
-          Padding="7"
+          Padding="7,3,7,11"
           Opacity="1"
           CommandParameter="main"
           HorizontalOptions="FillAndExpand"

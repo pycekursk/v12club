@@ -14,7 +14,7 @@ namespace v12club
 	{
 		protected override void Invoke(ImageButton sender)
 		{
-			sender.Padding = 12; 
+			sender.Padding = new Thickness { Bottom = 12, Left = 12, Right = 12, Top = 12 };
 			sender.Opacity = 0.5;
 		}
 	}
@@ -23,9 +23,18 @@ namespace v12club
 	{
 		protected override void Invoke(ImageButton sender)
 		{
+			sender.Padding = new Thickness { Left = 7, Top = 3, Right = 7, Bottom = 11 };
+			sender.Opacity = 1;
+		}
+	}
+
+	public class ClickTriggerAction : TriggerAction<ImageButton>
+	{
+		protected override void Invoke(ImageButton sender)
+		{
 			DependencyService.Get<INotify>().Touch();
-			sender.Padding = 7;
-			sender.Opacity = 1.0;
+			sender.Padding = new Thickness { Left = 7, Top = 3, Right = 7, Bottom = 11 };
+			sender.Opacity = 1;
 		}
 	}
 
@@ -48,7 +57,6 @@ namespace v12club
 
 	public static class Extensions
 	{
-
 		public static void ForEach<T>(this IEnumerable<T> array, Action<T> action)
 		{
 			foreach (var item in array) action(item);
@@ -63,7 +71,6 @@ namespace v12club
 					return false;
 				}
 			}
-
 			return true;
 		}
 

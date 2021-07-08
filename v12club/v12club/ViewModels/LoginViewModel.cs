@@ -21,10 +21,8 @@ namespace v12club.ViewModels
 		public LoginViewModel(HybridWebView webView)
 		{
 			HybridWeb = webView;
-
 			LoginCommand = new Command(OnLoginClicked);
 			RegisterCommand = new Command(OnRegisterClicked);
-			SaveSettingsCheckBoxCommand = new Command(OnSaveSettingsCheckBox);
 			ForgetPasswordCommand = new Command(OnForgetClicked);
 			ShowPasswordCommand = new Command(OnShowPasswordClicked);
 			object settings = "";
@@ -34,6 +32,7 @@ namespace v12club.ViewModels
 		}
 		private void OnShowPasswordClicked(object obj)
 		{
+			DependencyService.Get<INotify>().Touch();
 			var field = ((App.Current.MainPage as ContentPage).FindByName<StackLayout>("Page_wrapper").Children[0] as ContentView).FindByName<Entry>("Password");
 			(field.IsPassword ? new Action(() =>
 			{
@@ -71,10 +70,10 @@ namespace v12club.ViewModels
 			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.External);
 		}
 
-		private void OnSaveSettingsCheckBox(object obj)
-		{
+		//private void OnSaveSettingsCheckBox(object obj)
+		//{
 
-		}
+		//}
 
 		public void RememberCredentials()
 		{

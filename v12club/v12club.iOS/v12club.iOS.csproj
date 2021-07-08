@@ -240,8 +240,8 @@
     <BundleResource Include="Resources\back.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\eye_slash.png" />
-    <EmbeddedResource Include="Resources\eye.png" />
+    <BundleResource Include="Resources\eye_slash.png" />
+    <BundleResource Include="Resources\eye.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

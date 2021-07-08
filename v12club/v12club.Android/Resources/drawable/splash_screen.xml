@@ -6,6 +6,6 @@
   <item>
     <bitmap
         android:src="@drawable/splash_logo"
-        android:gravity="center" android:tintMode="screen"/>
+        android:gravity="top" android:tintMode="screen"/>
   </item>
 </layer-list>
