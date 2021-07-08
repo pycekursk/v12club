@@ -67,6 +67,7 @@
             IsPassword="True"
             BackgroundColor="#243238"></Entry>
           <ImageButton
+            BackgroundColor="Transparent"
             Margin="0,0,10,0"
             Opacity="0.5"
             HorizontalOptions="End"

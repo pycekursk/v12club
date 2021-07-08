@@ -67,7 +67,8 @@
     <MtouchInterpreter>-all</MtouchInterpreter>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <BuildIpa>false</BuildIpa>
-    <MtouchSdkVersion>14.5</MtouchSdkVersion>
+    <MtouchSdkVersion>
+    </MtouchSdkVersion>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <CodesignResourceRules>
