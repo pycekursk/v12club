@@ -37,11 +37,11 @@ namespace v12club.ViewModels
 			var field = ((App.Current.MainPage as ContentPage).FindByName<StackLayout>("Page_wrapper").Children[0] as ContentView).FindByName<Entry>("Password");
 			(field.IsPassword ? new Action(() =>
 			{
-				(obj as ImageButton).Opacity = 1;
+				(obj as ImageButton).Source = "eye_slash.png";
 				field.IsPassword = false;
 			}) : new Action(() =>
 			{
-				(obj as ImageButton).Opacity = 0.3;
+				(obj as ImageButton).Source = "eye.png";
 				field.IsPassword = true;
 			})).Invoke();
 

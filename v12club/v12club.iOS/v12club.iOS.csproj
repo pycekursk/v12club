@@ -128,49 +128,26 @@
     <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon1201.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon1801.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon20.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon401.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon601.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -187,7 +164,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\v12club\v12club.csproj">
-      <Project>{492842B9-BADE-473F-B136-13CEA3A5BA92}</Project>
+      <Project>{2E1A92ED-BAA7-4D4B-B070-6406B04CC101}</Project>
       <Name>v12club</Name>
     </ProjectReference>
   </ItemGroup>
@@ -222,10 +199,11 @@
     <BundleResource Include="Resources\splash_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\eye.png" />
+    <BundleResource Include="Resources\back.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\back.png" />
+    <EmbeddedResource Include="Resources\eye_slash.png" />
+    <EmbeddedResource Include="Resources\eye.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

@@ -58,7 +58,7 @@ namespace v12club.Droid
 			{
 				var source = Android.Net.Uri.Parse(e.Url);
 				var request = new DownloadManager.Request(source);
-				request.AllowScanningByMediaScanner();
+				//request.AllowScanningByMediaScanner();
 				request.SetNotificationVisibility(DownloadVisibility.Visible);
 				request.SetDestinationInExternalPublicDir(Android.OS.Environment.DirectoryDownloads, "data.xls");
 				var manager = DownloadManager.FromContext(Application.Context);
