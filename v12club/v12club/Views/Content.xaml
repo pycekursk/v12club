@@ -43,7 +43,7 @@
     <Grid.ColumnDefinitions>
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
-    <StackLayout
+    <StackLayout 
       VerticalOptions="Start"
       HorizontalOptions="FillAndExpand"
       Grid.Row="0"
@@ -54,7 +54,7 @@
       Grid.Row="0"
       x:Name="WebView_wrapper"
       Uri="https://v12club.ru/?logout"></sp:HybridWebView>
-    <StackLayout
+    <StackLayout  Margin="0,20,0,0"
       IsVisible="true"
       Grid.Row="0"
       Grid.RowSpan="2"
@@ -62,12 +62,13 @@
       VerticalOptions="Fill"
       x:Name="Indicator_wrapper"
       BackgroundColor="#243238">
-      <StackLayout
+      <StackLayout  Margin="0,20,0,0"
         HorizontalOptions="CenterAndExpand"
-        VerticalOptions="StartAndExpand"
-        Padding="10,5.5,10,0">
+        VerticalOptions="StartAndExpand">
         <Image
-          Source="v12club_logo.png"></Image>
+          VerticalOptions="Start"
+          HorizontalOptions="Center"
+          Source="splash_logo.png"></Image>
         <ActivityIndicator
           VerticalOptions="Start"
           HeightRequest="40"

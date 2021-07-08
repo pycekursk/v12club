@@ -16,7 +16,7 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
-    <StackLayout Margin="0,20,0,0"
+    <StackLayout 
       x:Name="Wrapper"
       HorizontalOptions="CenterAndExpand"
       VerticalOptions="CenterAndExpand">
@@ -24,13 +24,13 @@
         IsVisible="true"
         x:Name="Logo_wrapper">
       </FlexLayout>
-      <StackLayout
+      <StackLayout Margin="0,34,0,0"
         Padding="10,0,10,0">
         <Image
           VerticalOptions="Start"
           HorizontalOptions="Center"
           Source="splash_logo.png"></Image>
-        <Entry HeightRequest="45"
+        <Entry HeightRequest="{Binding Source={x:Reference Password}, Path=Height}"
           Keyboard="Numeric"
           BackgroundColor="#243238"
           PlaceholderColor="White"
