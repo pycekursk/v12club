@@ -37,16 +37,17 @@ namespace v12club.ViewModels
 			var field = ((App.Current.MainPage as ContentPage).FindByName<StackLayout>("Page_wrapper").Children[0] as ContentView).FindByName<Entry>("Password");
 			(field.IsPassword ? new Action(() =>
 			{
-				(obj as ImageButton).Source = "eye_slash.png";
+				(obj as ImageButton).Opacity = 1;
+				(obj as ImageButton).Source = "eye.png";
 				field.IsPassword = false;
 			}) : new Action(() =>
 			{
-				(obj as ImageButton).Source = "eye.png";
+				(obj as ImageButton).Opacity = 0.5;
+				(obj as ImageButton).Source = "eye_slash.png";
 				field.IsPassword = true;
 			})).Invoke();
-
 		}
-		
+
 		private void OnLoginClicked(object obj)
 		{
 			if (string.IsNullOrEmpty(Login)) return;
@@ -64,12 +65,12 @@ namespace v12club.ViewModels
 		{
 			await Browser.OpenAsync("https://v12club.ru/reg", BrowserLaunchMode.External);
 		}
-		
+
 		private async void OnForgetClicked(object obj)
 		{
 			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.External);
 		}
-		
+
 		private void OnSaveSettingsCheckBox(object obj)
 		{
 

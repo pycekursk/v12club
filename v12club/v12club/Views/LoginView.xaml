@@ -68,10 +68,10 @@
             BackgroundColor="#243238"></Entry>
           <ImageButton
             BackgroundColor="Transparent"
-            Margin="0,0,10,0"
+            Margin="0,0,12,12"
             Opacity="0.5"
             HorizontalOptions="End"
-            Source="eye.png"
+            Source="eye_slash.png"
             x:Name="show_password"
             Command="{Binding ShowPasswordCommand}"
             CommandParameter="{x:Reference show_password}" />
