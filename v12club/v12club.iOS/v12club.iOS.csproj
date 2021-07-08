@@ -50,6 +50,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchSdkVersion>14.4</MtouchSdkVersion>
+    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,6 +97,7 @@
     <IpaPackageName>ITW.iOSv12club</IpaPackageName>
     <CodesignResourceRules>
     </CodesignResourceRules>
+    <OptimizePNGs>true</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />

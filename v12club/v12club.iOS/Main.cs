@@ -9,6 +9,7 @@ using Foundation;
 using UIKit;
 
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace v12club.iOS
 {
@@ -18,7 +19,6 @@ namespace v12club.iOS
 		static void Main(string[] args)
 		{
 			UIApplication.Main(args, null, "AppDelegate");
-			
 		}
 	}
 }

@@ -26,8 +26,8 @@ namespace v12club.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init();
-			LoadApplication(new App());
 			DependencyService.Register<INotify, Notify>();
+			LoadApplication(new App());
 			return base.FinishedLaunching(app, options);
 		}
 	}

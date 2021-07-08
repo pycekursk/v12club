@@ -21,7 +21,7 @@
       HorizontalOptions="CenterAndExpand"
       VerticalOptions="CenterAndExpand">
       <FlexLayout
-        IsVisible="true"
+        IsVisible="false"
         x:Name="Logo_wrapper">
       </FlexLayout>
       <StackLayout Margin="0,34,0,0"

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IT-Wiki")]
-[assembly: AssemblyProduct("v12club")]
+[assembly: AssemblyProduct("v12club.iOS")]
 [assembly: AssemblyCopyright("2021, ИП Логачев")]
 [assembly: AssemblyTrademark("ИП Логачев")]
 [assembly: AssemblyCulture("")]
@@ -33,6 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.5.0.0")]
-[assembly: AssemblyFileVersion("1.5.0.0")]
+[assembly: AssemblyVersion("13.0.0.0")]
+[assembly: AssemblyFileVersion("3.3.0.0")]
 [assembly: NeutralResourcesLanguage("ru")]

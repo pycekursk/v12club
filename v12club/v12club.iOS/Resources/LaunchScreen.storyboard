@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
-    <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-    </dependencies>
-    <scenes>
-        <!--View Controller-->
-        <scene sceneID="gAE-YM-kbH">
-            <objects>
-                <viewController id="X5k-f2-b5h" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Y8P-hJ-Z43"/>
-                        <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="splash_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="54" y="251" width="307" height="307"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
-                        <constraints>
-                            <constraint firstItem="23" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" priority="1" id="39"/>
-                            <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" priority="1" id="41"/>
-                        </constraints>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="347.82608695652175" y="338.83928571428572"/>
-        </scene>
-    </scenes>
-    <resources>
-        <image name="splash_logo.png" width="293" height="293"/>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
+  <device id="retina6_1" orientation="portrait" appearance="light"/>
+  <dependencies>
+    <deployment identifier="iOS"/>
+    <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+    <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+  </dependencies>
+  <scenes>
+    <!--View Controller-->
+    <scene sceneID="gAE-YM-kbH">
+      <objects>
+        <viewController id="X5k-f2-b5h" sceneMemberID="viewController">
+          <layoutGuides>
+            <viewControllerLayoutGuide type="top" id="Y8P-hJ-Z43"/>
+            <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
+          </layoutGuides>
+          <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+              <imageView userInteractionEnabled="NO" contentMode="center" image="splash_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                <rect key="frame" x="20" y="140" width="374" height="276"/>
+                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+              </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.13952475789999999" green="0.1959989369" blue="0.21972137689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+              <constraint firstItem="23" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom" constant="96" id="QAF-Nw-mTc"/>
+              <constraint firstItem="9ZL-r4-8FZ" firstAttribute="top" secondItem="23" secondAttribute="bottom" constant="446" id="SNi-gY-Imf"/>
+              <constraint firstItem="23" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leadingMargin" id="XiJ-i8-EPi"/>
+              <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" id="oUj-rJ-wPo"/>
+            </constraints>
+          </view>
+          <nil key="simulatedTopBarMetrics"/>
+          <nil key="simulatedBottomBarMetrics"/>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+      </objects>
+      <point key="canvasLocation" x="347.82608695652175" y="338.83928571428572"/>
+    </scene>
+  </scenes>
+  <resources>
+    <image name="splash_logo.png" width="293" height="293"/>
+  </resources>
 </document>

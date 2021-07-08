@@ -49,6 +49,7 @@ namespace v12club.ViewModels
 
 		private void OnLoginClicked(object obj)
 		{
+			DependencyService.Get<INotify>().Touch();
 			if (string.IsNullOrEmpty(Login)) return;
 			else if (string.IsNullOrEmpty(Password))
 			{
@@ -62,18 +63,15 @@ namespace v12club.ViewModels
 
 		private async void OnRegisterClicked(object obj)
 		{
+			DependencyService.Get<INotify>().Touch();
 			await Browser.OpenAsync("https://v12club.ru/reg", BrowserLaunchMode.External);
 		}
 
 		private async void OnForgetClicked(object obj)
 		{
+			DependencyService.Get<INotify>().Touch();
 			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.External);
 		}
-
-		//private void OnSaveSettingsCheckBox(object obj)
-		//{
-
-		//}
 
 		public void RememberCredentials()
 		{
