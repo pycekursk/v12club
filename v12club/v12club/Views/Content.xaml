@@ -37,7 +37,7 @@
     <Grid.RowDefinitions>
       <RowDefinition
         Height="*" />
-      <RowDefinition
+      <RowDefinition x:Name="Bottom_bar"
         Height="50" />
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>

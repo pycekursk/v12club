@@ -1,6 +1,8 @@
 ﻿
 using System;
 
+using v12club.Views;
+
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -61,16 +63,16 @@ namespace v12club.ViewModels
 			HybridWeb.EvaluateJavaScriptAsync($"$('#login_modal').val('{Login}');$('#pass_modal').val('{Password}');$('#go_modal').click();");
 		}
 
-		private async void OnRegisterClicked(object obj)
+		private void OnRegisterClicked(object obj)
 		{
 			DependencyService.Get<INotify>().Touch();
-			await Browser.OpenAsync("https://v12club.ru/reg", BrowserLaunchMode.External);
+			HybridWeb.Source = "https://v12club.ru/reg";
 		}
 
-		private async void OnForgetClicked(object obj)
+		private void OnForgetClicked(object obj)
 		{
 			DependencyService.Get<INotify>().Touch();
-			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.External);
+			HybridWeb.Source = "https://v12club.ru/remindpass";
 		}
 
 		public void RememberCredentials()

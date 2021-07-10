@@ -70,6 +70,21 @@ namespace v12club.Views
 
 		void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
 		{
+
+			if (e.Url.ToString().Contains("remindpass") || e.Url.ToString().Contains("reg"))
+			{
+				Page_wrapper.IsVisible = false;
+				WebView_wrapper.IsVisible = true;
+				Bottom_bar.Height = 0;
+
+				Indicator_wrapper.FadeTo(0, 300).ContinueWith(t => MainThread.BeginInvokeOnMainThread(() =>
+					{
+						Indicator_wrapper.IsVisible = false;
+						Buttons_grid.IsVisible = false;
+					}));
+				return;
+			}
+
 			if (App.BridgeObject.IsFirstLoad)
 			{
 				App.BridgeObject.IsFirstLoad = false;
@@ -79,6 +94,8 @@ namespace v12club.Views
 			{
 				Page_wrapper.IsVisible = false;
 				WebView_wrapper.IsVisible = true;
+				Buttons_grid.IsVisible = true;
+				Bottom_bar.Height = 50;
 
 				(Page_wrapper.Children[0].BindingContext as LoginViewModel).RememberCredentials();
 			}
@@ -86,8 +103,8 @@ namespace v12club.Views
 			{
 				WebView_wrapper.IsVisible = false;
 				Page_wrapper.IsVisible = true;
+				Buttons_grid.IsVisible = true;
 			}
-
 			if (Indicator_wrapper.IsVisible)
 				Indicator_wrapper.FadeTo(0, 300).ContinueWith(t => MainThread.BeginInvokeOnMainThread(() =>
 				{

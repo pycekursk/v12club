@@ -19,6 +19,10 @@ namespace v12club.ViewModels
 
 		private void OnNavigating(object obj)
 		{
+
+			//todo: сделать лоудер js (c ff)
+			HybridWeb.EvaluateJavaScriptAsync("loader(true);");
+
 			var button = App.Current.MainPage.FindByName<ImageButton>(obj.ToString());
 			var url = obj.ToString() == "garage" ? $"personal_cabinet?{obj}" : obj;
 			url = obj.ToString() == "personal_cabinet" ? "personal_cabinet?personal_info_edit" : url;
@@ -26,12 +30,12 @@ namespace v12club.ViewModels
 
 			Action<VisualElement> action = new Action<VisualElement>((element) =>
 			{
-			if (element is ImageButton elem && elem != null && elem.Command != null)
-			{
-				elem.Opacity = 0.5;
-			elem.Padding = 12;
-		}
-	});
+				if (element is ImageButton elem && elem != null && elem.Command != null)
+				{
+					elem.Opacity = 0.5;
+					elem.Padding = 12;
+				}
+			});
 
 			App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.ForEach(action);
 
