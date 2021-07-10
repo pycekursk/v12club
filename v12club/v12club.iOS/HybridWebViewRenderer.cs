@@ -1,4 +1,5 @@
 ﻿using Foundation;
+
 using v12club;
 using v12club.iOS;
 
@@ -17,6 +18,8 @@ namespace v12club.iOS
 
 		public HybridWebViewRenderer() : this(new WKWebViewConfiguration())
 		{
+			this.AllowsLinkPreview = false;
+			CustomUserAgent = "ios";
 		}
 
 		public HybridWebViewRenderer(WKWebViewConfiguration config) : base(config)
@@ -30,7 +33,6 @@ namespace v12club.iOS
 		protected override void OnElementChanged(VisualElementChangedEventArgs e)
 		{
 			base.OnElementChanged(e);
-
 			if (e.OldElement != null)
 			{
 				userController.RemoveAllUserScripts();
@@ -42,7 +44,6 @@ namespace v12club.iOS
 			if (NativeView != null && e.NewElement != null)
 			{
 				var url = new NSUrlRequest(new NSUrl(((HybridWebView)Element).Uri));
-				CustomUserAgent = "ios";
 				LoadRequest(url);
 			}
 		}
