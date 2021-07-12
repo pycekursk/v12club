@@ -58,9 +58,11 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <MandroidI18n />
     <AndroidSupportedAbis />
-    <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\pycek\AppData\Local\Xamarin\Mono for Android\Keystore\IT-Wiki\IT-Wiki.keystore</AndroidSigningKeyStore>
+    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\pycek\AppData\Local\Xamarin\Mono for Android\Keystore\Droid_keys\Droid_keys.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>3339393</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>Droid_keys</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>3339393</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">
@@ -170,6 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\itw3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

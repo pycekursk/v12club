@@ -19,11 +19,10 @@ namespace v12club.ViewModels
 
 		private void OnNavigating(object obj)
 		{
-
-			//todo: сделать лоудер js (c ff)
 			HybridWeb.EvaluateJavaScriptAsync("loader(true);");
 
 			var button = App.Current.MainPage.FindByName<ImageButton>(obj.ToString());
+
 			var url = obj.ToString() == "garage" ? $"personal_cabinet?{obj}" : obj;
 			url = obj.ToString() == "personal_cabinet" ? "personal_cabinet?personal_info_edit" : url;
 			url = obj.ToString() == "main" ? "" : url;

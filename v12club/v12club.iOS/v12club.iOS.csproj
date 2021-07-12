@@ -67,7 +67,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
-    <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
     <BuildIpa>false</BuildIpa>
     <MtouchSdkVersion>
     </MtouchSdkVersion>
@@ -78,7 +78,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
-    <MtouchProfiling>false</MtouchProfiling>
+    <MtouchProfiling>true</MtouchProfiling>
     <MtouchHttpClientHandler>CFNetworkHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -100,6 +100,7 @@
     <CodesignResourceRules>
     </CodesignResourceRules>
     <OptimizePNGs>true</OptimizePNGs>
+    <MtouchProfiling>false</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -248,6 +249,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\eye_slash.png" />
     <BundleResource Include="Resources\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\itw3.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

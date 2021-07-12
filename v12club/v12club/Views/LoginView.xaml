@@ -16,7 +16,7 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
-    <StackLayout 
+    <StackLayout
       x:Name="Wrapper"
       HorizontalOptions="CenterAndExpand"
       VerticalOptions="CenterAndExpand">
@@ -27,8 +27,9 @@
       <StackLayout Margin="0,34,0,0"
         Padding="10,0,10,0">
         <Image
-          VerticalOptions="Start"
-          HorizontalOptions="Center"
+          VerticalOptions="FillAndExpand"
+          HorizontalOptions="CenterAndExpand"
+            Aspect="AspectFit"
           Source="splash_logo.png"></Image>
         <Entry HeightRequest="{Binding Source={x:Reference Password}, Path=Height}"
           Keyboard="Numeric"
@@ -145,5 +146,6 @@
           Command="{Binding ForgetPasswordCommand}" />
       </StackLayout>
     </StackLayout>
+
   </ContentView.Content>
 </ContentView>

@@ -60,10 +60,6 @@ namespace v12club.Views
 						await WebView_wrapper.EvaluateJavaScriptAsync("doExit();");
 					}
 				}
-				else if (!WebView_wrapper.IsVisible)
-				{
-					//if (await DisplayAlert("", "Закрыть приложение?", "Да", "Нет")) Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-				}
 			}).Invoke();
 			return true;
 		}
@@ -134,11 +130,31 @@ namespace v12club.Views
 						Indicator_wrapper.FadeTo(1, 300);
 					});
 				}
+				return;
 			}
 
 			if (obj.EventType == "click")
 			{
 				DependencyService.Get<INotify>().Touch();
+				return;
+			}
+
+			if (obj.EventType == "goBack")
+			{
+				DependencyService.Get<INotify>().Touch();
+				//Device.BeginInvokeOnMainThread(() => WebView_wrapper.GoBack());
+				//this.SendBackButtonPressed();
+				//App.IsBusy = true;
+				//if (!WebView_wrapper.IsVisible)
+				//{
+				//	MainThread.BeginInvokeOnMainThread(() =>
+				//	{
+				//		Buttons_grid.InputTransparent = true;
+				//		Indicator_wrapper.IsVisible = true;
+				//		Indicator_wrapper.FadeTo(1, 300);
+				//	});
+				//}
+				return;
 			}
 
 			if (obj.EventType == "loaded")
@@ -181,6 +197,8 @@ namespace v12club.Views
 					}
 				}
 				App.BridgeObject = obj;
+
+				return;
 			}
 		}
 
