@@ -6,6 +6,7 @@
 		TryAuthorization,
 		SuccessfullyAuthorized,
 		AuthorizationFailed,
+		OnRegistration
 	}
 
 	public class JSBridgeObject

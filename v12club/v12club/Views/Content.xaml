@@ -38,7 +38,7 @@
       <RowDefinition
         Height="*" />
       <RowDefinition
-        Height="50" />
+        Height="auto" />
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition />
@@ -79,10 +79,10 @@
     <StackLayout
       Grid.Row="1">
       <Grid
+        IsVisible="false"
         ColumnSpacing="0"
         RowSpacing="0"
-        x:Name="Buttons_grid"
-        IsVisible="{Binding Source={x:Reference WebView_wrapper}, Path=IsVisible}">
+        x:Name="Buttons_grid">
         <Grid.ColumnDefinitions>
           <ColumnDefinition
             Width="*" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 using v12club.ViewModels;
 
@@ -18,6 +19,7 @@ namespace v12club.Views
 		{
 			InitializeComponent();
 
+			WebView_wrapper.Navigating += WebView_wrapper_Navigating;
 			WebView_wrapper.Navigated += WebView_Navigated;
 			WebView_wrapper.RegisterAction(data => JSNotifyHandler(data));
 
@@ -38,8 +40,15 @@ namespace v12club.Views
 			}
 		}
 
+		private void WebView_wrapper_Navigating(object sender, WebNavigatingEventArgs e)
+		{
+			//(sender as HybridWebView).EvaluateJavaScriptAsync("loader(true)");
+			ButtonsControl(e.Url);
+		}
+
 		protected override bool OnBackButtonPressed()
 		{
+			DependencyService.Get<INotify>().Touch();
 			new Action(async () =>
 			{
 				if (WebView_wrapper.CanGoBack & WebView_wrapper.IsVisible)
@@ -70,22 +79,30 @@ namespace v12club.Views
 
 		void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
 		{
-			if (App.BridgeObject.IsFirstLoad)
+			if (e.Url == "https://v12club.ru/reg" || e.Url == "https://v12club.ru/remindpass")
+			{
+				App.BridgeObject.ClientStatus = Models.Status.OnRegistration;
+				Page_wrapper.IsVisible = false;
+				WebView_wrapper.IsVisible = true;
+				Buttons_grid.IsVisible = false;
+			}
+			else if (App.BridgeObject.IsFirstLoad)
 			{
 				App.BridgeObject.IsFirstLoad = false;
 				Page_wrapper.IsVisible = true;
 			}
-			if (App.BridgeObject.IsLogined & !WebView_wrapper.IsVisible)//переключение на основную страницу приложения
+			else if (App.BridgeObject.IsLogined && !WebView_wrapper.IsVisible)//переключение на основную страницу приложения
 			{
+				Buttons_grid.IsVisible = true;
 				Page_wrapper.IsVisible = false;
 				WebView_wrapper.IsVisible = true;
-
 				(Page_wrapper.Children[0].BindingContext as LoginViewModel).RememberCredentials();
 			}
-			if (!App.BridgeObject.IsLogined & WebView_wrapper.IsVisible)//переключение на страницу авторизации
+			else if (!App.BridgeObject.IsLogined && WebView_wrapper.IsVisible)//переключение на страницу авторизации
 			{
 				WebView_wrapper.IsVisible = false;
 				Page_wrapper.IsVisible = true;
+				Buttons_grid.IsVisible = false;
 			}
 
 			if (Indicator_wrapper.IsVisible)
@@ -154,17 +171,56 @@ namespace v12club.Views
 
 				else if (App.BridgeObject.ClientStatus == Models.Status.SuccessfullyAuthorized)
 				{
-					if (!obj.IsLogined)
-					{
-						obj.ClientStatus = Models.Status.NotAuthorized;
-					}
-					else
-					{
-						obj.ClientStatus = Models.Status.SuccessfullyAuthorized;
-					}
+					obj.ClientStatus = obj.IsLogined ? OnNavigated() : Models.Status.NotAuthorized;
 				}
 				App.BridgeObject = obj;
 			}
+		}
+
+
+		void ButtonsControl(string url)
+		{
+			Action<VisualElement> action = new Action<VisualElement>((element) =>
+			{
+				if (element is ImageButton elem)
+				{
+					elem.Opacity = 0.5;
+					elem.Padding = 12;
+				}
+			});
+
+			Buttons_grid.Children.ForEach(action);
+
+			if (url.Contains("garage"))
+			{
+				garage.Padding = new Thickness(7, 3, 7, 11);
+				garage.Opacity = 1;
+			}
+			else if (url.Contains("personal_cabinet"))
+			{
+				personal_cabinet.Padding = new Thickness(7, 3, 7, 11);
+				personal_cabinet.Opacity = 1;
+			}
+			else if (url.Contains(@"https://v12club.ru/cart"))
+			{
+				cart.Padding = new Thickness(7, 3, 7, 11);
+				cart.Opacity = 1;
+			}
+			else if (url.Contains(@"https://v12club.ru/app_info") && DeviceInfo.Platform != DevicePlatform.iOS)
+			{
+				onplatform_button.Padding = new Thickness(7, 3, 7, 11);
+				onplatform_button.Opacity = 1;
+			}
+			else
+			{
+				main.Padding = new Thickness(7, 3, 7, 11);
+				main.Opacity = 1;
+			}
+		}
+
+		Models.Status OnNavigated()
+		{
+			return Models.Status.SuccessfullyAuthorized;
 		}
 
 		private void onplatform_button_Clicked(object sender, EventArgs e)
@@ -178,7 +234,7 @@ namespace v12club.Views
 				}
 			});
 
-			App.Current.MainPage.FindByName<Grid>("Buttons_grid").Children.ForEach(action);
+			Buttons_grid.Children.ForEach(action);
 
 			this.SendBackButtonPressed();
 		}

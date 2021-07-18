@@ -24,11 +24,11 @@
         IsVisible="false"
         x:Name="Logo_wrapper">
       </FlexLayout>
-      <StackLayout Margin="0,34,0,0"
+      <StackLayout Margin="0,40,0,0"
         Padding="10,0,10,0">
         <Image
-          VerticalOptions="Start"
-          HorizontalOptions="Center"
+          VerticalOptions="StartAndExpand"
+          HorizontalOptions="CenterAndExpand"
           Source="splash_logo.png"></Image>
         <Entry HeightRequest="{Binding Source={x:Reference Password}, Path=Height}"
           Keyboard="Numeric"

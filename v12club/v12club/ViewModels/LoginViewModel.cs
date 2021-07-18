@@ -49,7 +49,7 @@ namespace v12club.ViewModels
 
 		private void OnLoginClicked(object obj)
 		{
-			DependencyService.Get<INotify>().Touch();
+			//DependencyService.Get<INotify>().Touch();
 			if (string.IsNullOrEmpty(Login)) return;
 			else if (string.IsNullOrEmpty(Password))
 			{
@@ -61,16 +61,20 @@ namespace v12club.ViewModels
 			HybridWeb.EvaluateJavaScriptAsync($"$('#login_modal').val('{Login}');$('#pass_modal').val('{Password}');$('#go_modal').click();");
 		}
 
-		private async void OnRegisterClicked(object obj)
+		private void OnRegisterClicked(object obj)
 		{
 			DependencyService.Get<INotify>().Touch();
-			await Browser.OpenAsync("https://v12club.ru/reg", BrowserLaunchMode.External);
+			if (HybridWeb.Dispatcher.IsInvokeRequired)
+				MainThread.InvokeOnMainThreadAsync(() => HybridWeb.Source = "https://v12club.ru/reg");
+			else HybridWeb.Source = "https://v12club.ru/reg";
 		}
 
-		private async void OnForgetClicked(object obj)
+		private void OnForgetClicked(object obj)
 		{
 			DependencyService.Get<INotify>().Touch();
-			await Browser.OpenAsync("https://v12club.ru/remindpass", BrowserLaunchMode.External);
+			if (HybridWeb.Dispatcher.IsInvokeRequired)
+				MainThread.InvokeOnMainThreadAsync(() => HybridWeb.Source = "https://v12club.ru/reg");
+			else HybridWeb.Source = "https://v12club.ru/remindpass";
 		}
 
 		public void RememberCredentials()

@@ -14,7 +14,7 @@
     <AssemblyName>ITW.iOSv12club</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>automatic</ProvisioningType>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +40,7 @@
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <OptimizePNGs>true</OptimizePNGs>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -78,6 +79,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>

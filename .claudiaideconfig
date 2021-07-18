@@ -1,0 +1,22 @@
+﻿{
+  "BackgroundImageAbsolutePath": "C:\\Users\\pycek\\source\\repos\\pycekursk\\v12club\\v12club\\v12club.Android\\Resources\\drawable\\splash_logo.png",
+  "BackgroundImagesDirectoryAbsolutePath": "c:\\users\\pycek\\appdata\\local\\microsoft\\visualstudio\\16.0_bdd1c91b\\extensions\\zo4llqn5.ytv\\Images",
+  "ExpandToIDE": false,
+  "Extensions": ".png, .jpg, .gif, .bmp",
+  "ImageBackgroundType": 0,
+  "ImageFadeAnimationInterval": "PT0S",
+  "ImageStretch": 0,
+  "IsLimitToMainlyEditorWindow": false,
+  "LoopSlideshow": true,
+  "MaxHeight": 250,
+  "MaxWidth": 0,
+  "Opacity": 0.35,
+  "PositionHorizon": 1,
+  "PositionVertical": 0,
+  "ShuffleSlideshow": true,
+  "SoftEdgeX": 0,
+  "SoftEdgeY": 0,
+  "UpdateImageInterval": "PT1M",
+  "ViewBoxPointX": 0,
+  "ViewBoxPointY": 0
+}
