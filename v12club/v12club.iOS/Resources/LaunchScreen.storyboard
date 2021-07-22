@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" image="splash_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="41" y="10" width="293" height="293"/>
+                                <rect key="frame" x="41" y="25" width="293" height="293"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>

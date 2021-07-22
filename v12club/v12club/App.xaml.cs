@@ -21,8 +21,7 @@ namespace v12club
 		{
 			set
 			{
-				//Support.ConsoleLog("App > set " + value);
-				//App.Current.SetValue(IsBusyProperty, value);
+			
 			}
 			get
 			{

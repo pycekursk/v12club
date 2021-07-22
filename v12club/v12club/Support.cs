@@ -10,30 +10,12 @@ using Xamarin.Forms;
 
 namespace v12club
 {
-	public class ReleasingTriggerAction : TriggerAction<ImageButton>
-	{
-		protected override void Invoke(ImageButton sender)
-		{
-			sender.Padding = new Thickness { Bottom = 12, Left = 12, Right = 12, Top = 12 };
-			sender.Opacity = 0.5;
-		}
-	}
-
-	public class PressingTriggerAction : TriggerAction<ImageButton>
-	{
-		protected override void Invoke(ImageButton sender)
-		{
-			sender.Padding = new Thickness { Left = 7, Top = 3, Right = 7, Bottom = 11 };
-			sender.Opacity = 1;
-		}
-	}
-
 	public class ClickTriggerAction : TriggerAction<ImageButton>
 	{
 		protected override void Invoke(ImageButton sender)
 		{
 			DependencyService.Get<INotify>().Touch();
-			sender.Padding = new Thickness { Left = 7, Top = 3, Right = 7, Bottom = 11 };
+			sender.Padding = new Thickness(7, 5, 7, 9);
 			sender.Opacity = 1;
 		}
 	}

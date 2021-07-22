@@ -20,6 +20,17 @@ namespace v12club
 			set { SetValue(UriProperty, value); }
 		}
 
+		public HybridWebView()
+		{
+			this.Navigated += HybridWebView_Navigated;
+			
+		}
+
+		private void HybridWebView_Navigated(object sender, WebNavigatedEventArgs e)
+		{
+			Uri = e.Url;
+		}
+
 		public void RegisterAction(Action<string> callback)
 		{
 			action = callback;

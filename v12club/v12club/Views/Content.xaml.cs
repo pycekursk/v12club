@@ -19,7 +19,6 @@ namespace v12club.Views
 		{
 			InitializeComponent();
 
-			WebView_wrapper.Navigating += WebView_wrapper_Navigating;
 			WebView_wrapper.Navigated += WebView_Navigated;
 			WebView_wrapper.RegisterAction(data => JSNotifyHandler(data));
 
@@ -27,23 +26,7 @@ namespace v12club.Views
 
 			this.BindingContext = new MainPageViewModel(WebView_wrapper);
 
-			if (DeviceInfo.Platform == DevicePlatform.iOS)
-			{
-				this.onplatform_button.Source = "back.png";
-				this.onplatform_button.Clicked += onplatform_button_Clicked;
-			}
-			else
-			{
-				this.onplatform_button.Command = (this.BindingContext as MainPageViewModel).NavigatingCommand;
-				this.onplatform_button.CommandParameter = "app_info";
-				this.onplatform_button.Source = "info_circle_white.png";
-			}
-		}
-
-		private void WebView_wrapper_Navigating(object sender, WebNavigatingEventArgs e)
-		{
-			//(sender as HybridWebView).EvaluateJavaScriptAsync("loader(true)");
-			ButtonsControl(e.Url);
+			onplatform_button.Source = DeviceInfo.Platform == DevicePlatform.iOS ? "back.png" : "garage_white.png";
 		}
 
 		protected override bool OnBackButtonPressed()
@@ -177,66 +160,10 @@ namespace v12club.Views
 			}
 		}
 
-
-		void ButtonsControl(string url)
-		{
-			Action<VisualElement> action = new Action<VisualElement>((element) =>
-			{
-				if (element is ImageButton elem)
-				{
-					elem.Opacity = 0.5;
-					elem.Padding = 12;
-				}
-			});
-
-			Buttons_grid.Children.ForEach(action);
-
-			if (url.Contains("garage"))
-			{
-				garage.Padding = new Thickness(7, 3, 7, 11);
-				garage.Opacity = 1;
-			}
-			else if (url.Contains("personal_cabinet"))
-			{
-				personal_cabinet.Padding = new Thickness(7, 3, 7, 11);
-				personal_cabinet.Opacity = 1;
-			}
-			else if (url.Contains(@"https://v12club.ru/cart"))
-			{
-				cart.Padding = new Thickness(7, 3, 7, 11);
-				cart.Opacity = 1;
-			}
-			else if (url.Contains(@"https://v12club.ru/app_info") && DeviceInfo.Platform != DevicePlatform.iOS)
-			{
-				onplatform_button.Padding = new Thickness(7, 3, 7, 11);
-				onplatform_button.Opacity = 1;
-			}
-			else
-			{
-				main.Padding = new Thickness(7, 3, 7, 11);
-				main.Opacity = 1;
-			}
-		}
-
+	
 		Models.Status OnNavigated()
 		{
 			return Models.Status.SuccessfullyAuthorized;
-		}
-
-		private void onplatform_button_Clicked(object sender, EventArgs e)
-		{
-			Action<VisualElement> action = new Action<VisualElement>((element) =>
-			{
-				if (element is ImageButton elem)
-				{
-					elem.Opacity = 0.5;
-					elem.Padding = 12;
-				}
-			});
-
-			Buttons_grid.Children.ForEach(action);
-
-			this.SendBackButtonPressed();
 		}
 	}
 }

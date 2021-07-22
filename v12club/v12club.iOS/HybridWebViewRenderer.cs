@@ -25,7 +25,7 @@ namespace v12club.iOS
 		public HybridWebViewRenderer(WKWebViewConfiguration config) : base(config)
 		{
 			userController = config.UserContentController;
-			var script = new WKUserScript(new NSString(JavaScriptFunction), WKUserScriptInjectionTime.AtDocumentEnd, false);
+			var script = new WKUserScript(new NSString(JavaScriptFunction), WKUserScriptInjectionTime.AtDocumentStart, false);
 			userController.AddUserScript(script);
 			userController.AddScriptMessageHandler(this, "invokeAction");
 		}
