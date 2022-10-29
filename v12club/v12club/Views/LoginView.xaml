@@ -9,28 +9,28 @@
   BackgroundColor="#243238"
   HorizontalOptions="FillAndExpand"
   VerticalOptions="FillAndExpand">
-  <ContentView.Resources>
-    <ResourceDictionary>
-      <sp:ValueConverter
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <sp:ValueConverter
         x:Key="conv" />
-    </ResourceDictionary>
-  </ContentView.Resources>
-  <ContentView.Content>
-    <StackLayout 
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout 
       x:Name="Wrapper"
       HorizontalOptions="CenterAndExpand"
       VerticalOptions="CenterAndExpand">
-      <FlexLayout
+            <FlexLayout
         IsVisible="false"
         x:Name="Logo_wrapper">
-      </FlexLayout>
-      <StackLayout Margin="0,40,0,0"
+            </FlexLayout>
+            <StackLayout Margin="0,40,0,0"
         Padding="10,0,10,0">
-        <Image
+                <Image
           VerticalOptions="StartAndExpand"
           HorizontalOptions="CenterAndExpand"
           Source="splash_logo.png"></Image>
-        <Entry HeightRequest="{Binding Source={x:Reference Password}, Path=Height}"
+                <Entry HeightRequest="{Binding Source={x:Reference Password}, Path=Height}"
           Keyboard="Numeric"
           BackgroundColor="#243238"
           PlaceholderColor="White"
@@ -43,13 +43,13 @@
           HorizontalTextAlignment="Center"
           FontSize="Subtitle"
           Placeholder="Телефон"></Entry>
-        <Grid
+                <Grid
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-          </Grid.ColumnDefinitions>
-          <Entry 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Entry 
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             PlaceholderColor="White"
@@ -61,7 +61,7 @@
             Placeholder="Пароль"
             IsPassword="True"
             BackgroundColor="#243238"></Entry>
-          <ImageButton Margin="0,0,15,0"
+                    <ImageButton Margin="0,0,15,0"
             VerticalOptions="StartAndExpand"
             BackgroundColor="Transparent"
             Opacity="0.5"
@@ -71,39 +71,29 @@
             Command="{Binding ShowPasswordCommand}"
             CommandParameter="{x:Reference show_password}" 
                        Aspect="AspectFit" />
-        </Grid>
-        <AbsoluteLayout
+                </Grid>
+                <AbsoluteLayout
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand">
-          <Label Text="Запомнить меня"
-            TextColor="WhiteSmoke"
-            FontSize="Default"
-            Padding="35,10,0,0"/>
-          <CheckBox
-            WidthRequest="150"
-            HeightRequest="40"
-            Color="WhiteSmoke"
-            x:Name="SaveSettingsCheckBox"
-            IsChecked="{Binding Remember, Mode=TwoWay}"></CheckBox>
-        </AbsoluteLayout>
-        <StackLayout
+                </AbsoluteLayout>
+                <StackLayout
           Padding="0,5,0,5"
           VerticalOptions="FillAndExpand"
           HorizontalOptions="FillAndExpand"
           Orientation="Vertical">
-          <Grid>
-            <Grid.RowDefinitions>
-              <RowDefinition
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
                 Height="60" />
-              <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition />
-              <ColumnDefinition
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition
                 Width="5" />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button
               HorizontalOptions="FillAndExpand"
               FontSize="Subtitle"
               Grid.Column="0"
@@ -115,7 +105,7 @@
               Text="Вход"
               TextColor="Black"
               Command="{Binding LoginCommand}" />
-            <Button
+                        <Button
               HorizontalOptions="FillAndExpand"
               FontSize="Subtitle"
               Grid.Column="2"
@@ -128,9 +118,9 @@
               BorderWidth="1"
               Text="Регистрация"
               Command="{Binding RegisterCommand}" />
-          </Grid>
-        </StackLayout>
-        <Button
+                    </Grid>
+                </StackLayout>
+                <Button
           HeightRequest="50"
           FontSize="Subtitle"
           TextColor="White"
@@ -143,7 +133,7 @@
           BorderWidth="1"
           Text="Восстановить пароль"
           Command="{Binding ForgetPasswordCommand}" />
-      </StackLayout>
-    </StackLayout>
-  </ContentView.Content>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
 </ContentView>

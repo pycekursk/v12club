@@ -18,65 +18,66 @@ using Application = Android.App.Application;
 [assembly: ExportRenderer(typeof(HybridWebView), typeof(HybridWebViewRenderer))]
 namespace v12club.Droid
 {
-	public class HybridWebViewRenderer : WebViewRenderer
-	{
-		const string JavascriptFunction = "function invokeCSharpAction(data){jsBridge.invokeAction(data);}";
-		Context _context;
+  public class HybridWebViewRenderer : WebViewRenderer
+  {
+    const string JavascriptFunction = "function invokeCSharpAction(data){jsBridge.invokeAction(data);} function invokeApplication(data){jsBridge.invokeApplication(data);}";
+    Context _context;
 
-		public HybridWebViewRenderer(Context context) : base(context)
-		{
-			_context = context;
-		}
+    public HybridWebViewRenderer(Context context) : base(context)
+    {
+      _context = context;
 
-		protected override void OnElementChanged(ElementChangedEventArgs<WebView> e)
-		{
-			base.OnElementChanged(e);
-			global::Android.Webkit.WebView.SetWebContentsDebuggingEnabled(true);
+    }
 
-			if (e.OldElement != null)
-			{
-				Control.RemoveJavascriptInterface("jsBridge");
-				((HybridWebView)Element).Cleanup();
-			}
-			if (e.NewElement != null)
-			{
-				Control.Settings.DomStorageEnabled = true;
-				Control.Download += Control_Download;
+    protected override void OnElementChanged(ElementChangedEventArgs<WebView> e)
+    {
+      base.OnElementChanged(e);
+      global::Android.Webkit.WebView.SetWebContentsDebuggingEnabled(true);
 
-				Control.Settings.UserAgentString = "android";
+      if (e.OldElement != null)
+      {
+        Control.RemoveJavascriptInterface("jsBridge");
+        ((HybridWebView)Element).Cleanup();
+      }
+      if (e.NewElement != null)
+      {
+        Control.Settings.DomStorageEnabled = true;
+        Control.Download += Control_Download;
 
-				Control.Settings.CacheMode = Android.Webkit.CacheModes.NoCache;
-				Control.SetWebViewClient(new JavascriptWebViewClient(this, $"javascript: {JavascriptFunction}"));
-				Control.LoadUrl(((HybridWebView)Element).Uri);
-				Control.AddJavascriptInterface(new JSBridge(this), "jsBridge");
-			}
-		}
+        Control.Settings.UserAgentString = "android";
 
-		private void Control_Download(object sender, Android.Webkit.DownloadEventArgs e)
-		{
-			try
-			{
-				var source = Android.Net.Uri.Parse(e.Url);
-				var request = new DownloadManager.Request(source);
-				//request.AllowScanningByMediaScanner();
-				request.SetNotificationVisibility(DownloadVisibility.Visible);
-				request.SetDestinationInExternalPublicDir(Android.OS.Environment.DirectoryDownloads, "data.xls");
-				var manager = DownloadManager.FromContext(Application.Context);
-				manager.Enqueue(request);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-			};
-		}
+        Control.Settings.CacheMode = Android.Webkit.CacheModes.Normal;
+        Control.SetWebViewClient(new JavascriptWebViewClient(this, $"javascript: {JavascriptFunction}"));
+        Control.LoadUrl(((HybridWebView)Element).Uri);
+        Control.AddJavascriptInterface(new JSBridge(this), "jsBridge");
+      }
+    }
 
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				((HybridWebView)Element).Cleanup();
-			}
-			base.Dispose(disposing);
-		}
-	}
+    private void Control_Download(object sender, Android.Webkit.DownloadEventArgs e)
+    {
+      try
+      {
+        var source = Android.Net.Uri.Parse(e.Url);
+        var request = new DownloadManager.Request(source);
+        //request.AllowScanningByMediaScanner();
+        request.SetNotificationVisibility(DownloadVisibility.Visible);
+        request.SetDestinationInExternalPublicDir(Android.OS.Environment.DirectoryDownloads, "data.xls");
+        var manager = DownloadManager.FromContext(Application.Context);
+        manager.Enqueue(request);
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.Message);
+      };
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+      if (disposing)
+      {
+        ((HybridWebView)Element).Cleanup();
+      }
+      base.Dispose(disposing);
+    }
+  }
 }

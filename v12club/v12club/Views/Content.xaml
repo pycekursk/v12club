@@ -5,56 +5,56 @@
   x:Class="v12club.Views.Content"
   BackgroundColor="#243238"
   xmlns:sp="clr-namespace:v12club">
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <sp:ValueConverter
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <sp:ValueConverter
         x:Key="conv" />
-      <Style x:Key="trigger"
+            <Style x:Key="trigger"
         TargetType="ImageButton">
-        <Setter
+                <Setter
           Property="Padding"
           Value="12"></Setter>
-        <Setter
+                <Setter
           Property="Opacity"
           Value="0.5"></Setter>
-        <Setter
+                <Setter
           Property="BackgroundColor"
           Value="Transparent"></Setter>
-        <Style.Triggers>
-          <EventTrigger
+                <Style.Triggers>
+                    <EventTrigger
             Event="Clicked">
-            <sp:ClickTriggerAction />
-          </EventTrigger>
-          <!--<EventTrigger
+                        <sp:ClickTriggerAction />
+                    </EventTrigger>
+                    <!--<EventTrigger
             Event="Pressed">
             <sp:ClickTriggerAction />
           </EventTrigger>-->
-        </Style.Triggers>
-      </Style>
-    </ResourceDictionary>
-  </ContentPage.Resources>
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
         Height="*" />
-      <RowDefinition
+            <RowDefinition
         Height="auto" />
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition />
-    </Grid.ColumnDefinitions>
-    <StackLayout 
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackLayout 
       VerticalOptions="Start"
       HorizontalOptions="FillAndExpand"
       Grid.Row="0"
       IsVisible="false"
       x:Name="Page_wrapper"></StackLayout>
-    <sp:HybridWebView
+        <sp:HybridWebView
       IsVisible="false"
       Grid.Row="0"
       x:Name="WebView_wrapper"
-      Uri="https://v12club.ru/?logout"></sp:HybridWebView>
-    <StackLayout  Margin="0,20,0,0"
+      Uri="https://v12club.ru/"></sp:HybridWebView>
+        <StackLayout  Margin="0,20,0,0"
       IsVisible="true"
       Grid.Row="0"
       Grid.RowSpan="2"
@@ -62,54 +62,52 @@
       VerticalOptions="Fill"
       x:Name="Indicator_wrapper"
       BackgroundColor="#243238">
-      <StackLayout  Margin="0,20,0,0"
+            <StackLayout  Margin="0,20,0,0"
         HorizontalOptions="CenterAndExpand"
         VerticalOptions="StartAndExpand">
-        <Image
+                <Image
           VerticalOptions="Start"
           HorizontalOptions="Center"
           Source="splash_logo.png"></Image>
-        <ActivityIndicator
+                <ActivityIndicator
           VerticalOptions="Start"
           HeightRequest="40"
           Color="#fbc430"
           IsRunning="true" />
-      </StackLayout>
-    </StackLayout>
-    <StackLayout
+            </StackLayout>
+        </StackLayout>
+        <StackLayout
       Grid.Row="1">
-      <Grid
+            <Grid
         IsVisible="false"
         ColumnSpacing="0"
         RowSpacing="0"
         x:Name="Buttons_grid">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
             Width="*" />
-          <ColumnDefinition
+                    <ColumnDefinition
             Width="*" />
-          <ColumnDefinition
+                    <ColumnDefinition
             Width="*" />
-          <ColumnDefinition
+                    <ColumnDefinition
             Width="*" />
-          <ColumnDefinition
+                    <ColumnDefinition
             Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-          <RowDefinition
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition
             Height="50" />
-        </Grid.RowDefinitions>
-        <ImageButton Style="{StaticResource trigger}"
-          Command="{Binding NavigatingCommand}"
-          CommandParameter="personal_cabinet"
+                </Grid.RowDefinitions>
+
+                <ImageButton
+          Command="{Binding ScrollToTopCommand}"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
-          Source="person_white.png"
-          Grid.Column="4"
-          x:Name="personal_cabinet" />
+          Source="up_arrow.png" BackgroundColor="Transparent"
+          Grid.Column="4" />
 
-
-        <ImageButton Style="{StaticResource trigger}"
+                <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           CommandParameter="app_info"
           HorizontalOptions="FillAndExpand"
@@ -118,33 +116,35 @@
           Grid.Column="3"
           x:Name="app_info" />
 
-        <ImageButton Style="{StaticResource trigger}"
+                <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           Padding="7,5,7,9"
           Opacity="1"
           CommandParameter="main"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
-          Source="grid_white.png"
+          Source="home.png"
           Grid.Column="2"
           x:Name="main" />
-        <ImageButton Style="{StaticResource trigger}"
+
+                <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
-          CommandParameter="cart"
+          CommandParameter="personal_cabinet"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
-          Source="basket2_white.png"
+          Source="person_white.png"
           Grid.Column="1"
-          x:Name="cart" />
+          x:Name="personal_cabinet" />
 
-        <ImageButton Style="{StaticResource trigger}"
+
+                <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           CommandParameter="onplatform_button"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand" 
           Grid.Column="0"
           x:Name="onplatform_button" />
-      </Grid>
-    </StackLayout>
-  </Grid>
+            </Grid>
+        </StackLayout>
+    </Grid>
 </ContentPage>

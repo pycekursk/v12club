@@ -32,8 +32,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidKeyStore>false</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\pycek\AppData\Local\Xamarin\Mono for Android\Keystore\IT-Wiki\IT-Wiki.keystore</AndroidSigningKeyStore>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>D:\YandexDisk\!ITW\!!!mobile keys!!!\ITWiki_google_v2.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>3339393</AndroidSigningStorePass>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
@@ -41,6 +41,7 @@
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <PlatformTarget>x86</PlatformTarget>
     <BundleAssemblies>false</BundleAssemblies>
+    <MandroidI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -59,9 +60,9 @@
     <MandroidI18n />
     <AndroidSupportedAbis />
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\pycek\OneDrive\!ITW\v12club\AndroidKeys\AndroidKeys.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>D:\YandexDisk\!ITW\!!!mobile keys!!!\ITWiki_google_v2.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>3339393</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>AndroidKeys</AndroidSigningKeyAlias>
+    <AndroidSigningKeyAlias>upload</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>3339393</AndroidSigningKeyPass>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
@@ -89,6 +90,7 @@
     <Compile Include="ITWikiHybridWebView\JavascriptWebViewClient.cs" />
     <Compile Include="ITWikiHybridWebView\JSBridge.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="OpenAppService.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />
@@ -174,10 +176,19 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash_logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\left_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\up_arrow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadUnhandledDeviceExceptionv12clubAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarv12clubAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarv12clubAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionv12clubAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
