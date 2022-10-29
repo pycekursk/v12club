@@ -1,12 +1,14 @@
-﻿namespace v12club
-{
-	public partial class MainPage : Xamarin.Forms.TabbedPage
-	{
-		public MainPage()
-		{
-			InitializeComponent();
+﻿using Xamarin.Forms;
 
-			App.IsBusy = true;
-		}
-	}
+namespace v12club
+{
+  public partial class MainPage : Xamarin.Forms.TabbedPage
+  {
+    public MainPage()
+    {
+      InitializeComponent();
+     
+      App.IsBusy = true;
+    }
+  }
 }

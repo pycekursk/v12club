@@ -8,52 +8,52 @@ using Xamarin.Forms;
 namespace v12club
 {
 
-	public partial class App : Xamarin.Forms.Application
-	{
-		public static readonly BindableProperty IsBusyProperty =
-			 BindableProperty.Create("IsBusy", // название обычного свойства
-					 typeof(bool), // возвращаемый тип 
-					 typeof(App), // тип,  котором объявляется свойство
-					 false,// значение по умолчанию
-					BindingMode.TwoWay
-			 );
-		public static bool IsBusy
-		{
-			set
-			{
-			
-			}
-			get
-			{
-				return (bool)App.Current.GetValue(IsBusyProperty);
-			}
-		}
+  public partial class App : Xamarin.Forms.Application
+  {
+    public static readonly BindableProperty IsBusyProperty =
+       BindableProperty.Create("IsBusy", // название обычного свойства
+           typeof(bool), // возвращаемый тип 
+           typeof(App), // тип,  котором объявляется свойство
+           false,// значение по умолчанию
+          BindingMode.TwoWay
+       );
+    public static bool IsBusy
+    {
+      set
+      {
 
-		public static JSBridgeObject BridgeObject { get; set; }
-		public static string Version { get; } = AppInfo.Version.ToString();
+      }
+      get
+      {
+        return (bool)App.Current.GetValue(IsBusyProperty);
+      }
+    }
 
-		public App()
-		{
-			InitializeComponent();
+    public static JSBridgeObject BridgeObject { get; set; }
+    public static string Version { get; } = AppInfo.Version.ToString();
 
-			BridgeObject = new JSBridgeObject();
+    public App()
+    {
+      InitializeComponent();
 
-			MainPage = new Content();
-		}
+      BridgeObject = new JSBridgeObject();
 
-		protected override void OnStart()
-		{
+      MainPage = new Content();
+    }
 
-		}
+    protected override void OnStart()
+    {
 
-		protected override void OnSleep()
-		{
+    }
 
-		}
+    protected override void OnSleep()
+    {
 
-		protected override void OnResume()
-		{
+    }
 
-		}
-	}
+    protected override void OnResume()
+    {
+
+    }
+  }
 }

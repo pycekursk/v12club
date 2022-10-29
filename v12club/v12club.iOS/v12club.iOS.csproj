@@ -14,7 +14,7 @@
     <AssemblyName>ITW.iOSv12club</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>automatic</ProvisioningType>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -94,7 +94,7 @@
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <CodesignProvision>NewDevelopProfile</CodesignProvision>
-    <BuildIpa>true</BuildIpa>
+    <BuildIpa>false</BuildIpa>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
     <IpaPackageName>ITW.iOSv12club</IpaPackageName>
     <CodesignResourceRules>
@@ -103,6 +103,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
+    <LaunchForBackgroundFetch>false</LaunchForBackgroundFetch>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>v12club.iOS.Application</StartupObject>

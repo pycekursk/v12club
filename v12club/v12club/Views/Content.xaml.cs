@@ -29,6 +29,13 @@ namespace v12club.Views
       this.BindingContext = new MainPageViewModel(WebView_wrapper);
 
       onplatform_button.Source = DeviceInfo.Platform == DevicePlatform.iOS ? "left_arrow.png" : "garage_white.png";
+
+      //if (DeviceInfo.Platform != DevicePlatform.iOS)
+      //{
+      //  onplatform_button.Style = new Style(typeof(NavigableElement)) { BaseResourceKey = "trigger" };
+      //}
+
+      //onplatform_button.Style = DeviceInfo.Platform == DevicePlatform.iOS ? default : onplatform_button.Style;
     }
 
     private void WebView_wrapper_Navigating(object sender, WebNavigatingEventArgs e)
