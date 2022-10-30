@@ -14,7 +14,7 @@
     <AssemblyName>ITW.iOSv12club</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>manual</ProvisioningType>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,10 +69,11 @@
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
     <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
-    <BuildIpa>false</BuildIpa>
+    <BuildIpa>true</BuildIpa>
     <MtouchSdkVersion>
     </MtouchSdkVersion>
-    <CodesignProvision>NewDevelopProfile</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <CodesignResourceRules>
     </CodesignResourceRules>
@@ -80,6 +81,7 @@
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <IpaIncludeArtwork>true</IpaIncludeArtwork>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -88,12 +90,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Development: Ruslan Bredikhin (3NTWZ9P2R6)</CodesignKey>
+    <CodesignKey>Apple Distribution: Ruslan Bredikhin (CPAZ8J3N9U)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>false</MtouchDebug>
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
-    <CodesignProvision>NewDevelopProfile</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
     <BuildIpa>false</BuildIpa>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
     <IpaPackageName>ITW.iOSv12club</IpaPackageName>
@@ -109,8 +112,7 @@
     <StartupObject>v12club.iOS.Application</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>v12club.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <Win32Resource>
@@ -131,8 +133,6 @@
     <None Include="Info.plist" />
     <Compile Include="OpenAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -258,6 +258,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\up_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="v12club.ico" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
