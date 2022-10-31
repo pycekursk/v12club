@@ -15,8 +15,6 @@ namespace v12club
 		protected override void Invoke(ImageButton sender)
 		{
 			DependencyService.Get<INotify>().Touch();
-			sender.Padding = new Thickness(7, 5, 7, 9);
-			sender.Opacity = 1;
 		}
 	}
 

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
+using v12club.Models;
+
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace v12club
@@ -8,6 +12,8 @@ namespace v12club
   {
     Action<string> action;
     Action<string> invokeApplication;
+
+    public Action<object, WebNavigatingEventArgs> ApplicationInvoking { get; internal set; }
 
     public static readonly BindableProperty UriProperty = BindableProperty.Create(
         propertyName: "Uri",
@@ -21,15 +27,38 @@ namespace v12club
       set { SetValue(UriProperty, value); }
     }
 
+
     public HybridWebView()
     {
       this.Navigated += HybridWebView_Navigated;
+      this.Navigating += HybridWebView_Navigating;
+    }
 
+    private void HybridWebView_Navigating(object sender, WebNavigatingEventArgs e)
+    {
+      var url = e.Url;
+      var regex = new Regex("^http.+");
+      var match = regex.Match(url);
+      if (!match.Success)
+      {
+        //ApplicationInvoking.Invoke(this, e);
+        e.Cancel = true;
+        this.GoBack();
+        Launcher.TryOpenAsync(url);
+        DependencyService.Get<IMessage>().LongAlert(url);
+      }
     }
 
     private void HybridWebView_Navigated(object sender, WebNavigatedEventArgs e)
     {
       Uri = e.Url;
+    }
+
+
+
+    public void StopLoading()
+    {
+      this.StopLoading();
     }
 
     public void RegisterAction(Action<string> callback)

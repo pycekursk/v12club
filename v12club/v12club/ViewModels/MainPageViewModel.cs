@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -22,39 +23,19 @@ namespace v12club.ViewModels
       HybridWeb.Navigated += HybridWeb_Navigated;
       NavigatingCommand = new Command(OnButtonClick);
 
-      ScrollToTopCommand = new Command(async () => await HybridWeb.EvaluateJavaScriptAsync("$([document.documentElement, document.body]).animate({scrollTop: 0}, 500)"));
+      ScrollToTopCommand = new Command(async (obj) => await HybridWeb.EvaluateJavaScriptAsync("$([document.documentElement, document.body]).animate({scrollTop: 0}, 500)"));
     }
 
     private void HybridWeb_Navigated(object sender, WebNavigatedEventArgs e)
     {
-      //HybridWeb.EvaluateJavaScriptAsync("loader(false)");
+      //MessagingCenter.Send<MainPage>((MainPage)App.Current.MainPage, "Hi");
     }
 
     private void HybridWeb_Navigating(object sender, WebNavigatingEventArgs e)
     {
       var regex = new Regex(@"(?<=ru\/)\w+");
       var match = regex.Match(e.Url);
-
-      if (DeviceInfo.Platform != DevicePlatform.iOS)
-      {
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-          foreach (ImageButton child in App.Current.MainPage.FindByName<Grid>("Buttons_grid")?.Children)
-          {
-            child.Opacity = 0.5;
-            child.Padding = 12;
-          }
-        });
-      }
-      else
-      {
-        var butt = App.Current.MainPage.FindByName<ImageButton>("onplatform_button");
-        butt.Padding = 12;
-        butt.Opacity = 0.5;
-      }
-
-      string buttonName;
-
+      string buttonName = String.Empty;
       if (e.Url.Contains("garage") & DeviceInfo.Platform != DevicePlatform.iOS)
       {
         buttonName = "onplatform_button";
@@ -67,9 +48,7 @@ namespace v12club.ViewModels
       {
         buttonName = match?.Value;
       }
-
       ImageButton button = App.Current.MainPage.FindByName<ImageButton>(buttonName);
-
       if (button != null)
       {
         button.Padding = new Thickness(7, 5, 7, 9);
@@ -79,30 +58,27 @@ namespace v12club.ViewModels
 
     private void OnButtonClick(object obj)
     {
-      if (DeviceInfo.Platform == DevicePlatform.iOS)
+      var buttons = HybridWeb.Parent.FindByName<Grid>("Buttons_grid").Children;
+      buttons.ForEach(b =>
       {
-        foreach (ImageButton child in App.Current.MainPage.FindByName<Grid>("Buttons_grid")?.Children)
+        if (b is ImageButton button && b.AutomationId != "up_arrow")
         {
-          child.Opacity = 0.5;
-          child.Padding = 12;
+          button.Padding = new Thickness(10);
+          button.Opacity = 0.5;
         }
-      }
-
-      //await HybridWeb.EvaluateJavaScriptAsync("loader(true)");
+      });
 
       obj =
         obj.ToString() == "onplatform_button" ? "personal_cabinet?garage" :
         obj.ToString() == "personal_cabinet" ? "personal_cabinet?personal_info_edit" :
         obj.ToString() == "main" ? "" : obj;
 
-      if (DeviceInfo.Platform == DevicePlatform.iOS & obj.ToString() == "personal_cabinet?garage" & HybridWeb.CanGoBack)
+      if (DeviceInfo.Platform == DevicePlatform.iOS && obj.ToString() == "personal_cabinet?garage" && HybridWeb.CanGoBack)
       {
         HybridWeb.GoBack();
+        return;
       }
-      else
-      {
-        HybridWeb.Source = @$"https://v12club.ru/{obj}";
-      }
+      HybridWeb.Source = @$"https://v12club.ru/{obj}";
     }
   }
 }

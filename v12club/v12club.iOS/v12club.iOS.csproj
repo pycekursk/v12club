@@ -131,6 +131,7 @@
     <Compile Include="IOSNotify.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
+    <Compile Include="MessageAndroid.cs" />
     <Compile Include="OpenAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

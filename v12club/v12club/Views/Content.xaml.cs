@@ -3,11 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using v12club.ViewModels;
-
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Forms.PlatformConfiguration;
 
 using DeviceInfo = Xamarin.Essentials.DeviceInfo;
 
@@ -20,22 +22,34 @@ namespace v12club.Views
       InitializeComponent();
       WebView_wrapper.Navigated += WebView_Navigated;
       WebView_wrapper.Navigating += WebView_wrapper_Navigating;
+
+      WebView_wrapper.ApplicationInvoking += ApplicationInvoking_Invoking;
       WebView_wrapper.RegisterAction(data => JSNotifyHandler(data));
-
       WebView_wrapper.RegisterInvokeApplication(data => AppInvokeHandler(data));
-
+     
       Page_wrapper.Children.Add(new LoginView(WebView_wrapper));
 
       this.BindingContext = new MainPageViewModel(WebView_wrapper);
 
       onplatform_button.Source = DeviceInfo.Platform == DevicePlatform.iOS ? "left_arrow.png" : "garage_white.png";
 
-      //if (DeviceInfo.Platform != DevicePlatform.iOS)
-      //{
-      //  onplatform_button.Style = new Style(typeof(NavigableElement)) { BaseResourceKey = "trigger" };
-      //}
+      On<iOS>().SetPrefersStatusBarHidden(StatusBarHiddenMode.True)
+         .SetPreferredStatusBarUpdateAnimation(UIStatusBarAnimation.Fade);
+    }
 
-      //onplatform_button.Style = DeviceInfo.Platform == DevicePlatform.iOS ? default : onplatform_button.Style;
+    private void ApplicationInvoking_Invoking(object sender, WebNavigatingEventArgs e)
+    {
+      if (e.Url == "https://v12club.ru/?logout")
+      {
+        WebView_wrapper.IsVisible = false;
+        Page_wrapper.IsVisible = true;
+        Buttons_grid.IsVisible = false;
+      }
+      else if (!e.Url.StartsWith("http"))
+      {
+        WebView_wrapper.IsVisible = false;
+        Buttons_grid.IsVisible = false;
+      }
     }
 
     private void WebView_wrapper_Navigating(object sender, WebNavigatingEventArgs e)
@@ -46,12 +60,13 @@ namespace v12club.Views
         Page_wrapper.IsVisible = true;
         Buttons_grid.IsVisible = false;
       }
-      //else if (sender is HybridWebView wb && wb.Uri.Contains("sberpay://"))
-      //{
-      //  Launcher.TryOpenAsync(wb.Uri);
-      //  e.Cancel = true;
-      //}
+      else if (!e.Url.StartsWith("http"))
+      {
+        WebView_wrapper.IsVisible = false;
+        Buttons_grid.IsVisible = false;
+      }
     }
+
 
     private async void AppInvokeHandler(string data)
     {
@@ -91,12 +106,6 @@ namespace v12club.Views
 
     void WebView_Navigated(object sender, Xamarin.Forms.WebNavigatedEventArgs e)
     {
-      if (sender is HybridWebView wb && wb.Uri.Contains("sberpay://"))
-      {
-        Launcher.TryOpenAsync(wb.Uri);
-        wb.GoBack();
-      }
-
       if (e.Url == "https://v12club.ru/reg" || e.Url == "https://v12club.ru/remindpass")
       {
         App.BridgeObject.ClientStatus = Models.Status.OnRegistration;

@@ -29,6 +29,9 @@ namespace v12club.iOS
 			DependencyService.Register<INotify, Notify>();
 			LoadApplication(new App());
 			return base.FinishedLaunching(app, options);
+
 		}
+
+	
 	}
 }

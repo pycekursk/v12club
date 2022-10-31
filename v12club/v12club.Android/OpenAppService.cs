@@ -29,14 +29,14 @@ namespace v12club.Droid
         if (intent != null)
         {
           intent.AddFlags(ActivityFlags.NewTask);
-          Forms.Context.StartActivity(intent);
+          BaseContext.StartActivity(intent);
         }
         else
         {
           intent = new Intent(Intent.ActionView);
           intent.AddFlags(ActivityFlags.NewTask);
           intent.SetData(Android.Net.Uri.Parse("market://details?id=" + stringUri)); // This launches the PlayStore and search for the app if it's not installed on your device
-          Forms.Context.StartActivity(intent);
+          BaseContext.StartActivity(intent);
         }
         return Task.FromResult(true);
       }

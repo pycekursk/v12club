@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="100" android:versionName="1" package="com.itwiki.v12club" android:installLocation="preferExternal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="104" android:versionName="1" package="com.itwiki.v12club" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="30" />
 	<application android:hardwareAccelerated="true" android:label="v12 club" android:theme="@style/MainTheme" android:icon="@drawable/v12club_icon"></application>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+	<uses-permission android:name="android.permission.INSTALL_PACKAGES" />
 </manifest>

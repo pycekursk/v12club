@@ -7,28 +7,39 @@
   xmlns:sp="clr-namespace:v12club">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <sp:ValueConverter
-        x:Key="conv" />
-            <Style x:Key="trigger"
-        TargetType="ImageButton">
-                <Setter
-          Property="Padding"
-          Value="12"></Setter>
-                <Setter
-          Property="Opacity"
-          Value="0.5"></Setter>
-                <Setter
-          Property="BackgroundColor"
-          Value="Transparent"></Setter>
+            <sp:ValueConverter x:Key="conv" />
+            <Style x:Key="trigger" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Setter Property="Padding" Value="10"></Setter>
+                <Setter Property="Opacity" Value="0.5"></Setter>
+                <!--<Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroup>
+                        <VisualState x:Name="Active">
+                            <VisualState.Setters>
+                                <Setter Property="Padding" Value="12"></Setter>
+                                <Setter Property="Opacity" Value="1"></Setter>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </Setter>-->
                 <Style.Triggers>
-                    <EventTrigger
-            Event="Clicked">
+                    <EventTrigger Event="Clicked">
                         <sp:ClickTriggerAction />
                     </EventTrigger>
-                    <!--<EventTrigger
-            Event="Pressed">
-            <sp:ClickTriggerAction />
-          </EventTrigger>-->
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="button" TargetType="ImageButton">
+                <Setter Property="Padding" Value="10"></Setter>
+                <Setter Property="Opacity" Value="0.5"></Setter>
+                <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsPressed" Value="True" TargetType="ImageButton">
+                        <Setter Property="Padding" Value="8"></Setter>
+                        <Setter Property="Opacity" Value="1"></Setter>
+                    </Trigger>
+                    <EventTrigger Event="Clicked">
+                        <sp:ClickTriggerAction />
+                    </EventTrigger>
                 </Style.Triggers>
             </Style>
         </ResourceDictionary>
@@ -100,11 +111,12 @@
             Height="50" />
                 </Grid.RowDefinitions>
 
-                <ImageButton Style="{StaticResource trigger}"
+                <ImageButton Style="{StaticResource button}"
           Command="{Binding ScrollToTopCommand}"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
-          Source="up_arrow.png"
+          Source="up_arrow.png" 
+          x:Name="up_arrow" AutomationId="up_arrow"
           Grid.Column="4" />
 
                 <ImageButton Style="{StaticResource trigger}"
@@ -118,8 +130,6 @@
 
                 <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
-          Padding="7,5,7,9"
-          Opacity="1"
           CommandParameter="main"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
@@ -137,12 +147,13 @@
           x:Name="personal_cabinet" />
 
 
-                <ImageButton
+                <ImageButton Style="{StaticResource trigger}"
           Command="{Binding NavigatingCommand}"
           CommandParameter="onplatform_button"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand" 
           Grid.Column="0"
+          Source="garage_white.png"
           x:Name="onplatform_button" />
             </Grid>
         </StackLayout>

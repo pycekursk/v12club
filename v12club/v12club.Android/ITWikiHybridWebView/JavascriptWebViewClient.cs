@@ -15,8 +15,12 @@ namespace v12club.Droid
 			_javascript = javascript;
 		}
 
+    public override void OnLoadResource(WebView view, string url)
+    {
+      base.OnLoadResource(view, url);
+    }
 
-		public override void OnPageFinished(WebView view, string url)
+    public override void OnPageFinished(WebView view, string url)
 		{
 			base.OnPageFinished(view, url);
 			try

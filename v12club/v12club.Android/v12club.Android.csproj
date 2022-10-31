@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>D:\YandexDisk\!ITW\!!!mobile keys!!!\ITWiki_google_v2.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>D:\ITWiki_google_v2.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>3339393</AndroidSigningStorePass>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
@@ -42,6 +42,8 @@
     <PlatformTarget>x86</PlatformTarget>
     <BundleAssemblies>false</BundleAssemblies>
     <MandroidI18n />
+    <AndroidSigningKeyAlias>upload</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>3339393</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -86,6 +88,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageAndroid.cs" />
     <Compile Include="ITWikiHybridWebView\HybridWebViewRenderer.cs" />
     <Compile Include="ITWikiHybridWebView\JavascriptWebViewClient.cs" />
     <Compile Include="ITWikiHybridWebView\JSBridge.cs" />
@@ -180,7 +183,7 @@
     <AndroidResource Include="Resources\drawable\home.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\left_arrow.png" />
+    <BundleResource Include="Resources\drawable\left_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\up_arrow.png" />
@@ -188,7 +191,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarv12clubAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionv12clubAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadUnhandledDeviceExceptionv12clubAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarv12clubAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

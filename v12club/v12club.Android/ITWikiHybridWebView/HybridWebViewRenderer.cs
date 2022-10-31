@@ -23,6 +23,9 @@ namespace v12club.Droid
     const string JavascriptFunction = "function invokeCSharpAction(data){jsBridge.invokeAction(data);} function invokeApplication(data){jsBridge.invokeApplication(data);}";
     Context _context;
 
+
+
+
     public HybridWebViewRenderer(Context context) : base(context)
     {
       _context = context;
@@ -45,9 +48,13 @@ namespace v12club.Droid
         Control.Download += Control_Download;
 
         Control.Settings.UserAgentString = "android";
-
+        Control.Settings.AllowFileAccessFromFileURLs = true;
         Control.Settings.CacheMode = Android.Webkit.CacheModes.Normal;
-        Control.SetWebViewClient(new JavascriptWebViewClient(this, $"javascript: {JavascriptFunction}"));
+
+        var javaScriptClient = new JavascriptWebViewClient(this, $"javascript: {JavascriptFunction}");
+        var javascriptInterface = new JSBridge(this);
+
+
         Control.LoadUrl(((HybridWebView)Element).Uri);
         Control.AddJavascriptInterface(new JSBridge(this), "jsBridge");
       }
