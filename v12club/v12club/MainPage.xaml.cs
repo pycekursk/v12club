@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace v12club
 {
@@ -7,7 +8,6 @@ namespace v12club
     public MainPage()
     {
       InitializeComponent();
-     
       App.IsBusy = true;
     }
   }

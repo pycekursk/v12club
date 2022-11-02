@@ -57,13 +57,13 @@ namespace v12club
       //DependencyService.Get<IMessage>().LongAlert($"OnStart");
     }
 
-    protected override async void OnSleep()
+    protected override void OnSleep()
     {
       //var permission = await Permissions.CheckStatusAsync<Permissions.LaunchApp>();
       //DependencyService.Get<IMessage>().LongAlert($"OnSleep, {permission}");
     }
 
-    protected override async void OnResume()
+    protected override void OnResume()
     {
       //var permission = await Permissions.CheckStatusAsync<Permissions.LaunchApp>();
       //DependencyService.Get<IMessage>().LongAlert($"OnResume, {permission}");

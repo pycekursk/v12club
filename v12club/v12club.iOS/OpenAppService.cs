@@ -16,22 +16,15 @@ namespace v12club.iOS
 {
   public class OpenAppService : IOpenAppService
   {
-    public Task<bool> Launch(string stringUrl)
+    public Task<bool> Launch(string uri)
     {
       try
       {
-        NSUrl request = new NSUrl(stringUrl);
-        bool isOpened = UIApplication.SharedApplication.OpenUrl(request);
-
-        if (isOpened == false)
-          UIApplication.SharedApplication.OpenUrl(new NSUrl(stringUrl));
-
-        return Task.FromResult(true);
+        var canOpen = UIApplication.SharedApplication.CanOpenUrl(new NSUrl(uri));
+        return Task.FromResult(canOpen && UIApplication.SharedApplication.OpenUrl(new NSUrl(uri)));
       }
-      catch (Exception ex)
+      catch
       {
-        var alertView = new UIAlertView("Error", ex.Message, null, "OK", null);
-        alertView.Show();
         return Task.FromResult(false);
       }
     }

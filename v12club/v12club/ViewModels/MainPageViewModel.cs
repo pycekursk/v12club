@@ -20,19 +20,15 @@ namespace v12club.ViewModels
     {
       HybridWeb = webView;
       HybridWeb.Navigating += HybridWeb_Navigating;
-      HybridWeb.Navigated += HybridWeb_Navigated;
       NavigatingCommand = new Command(OnButtonClick);
-
       ScrollToTopCommand = new Command(async (obj) => await HybridWeb.EvaluateJavaScriptAsync("$([document.documentElement, document.body]).animate({scrollTop: 0}, 500)"));
     }
 
-    private void HybridWeb_Navigated(object sender, WebNavigatedEventArgs e)
-    {
-      //MessagingCenter.Send<MainPage>((MainPage)App.Current.MainPage, "Hi");
-    }
+
 
     private void HybridWeb_Navigating(object sender, WebNavigatingEventArgs e)
     {
+      if (!e.Url.Contains("v12club")) return;
       var regex = new Regex(@"(?<=ru\/)\w+");
       var match = regex.Match(e.Url);
       string buttonName = String.Empty;
@@ -48,7 +44,28 @@ namespace v12club.ViewModels
       {
         buttonName = match?.Value;
       }
+      if (string.IsNullOrEmpty(buttonName)) return;
       ImageButton button = App.Current.MainPage.FindByName<ImageButton>(buttonName);
+      var buttons = HybridWeb.Parent.FindByName<Grid>("Buttons_grid").Children;
+      buttons.ForEach(b =>
+      {
+        if (b is ImageButton button && b.AutomationId != "up_arrow")
+        {
+          if (Dispatcher.IsInvokeRequired)
+          {
+            Dispatcher.BeginInvokeOnMainThread(() =>
+            {
+              button.Padding = new Thickness(10);
+              button.Opacity = 0.5;
+            });
+          }
+          else
+          {
+            button.Padding = new Thickness(10);
+            button.Opacity = 0.5;
+          }
+        }
+      });
       if (button != null)
       {
         button.Padding = new Thickness(7, 5, 7, 9);

@@ -19,15 +19,14 @@ namespace v12club.iOS
 
     public HybridWebViewRenderer() : this(new WKWebViewConfiguration())
     {
-      this.AllowsLinkPreview = true;
       CustomUserAgent = "ios";
     }
 
     public HybridWebViewRenderer(WKWebViewConfiguration config) : base(config)
     {
       userController = config.UserContentController;
-      var script = new WKUserScript(new NSString(JavaScriptFunction), WKUserScriptInjectionTime.AtDocumentStart, false);
-      var script2 = new WKUserScript(new NSString(ApplicationInvokeFunction), WKUserScriptInjectionTime.AtDocumentStart, false);
+      var script = new WKUserScript(new NSString(JavaScriptFunction), WKUserScriptInjectionTime.AtDocumentStart, true);
+      var script2 = new WKUserScript(new NSString(ApplicationInvokeFunction), WKUserScriptInjectionTime.AtDocumentStart, true);
       userController.AddUserScript(script);
       userController.AddUserScript(script2);
       userController.AddScriptMessageHandler(this, "invokeAction");

@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 using v12club.Droid;
 using v12club.Models;
-
+using Application = Android.App.Application;
 using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Dependency(typeof(OpenAppService))]
@@ -21,30 +22,49 @@ namespace v12club.Droid
 {
   public class OpenAppService : Activity, IOpenAppService
   {
-    public Task<bool> Launch(string stringUri)
+    public async Task<bool> Launch(string packageName)
     {
       try
       {
-        Intent intent = Android.App.Application.Context.PackageManager.GetLaunchIntentForPackage(stringUri);
-        if (intent != null)
+        //var intent1 = new Intent(Intent.ActionView, Android. Uri.Parse(packageName));
+        //intent1.SetFlags(ActivityFlags.NewTask);
+        //Application.Context.StartActivity(intent1);
+
+        var canOpen = await Xamarin.Essentials.Launcher.CanOpenAsync("sberpay://");
+        if (canOpen)
         {
-          intent.AddFlags(ActivityFlags.NewTask);
-          BaseContext.StartActivity(intent);
+          await Xamarin.Essentials.Launcher.OpenAsync(packageName);
         }
         else
         {
-          intent = new Intent(Intent.ActionView);
-          intent.AddFlags(ActivityFlags.NewTask);
-          intent.SetData(Android.Net.Uri.Parse("market://details?id=" + stringUri)); // This launches the PlayStore and search for the app if it's not installed on your device
-          BaseContext.StartActivity(intent);
+          var intent = new Intent(Intent.ActionView);
+          intent.SetData(Android.Net.Uri.Parse($"market://search?q={packageName}&c=apps"));
+          intent.SetFlags(ActivityFlags.NewTask);
+          Application.Context.StartActivity(intent);
         }
-        return Task.FromResult(true);
+        return true;
       }
       catch (Exception exc)
       {
-        Console.Write(exc.Message);
+        App.Toast(exc.Message);
+        return false;
       }
-      return Task.FromResult(false);
+    }
+
+    private bool IsAppInstalled(string packageName)
+    {
+      PackageManager pm = Android.App.Application.Context.PackageManager;
+      bool installed = false;
+      try
+      {
+        pm.GetPackageInfo(packageName, PackageInfoFlags.Activities);
+        installed = true;
+      }
+      catch (PackageManager.NameNotFoundException e)
+      {
+        installed = false;
+      }
+      return installed;
     }
   }
 }

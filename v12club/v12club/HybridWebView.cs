@@ -39,13 +39,12 @@ namespace v12club
       var url = e.Url;
       var regex = new Regex("^http.+");
       var match = regex.Match(url);
-      if (!match.Success)
+
+      if (!match.Success && match.Value != "about:blank")
       {
-        //ApplicationInvoking.Invoke(this, e);
+        OpenUri(url);
         e.Cancel = true;
         this.GoBack();
-        Launcher.TryOpenAsync(url);
-        DependencyService.Get<IMessage>().LongAlert(url);
       }
     }
 
@@ -54,7 +53,12 @@ namespace v12club
       Uri = e.Url;
     }
 
-
+    public async void OpenUri(string url)
+    {
+      var canOpen = await Xamarin.Essentials.Launcher.CanOpenAsync(url);
+      if (canOpen)
+        await Xamarin.Essentials.Launcher.OpenAsync(url);
+    }
 
     public void StopLoading()
     {
