@@ -7,6 +7,7 @@ using v12club.Models;
 
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace v12club.ViewModels
 {
@@ -28,48 +29,55 @@ namespace v12club.ViewModels
 
     private void HybridWeb_Navigating(object sender, WebNavigatingEventArgs e)
     {
-      if (!e.Url.Contains("v12club")) return;
-      var regex = new Regex(@"(?<=ru\/)\w+");
-      var match = regex.Match(e.Url);
       string buttonName = String.Empty;
-      if (e.Url.Contains("garage") & DeviceInfo.Platform != DevicePlatform.iOS)
+      if (Device.RuntimePlatform == Device.iOS && (e.Url.Contains("https://yandex.ru") || e.Url == "about:blank"))
       {
-        buttonName = "onplatform_button";
-      }
-      else if (match.Value == string.Empty || new Regex(@"catalog$|carbase|laximo").Match(e.Url).Success)
-      {
-        buttonName = "main";
+        buttonName = "app_info";
       }
       else
       {
-        buttonName = match?.Value;
-      }
-      if (string.IsNullOrEmpty(buttonName)) return;
-      ImageButton button = App.Current.MainPage.FindByName<ImageButton>(buttonName);
-      var buttons = HybridWeb.Parent.FindByName<Grid>("Buttons_grid").Children;
-      buttons.ForEach(b =>
-      {
-        if (b is ImageButton button && b.AutomationId != "up_arrow")
+        var regex = new Regex(@"(?<=ru\/)\w+");
+        var match = regex.Match(e.Url);
+
+        if (e.Url.Contains("garage") & DeviceInfo.Platform != DevicePlatform.iOS)
         {
-          if (Dispatcher.IsInvokeRequired)
+          buttonName = "onplatform_button";
+        }
+        else if (e.Url == "https://v12club.ru/" || new Regex(@"catalog$|carbase|laximo").Match(e.Url).Success)
+        {
+          buttonName = "main";
+        }
+        else
+        {
+          buttonName = match?.Value;
+        }
+
+        ImageButton button = App.Current.MainPage.FindByName<ImageButton>(buttonName);
+        var buttons = HybridWeb.Parent.FindByName<Grid>("Buttons_grid").Children;
+        buttons.ForEach(b =>
+        {
+          if (b is ImageButton button && b.AutomationId != "up_arrow")
           {
-            Dispatcher.BeginInvokeOnMainThread(() =>
+            if (Dispatcher.IsInvokeRequired)
+            {
+              Dispatcher.BeginInvokeOnMainThread(() =>
+              {
+                button.Padding = new Thickness(10);
+                button.Opacity = 0.5;
+              });
+            }
+            else
             {
               button.Padding = new Thickness(10);
               button.Opacity = 0.5;
-            });
+            }
           }
-          else
-          {
-            button.Padding = new Thickness(10);
-            button.Opacity = 0.5;
-          }
+        });
+        if (button != null)
+        {
+          button.Padding = new Thickness(7, 5, 7, 9);
+          button.Opacity = 1;
         }
-      });
-      if (button != null)
-      {
-        button.Padding = new Thickness(7, 5, 7, 9);
-        button.Opacity = 1;
       }
     }
 

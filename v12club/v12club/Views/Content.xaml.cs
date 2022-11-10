@@ -43,11 +43,11 @@ namespace v12club.Views
         Page_wrapper.IsVisible = true;
         Buttons_grid.IsVisible = false;
       }
-      else if (!e.Url.StartsWith("http"))
-      {
-        WebView_wrapper.IsVisible = false;
-        Buttons_grid.IsVisible = false;
-      }
+      //else if (!e.Url.StartsWith("http"))
+      //{
+      //  WebView_wrapper.IsVisible = false;
+      //  Buttons_grid.IsVisible = false;
+      //}
     }
 
 

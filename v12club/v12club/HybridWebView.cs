@@ -40,12 +40,12 @@ namespace v12club
       var regex = new Regex("^http.+");
       var match = regex.Match(url);
 
-      if (!match.Success && match.Value != "about:blank")
-      {
-        OpenUri(url);
-        e.Cancel = true;
-        this.GoBack();
-      }
+      //if (!match.Success && match.Value != "about:blank")
+      //{
+      //  OpenUri(url);
+      //  e.Cancel = true;
+      //  this.GoBack();
+      //}
     }
 
     private void HybridWebView_Navigated(object sender, WebNavigatedEventArgs e)

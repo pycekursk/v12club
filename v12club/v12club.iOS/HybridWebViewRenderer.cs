@@ -36,6 +36,7 @@ namespace v12club.iOS
     protected override void OnElementChanged(VisualElementChangedEventArgs e)
     {
       base.OnElementChanged(e);
+     
       if (e.OldElement != null)
       {
         userController.RemoveAllUserScripts();

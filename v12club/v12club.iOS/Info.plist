@@ -31,8 +31,6 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ru</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -42,6 +40,12 @@
 		<string>whatsapp</string>
 	</array>
 	<key>CFBundleShortVersionString</key>
-	<string>100</string>
+	<string>101</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location is required for xyz benefits for you</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is required for xyz benefits for you</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>
